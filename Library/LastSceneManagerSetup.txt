@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/tfett/Documents/SDKtest/Assets/Qualisys/DemoScene.unity
+- path: Assets/Scenes/Walking_Into_Fog_LR_Game.unity
   isLoaded: 1
   isActive: 1

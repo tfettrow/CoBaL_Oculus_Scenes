@@ -27,7 +27,6 @@ namespace QualisysRealTime.Unity
             markerRoot = gameObject;
         }
 
-
         private void InitiateMarkers()
         {
             foreach (var marker in markers)
