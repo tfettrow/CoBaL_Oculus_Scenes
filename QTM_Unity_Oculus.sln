@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QTM_Unity_Oculus", "Assembly-CSharp.csproj", "{7FDA9E19-5D63-CD2C-458D-E607B01A2451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QTM_Unity_Oculus", "Assembly-CSharp-firstpass.csproj", "{8032CE8E-7DB7-87E7-5B65-80AC96946AE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QTM_Unity_Oculus", "Assembly-CSharp-Editor.csproj", "{612BC517-E6CE-8FCF-2796-DFE015A43E62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FDA9E19-5D63-CD2C-458D-E607B01A2451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDA9E19-5D63-CD2C-458D-E607B01A2451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDA9E19-5D63-CD2C-458D-E607B01A2451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDA9E19-5D63-CD2C-458D-E607B01A2451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8032CE8E-7DB7-87E7-5B65-80AC96946AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8032CE8E-7DB7-87E7-5B65-80AC96946AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8032CE8E-7DB7-87E7-5B65-80AC96946AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8032CE8E-7DB7-87E7-5B65-80AC96946AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{612BC517-E6CE-8FCF-2796-DFE015A43E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612BC517-E6CE-8FCF-2796-DFE015A43E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612BC517-E6CE-8FCF-2796-DFE015A43E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612BC517-E6CE-8FCF-2796-DFE015A43E62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

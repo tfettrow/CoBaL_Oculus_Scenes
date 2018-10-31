@@ -12,3 +12,8 @@ metadata filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 18ec2d52be8f4524a97c25a2ed27838e filter=lfs diff=lfs merge=lfs -text
 *.bundle filter=lfs diff=lfs merge=lfs -text
+.ide-wal filter=lfs diff=lfs merge=lfs -text
+*.ide-wal filter=lfs diff=lfs merge=lfs -text
+*.ide filter=lfs diff=lfs merge=lfs -text
+1b32bcce201b4494ea8848326290c5d5 filter=lfs diff=lfs merge=lfs -text
+10bf81265ad87424d946598c575f45a0 filter=lfs diff=lfs merge=lfs -text
