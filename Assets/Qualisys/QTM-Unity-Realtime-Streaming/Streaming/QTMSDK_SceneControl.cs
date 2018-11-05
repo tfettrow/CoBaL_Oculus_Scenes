@@ -259,12 +259,10 @@ namespace QualisysRealTime.Unity
             pos_z3 = Plane3.transform.position.z;
             pos_z4 = Plane4.transform.position.z;
 
-
             Plane1.transform.Translate(0, 0, -beltSpeed * Time.deltaTime);
             Plane2.transform.Translate(0, 0, -beltSpeed * Time.deltaTime);
             Plane3.transform.Translate(0, 0, -beltSpeed * Time.deltaTime);
             Plane4.transform.Translate(0, 0, -beltSpeed * Time.deltaTime);
-
 
             if (pos_z1 < -10.2f)
             {
