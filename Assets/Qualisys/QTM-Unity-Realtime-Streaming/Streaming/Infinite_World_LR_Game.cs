@@ -1,13 +1,12 @@
 using UnityEngine;
-using System.Collections;
 using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine.VR;
+using UnityEngine.UI;
+
 
 // Options
 // Depth of wall
@@ -20,10 +19,13 @@ namespace QualisysRealTime.Unity
 		// Initialize udp variables
 		private List<LabeledMarker> markerData;
 		// qtm demo test
-		private string HeadMarker = "L-frame - 1";
-		// from marker set
-		//private string HeadMarker = "LFHD";
-		private RTClient rtClient;
+		// private string HeadMarker = "L-frame - 1";
+
+        // from marker set
+        private string HeadMarker = "LFHD";
+        private string LHeelMarker = "LHEEL";
+        private string RHeelMarker = "RHEEL";
+        private RTClient rtClient;
 		private GameObject markerRoot;
 		private List<GameObject> markers;
 
@@ -179,8 +181,14 @@ namespace QualisysRealTime.Unity
 		private float HeadPosition_qtm_x;
 		private float HeadPosition_qtm_y;
 		private float HeadPosition_qtm_z;
+        
+        private float lheel_pos_labview_x;
+        private float rheel_pos_labview_x;
+        private float lheel_pos_qtm_x;
+        private float rheel_pos_qtm_x;
 
-		private float falling_position_z;
+
+        private float falling_position_z;
 		private float falling_position_x;
 		private float falling_rotation_z_unity;
 	
@@ -197,9 +205,18 @@ namespace QualisysRealTime.Unity
 		Vector3 this_pyramid_position;
 		Vector3 DomePosition;
 		Vector3 ChildObjectPlacement;
-		/// //////////////////////////////////////////////////////////////////////////////////////////////	///
-		//public float dt;
-		/// 
+
+        // score stuff // 
+        public GUIText scoreText;
+        public GUIText restartText;
+        public GUIText gameOverText;
+        private float score;
+
+        public GameObject Score;
+
+        /// //////////////////////////////////////////////////////////////////////////////////////////////	///
+        //public float dt;
+        /// 
 
         public void Start()
         {
@@ -216,6 +233,10 @@ namespace QualisysRealTime.Unity
             //Plane2 = GameObject.Find("Plane2");
             //Plane3 = GameObject.Find("Plane3");
             //Plane4 = GameObject.Find("Plane4");
+
+            score = 0;
+            UpdateScore();
+    
 
             PlayerPerspective = GameObject.Find("PlayerPerspective");
 
@@ -348,6 +369,18 @@ namespace QualisysRealTime.Unity
 
                 GameObject clone = Instantiate(SquarePrefab, this_pyramid_position, transform.rotation * Quaternion.Euler(UnityEngine.Random.Range(0f, 360f), UnityEngine.Random.Range(0f, 360f), UnityEngine.Random.Range(0f, 360f))) as GameObject;
             }
+        }
+
+
+        public void AddScore(int newScoreValue)
+        {
+            score = +newScoreValue;
+            UpdateScore();
+        }
+
+        void UpdateScore()
+        {
+            scoreText.text = "SCORE:" + (int)score;
         }
 
         private void InitiateMarkers()
@@ -489,7 +522,15 @@ namespace QualisysRealTime.Unity
 				if (num_of_UDP_vals == 6) {
 					float.TryParse (word, out Stim_Zone);
 				}
-			}
+                if (num_of_UDP_vals == 7)
+                {
+                    float.TryParse(word, out lheel_pos_labview_x);
+                }
+                if (num_of_UDP_vals == 8)
+                {
+                    float.TryParse(word, out rheel_pos_labview_x);
+                }
+            }
 			num_of_UDP_vals = 0;
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -836,18 +877,31 @@ namespace QualisysRealTime.Unity
 				PlayerPerspective.transform.position = HeadPosition_labview;
 			}
 
-			//CameraPosition.x = camera_translation_x_unity;
-			//CameraPosition.y = camera_translation_y_unity - .03f;
-			//CameraPosition.z = camera_translation_z_unity; 
-			//CameraObject.transform.position = CameraPosition;
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //CameraPosition.x = camera_translation_x_unity;
+            //CameraPosition.y = camera_translation_y_unity - .03f;
+            //CameraPosition.z = camera_translation_z_unity; 
+            //CameraObject.transform.position = CameraPosition;
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			// // // // // // SET DOME/OMNITY POSITION // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  
-			// the values are a manually measure distance from the world/nexus/forceplate origin to the middle of the screen/dome 
-			// DomePosition.y = 1.8f;
-			// DomePosition.z = 2f;
-			// OmnityDomeTransform.position = DomePosition;
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // // // // // // SET DOME/OMNITY POSITION // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  
+            // the values are a manually measure distance from the world/nexus/forceplate origin to the middle of the screen/dome 
+            // DomePosition.y = 1.8f;
+            // DomePosition.z = 2f;
+            // OmnityDomeTransform.position = DomePosition;
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // // // // // // UPDATE SCORE // // // // // // // 
+            // if either heel marker crosses into the NO STEP ZONE then turn the score RED and remove 5 points //
+            // if either heel marker crosses into the OK TO STEP ZONE then do nothing with score //
+            // Otherwise, if in STEP ZONE then add a point for every heel strike // 
+
+            if (lheel_pos_labview_x >= .5) {
+                AddScore(1);
+            }
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			// // // // // // ROTATE THE WORLD // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
 			// rotate the world around SceneOrigin to allow for a proper perception of a fall
