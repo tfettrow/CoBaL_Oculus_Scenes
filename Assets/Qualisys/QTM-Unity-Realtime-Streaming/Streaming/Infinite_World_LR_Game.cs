@@ -219,6 +219,21 @@ namespace QualisysRealTime.Unity
 
             PlayerPerspective = GameObject.Find("PlayerPerspective");
 
+			// // // // //  What is the game plan? // // // // //
+			// Score keep
+			// score history
+			// 
+			// set 1-4 as default color scheme
+			// labview updates color at position 50
+			// 3 conditions 1:no 2:left 3: right 4: both
+			// conditions to analyze biomechanically
+			// 1: trigLeft towards constraint
+			// 2: trigLeft away from constraint
+			// 3: trigRight towards constraint
+			// 4: trigRight away from constraint
+
+			// how does labview know w
+
 			left_walkway1 = GameObject.Find ("left_walkway1");
 			left_walkway2 = GameObject.Find("left_walkway2");
 			left_walkway3 = GameObject.Find("left_walkway3");
@@ -230,13 +245,13 @@ namespace QualisysRealTime.Unity
 			left_walkway9 = GameObject.Find("left_walkway9");
 
 			left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 
 			right_walkway1 = GameObject.Find ("right_walkway1");
@@ -249,15 +264,15 @@ namespace QualisysRealTime.Unity
 			right_walkway8 = GameObject.Find("right_walkway8");
 			right_walkway9 = GameObject.Find("right_walkway9");
 
-			right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.yellow);
-			right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.blue);
-			right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.yellow);
-			right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.blue);
-			right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.yellow);
-			right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.blue);
-			right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.yellow);
-			right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.blue);
-			right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.yellow);
+			right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 
 			center_walkway1 = GameObject.Find ("center_walkway1");
 			center_walkway2 = GameObject.Find("center_walkway2");
@@ -269,15 +284,15 @@ namespace QualisysRealTime.Unity
 			center_walkway8 = GameObject.Find("center_walkway8");
 			center_walkway9 = GameObject.Find("center_walkway9");
 
-			center_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.black);
+			center_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 			center_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.black);
+			center_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 			center_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.black);
+			center_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 			center_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.black);
-			center_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.black);
-			center_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			center_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			center_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			center_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 
 			//left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
 			//left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
@@ -481,9 +496,9 @@ namespace QualisysRealTime.Unity
 
 			// // // // // // MOVE THE SCENE OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // //
 			// Moves the original/ parent object, thus moving all children objects in the scene assigned to the parent object
-			//current_object_position = OrigObject.transform.position;//- ground_translation_z_unity - 50f; // 50 = starting position Parent Object in scene
-			//OrigObjectPosition[1] = (current_object_position[1] - 50f) - (beltSpeed * Time.deltaTime);
-			//OrigObject.transform.position = OrigObjectPosition;
+			current_object_position = OrigObject.transform.position;//- ground_translation_z_unity - 50f; // 50 = starting position Parent Object in scene
+			OrigObjectPosition[2] = (current_object_position[2]) - (beltSpeed * Time.deltaTime);
+			OrigObject.transform.position = OrigObjectPosition;
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			// // // // // // Move THE SCENE GROUND // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // 
@@ -497,7 +512,7 @@ namespace QualisysRealTime.Unity
 			dt = Time.deltaTime;
 
 
-			TextureOffset[1] = current_texture_offset[1] - (beltSpeed/4f * dt);// offset update based on scale of plane being used... find a way to automate..
+			TextureOffset[1] = current_texture_offset[1] - (beltSpeed/10f * dt);// offset update based on scale of plane being used... find a way to automate..
 
 
 			main_floor.material.SetTextureOffset("_MainTex", TextureOffset); // Get rid of New Vector...
@@ -572,157 +587,240 @@ namespace QualisysRealTime.Unity
 
 			if (left_walkway1_position.z < -20f)
 			{
-				left_walkway1.transform.position = new Vector3(0, 0, left_walkway9_position.z + 10f);
+				left_walkway1_position.z = left_walkway9_position.z + 10f;
+				left_walkway1.transform.position = left_walkway1_position;
+				left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway2_position.z < -20f)
 			{
-				left_walkway2.transform.position = new Vector3(0, 0, left_walkway1_position.z + 10f);
+				left_walkway2_position.z = left_walkway1_position.z + 10f;
+				left_walkway2.transform.position = left_walkway2_position;
+				left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway3_position.z < -20f)
 			{
-				left_walkway3.transform.position = new Vector3(0, 0, left_walkway2_position.z + 10f);
+				left_walkway3_position.z = left_walkway2_position.z + 10f;
+				left_walkway3.transform.position = left_walkway3_position;
+				left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway4_position.z < -20f)
 			{
-				left_walkway4.transform.position = new Vector3(0, 0, left_walkway3_position.z + 10f);
+				left_walkway4_position.z = left_walkway3_position.z + 10f;
+				left_walkway4.transform.position = left_walkway4_position;
+				left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway5_position.z < -20f)
 			{
-				left_walkway5.transform.position = new Vector3(0, 0, left_walkway4_position.z + 10f);
+				left_walkway5_position.z = left_walkway4_position.z + 10f;
+				left_walkway5.transform.position = left_walkway5_position;
+				left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway6_position.z < -20f)
 			{
-				left_walkway6.transform.position = new Vector3(0, 0, left_walkway5_position.z + 10f);
+				left_walkway6_position.z = left_walkway5_position.z + 10f;
+				left_walkway6.transform.position = left_walkway6_position;
+				left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway7_position.z < -20f)
 			{
-				left_walkway7.transform.position = new Vector3(0, 0, left_walkway6_position.z + 10f);
+				left_walkway7_position.z = left_walkway6_position.z + 10f;
+				left_walkway7.transform.position = left_walkway7_position;
+				left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway8_position.z < -20f)
 			{
-				left_walkway8.transform.position = new Vector3(0, 0, left_walkway7_position.z + 10f);
+				left_walkway8_position.z = left_walkway7_position.z + 10f;
+				left_walkway8.transform.position = left_walkway8_position;
+				left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 			if (left_walkway9_position.z < -20f)
 			{
-				left_walkway9.transform.position = new Vector3(0, 0, left_walkway8_position.z + 10f);
+				left_walkway9_position.z = left_walkway8_position.z + 10f;
+				left_walkway9.transform.position = left_walkway9_position;
+				left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 			}
 
 
-			if (right_walkway1_position.z < -20f)
-			{
-				right_walkway1.transform.position = new Vector3(0, 0, right_walkway9_position.z + 10f);
-			}
-			if (right_walkway2_position.z < -20f)
-			{
-				right_walkway2.transform.position = new Vector3(0, 0, right_walkway1_position.z + 10f);
-			}
-			if (right_walkway3_position.z < -20f)
-			{
-				right_walkway3.transform.position = new Vector3(0, 0, right_walkway2_position.z + 10f);
-			}
-			if (right_walkway4_position.z < -20f)
-			{
-				right_walkway4.transform.position = new Vector3(0, 0, right_walkway3_position.z + 10f);
-			}
-			if (right_walkway5_position.z < -20f)
-			{
-				right_walkway5.transform.position = new Vector3(0, 0, right_walkway4_position.z + 10f);
-			}
-			if (right_walkway6_position.z < -20f)
-			{
-				right_walkway6.transform.position = new Vector3(0, 0, right_walkway5_position.z + 10f);
-			}
-			if (right_walkway7_position.z < -20f)
-			{
-				right_walkway7.transform.position = new Vector3(0, 0, right_walkway6_position.z + 10f);
-			}
-			if (right_walkway8_position.z < -20f)
-			{
-				right_walkway8.transform.position = new Vector3(0, 0, right_walkway7_position.z + 10f);
-			}
-			if (right_walkway9_position.z < -20f)
-			{
-				right_walkway9.transform.position = new Vector3(0, 0, right_walkway8_position.z + 10f);
-			}
-
+			left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
 
 			if (center_walkway1_position.z < -20f)
 			{
-				center_walkway1.transform.position = new Vector3(0, 0, center_walkway9_position.z + 10f);
+				center_walkway1_position.z = center_walkway9_position.z + 10f;
+				center_walkway1.transform.position = center_walkway1_position;
 			}
 			if (center_walkway2_position.z < -20f)
 			{
-				center_walkway2.transform.position = new Vector3(0, 0, center_walkway1_position.z + 10f);
+				center_walkway2_position.z = center_walkway1_position.z + 10f;
+				center_walkway2.transform.position = center_walkway2_position;
 			}
-			if (right_walkway3_position.z < -20f)
+			if (center_walkway3_position.z < -20f)
 			{
-				center_walkway3.transform.position = new Vector3(0, 0, center_walkway2_position.z + 10f);
+				center_walkway3_position.z = center_walkway2_position.z + 10f;
+				center_walkway3.transform.position = center_walkway3_position;
 			}
 			if (center_walkway4_position.z < -20f)
 			{
-				center_walkway4.transform.position = new Vector3(0, 0, center_walkway3_position.z + 10f);
+				center_walkway4_position.z = center_walkway3_position.z + 10f;
+				center_walkway4.transform.position = center_walkway4_position;
 			}
 			if (center_walkway5_position.z < -20f)
 			{
-				center_walkway5.transform.position = new Vector3(0, 0, center_walkway4_position.z + 10f);
+				center_walkway5_position.z = center_walkway4_position.z + 10f;
+				center_walkway5.transform.position = center_walkway5_position;
 			}
 			if (center_walkway6_position.z < -20f)
 			{
-				center_walkway6.transform.position = new Vector3(0, 0, center_walkway5_position.z + 10f);
+				center_walkway6_position.z = center_walkway5_position.z + 10f;
+				center_walkway6.transform.position = center_walkway6_position;
 			}
 			if (center_walkway7_position.z < -20f)
 			{
-				center_walkway7.transform.position = new Vector3(0, 0, center_walkway6_position.z + 10f);
+				center_walkway7_position.z = center_walkway6_position.z + 10f;
+				center_walkway7.transform.position = center_walkway7_position;
 			}
 			if (center_walkway8_position.z < -20f)
 			{
-				center_walkway8.transform.position = new Vector3(0, 0, center_walkway7_position.z + 10f);
+				center_walkway8_position.z = center_walkway7_position.z + 10f;
+				center_walkway8.transform.position = center_walkway8_position;
 			}
 			if (center_walkway9_position.z < -20f)
 			{
-				center_walkway9.transform.position = new Vector3(0, 0, center_walkway8_position.z + 10f);
+				center_walkway9_position.z = center_walkway8_position.z + 10f;
+				center_walkway9.transform.position = center_walkway9_position;
 			}
 
+			if (right_walkway1_position.z < -20f)
+			{
+				right_walkway1_position.z = right_walkway9_position.z + 10f;
+				right_walkway1.transform.position = right_walkway1_position;
+				right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway2_position.z < -20f)
+			{
+				right_walkway2_position.z = right_walkway1_position.z + 10f;
+				right_walkway2.transform.position = right_walkway2_position;
+				right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway3_position.z < -20f)
+			{
+				right_walkway3_position.z = right_walkway2_position.z + 10f;
+				right_walkway3.transform.position = right_walkway3_position;
+				right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway4_position.z < -20f)
+			{
+				right_walkway4_position.z = right_walkway3_position.z + 10f;
+				right_walkway4.transform.position = right_walkway4_position;
+				right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway5_position.z < -20f)
+			{
+				right_walkway5_position.z = right_walkway4_position.z + 10f;
+				right_walkway5.transform.position = right_walkway5_position;
+				right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway6_position.z < -20f)
+			{
+				right_walkway6_position.z = right_walkway5_position.z + 10f;
+				right_walkway6.transform.position = right_walkway6_position;
+				right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway7_position.z < -20f)
+			{
+				right_walkway7_position.z = right_walkway6_position.z + 10f;
+				right_walkway7.transform.position = right_walkway7_position;
+				right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway8_position.z < -20f)
+			{
+				right_walkway8_position.z = right_walkway7_position.z + 10f;
+				right_walkway8.transform.position = right_walkway8_position;
+				right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
+			if (right_walkway9_position.z < -20f)
+			{
+				right_walkway9_position.z = right_walkway8_position.z + 10f;
+				right_walkway9.transform.position = right_walkway9_position;
+				right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			}
 
 			if (Stim_Zone == 1)
 			{
-				if (left_walkway1_position[1] >= 40 && left_walkway1_position[1] <= 50) {
+				if (left_walkway1_position[2] >= 40 && left_walkway1_position[2] <= 50) {
 					left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway2_position[1] >= 40 && left_walkway2_position[1] <= 50) {
+				if (left_walkway2_position[2] >= 40 && left_walkway2_position[2] <= 50) {
 
 					left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway3_position[1] >= 40 && left_walkway3_position[1] <= 50) {
+				if (left_walkway3_position[2] >= 40 && left_walkway3_position[2] <= 50) {
 
 					left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway4_position[1] >= 40 && left_walkway4_position[1] <= 50) {
+				if (left_walkway4_position[2] >= 40 && left_walkway4_position[2] <= 50) {
 					left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 					//	right_walkway4.material.SetColor("_Color", Color.red);
 				}
-				if (left_walkway5_position[1] >= 40 && left_walkway5_position[1] <= 50) {
+				if (left_walkway5_position[2] >= 40 && left_walkway5_position[2] <= 50) {
 					left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				//	right_walkway5.material.SetColor("_Color", Color.red);
 				}
-				if (left_walkway6_position[1] >= 40 && left_walkway6_position[1] <= 50) {
+				if (left_walkway6_position[2] >= 40 && left_walkway6_position[2] <= 50) {
 					left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				//	right_walkway6.material.SetColor("_Color", Color.red);
 				}
-				if (left_walkway7_position[1] >= 40 && left_walkway7_position[1] <= 50) {
+				if (left_walkway7_position[2] >= 40 && left_walkway7_position[2] <= 50) {
 					left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				//	right_walkway7.material.SetColor("_Color", Color.red);
 				}
-				if (left_walkway8_position[1] >= 40 && left_walkway8_position[1] <= 50) {
+				if (left_walkway8_position[2] >= 40 && left_walkway8_position[2] <= 50) {
 					left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				//	right_walkway8.material.SetColor("_Color", Color.red);
 				}
-				if (left_walkway9_position[1] >= 40 && left_walkway9_position[1] <= 50) {
+				if (left_walkway9_position[2] >= 40 && left_walkway9_position[2] <= 50) {
 					left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				//	right_walkway9.material.SetColor("_Color", Color.red);
 				}
 			}
 
+			if (Stim_Zone == 2) {
+				
+				if (right_walkway1_position [2] >= 40 && right_walkway1_position [2] <= 50) {
+					right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+				}
+				if (right_walkway2_position [2] >= 40 && right_walkway2_position [2] <= 50) {
+
+					right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+				}
+				if (right_walkway3_position [2] >= 40 && right_walkway3_position [2] <= 50) {
+
+					right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+				}
+				if (right_walkway4_position [2] >= 40 && right_walkway4_position [2] <= 50) {
+					right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+					//	right_walkway4.material.SetColor("_Color", Color.red);
+				}
+				if (right_walkway5_position [2] >= 40 && right_walkway5_position [2] <= 50) {
+					right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+					//	right_walkway5.material.SetColor("_Color", Color.red);
+				}
+				if (right_walkway6_position [2] >= 40 && right_walkway6_position [2] <= 50) {
+					right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+					//	right_walkway6.material.SetColor("_Color", Color.red);
+				}
+				if (right_walkway7_position [2] >= 40 && right_walkway7_position [2] <= 50) {
+					right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+					//	right_walkway7.material.SetColor("_Color", Color.red);
+				}
+				if (right_walkway8_position [2] >= 40 && right_walkway8_position [2] <= 50) {
+					right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+					//	right_walkway8.material.SetColor("_Color", Color.red);
+				}
+				if (right_walkway9_position [2] >= 40 && right_walkway9_position [2] <= 50) {
+					right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
+					//	right_walkway9.material.SetColor("_Color", Color.red);
+				}
+			}
 
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
