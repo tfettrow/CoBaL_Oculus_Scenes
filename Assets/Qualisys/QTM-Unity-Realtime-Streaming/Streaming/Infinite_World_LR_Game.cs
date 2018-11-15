@@ -207,12 +207,12 @@ namespace QualisysRealTime.Unity
 		Vector3 ChildObjectPlacement;
 
         // score stuff // 
-        public GUIText scoreText;
-        public GUIText restartText;
-        public GUIText gameOverText;
-        private float score;
+        //public GUIText scoreText;
+        //public GUIText restartText;
+        //public GUIText gameOverText;
+        //private float score;
 
-        public GameObject Score;
+        //public GameObject Score;
 
         /// //////////////////////////////////////////////////////////////////////////////////////////////	///
         //public float dt;
@@ -234,11 +234,11 @@ namespace QualisysRealTime.Unity
             //Plane3 = GameObject.Find("Plane3");
             //Plane4 = GameObject.Find("Plane4");
 
-            score = 0;
-            UpdateScore();
+            //score = 0;
+            //UpdateScore();
     
 
-            PlayerPerspective = GameObject.Find("PlayerPerspective");
+            //PlayerPerspective = GameObject.Find("PlayerPerspective");
 
 			// // // // //  What is the game plan? // // // // //
 			// Score keep
@@ -372,16 +372,16 @@ namespace QualisysRealTime.Unity
         }
 
 
-        public void AddScore(int newScoreValue)
-        {
-            score = +newScoreValue;
-            UpdateScore();
-        }
+       // public void AddScore(int newScoreValue)
+       // {
+       ////     score = +newScoreValue;
+       //     UpdateScore();
+      ///  }
 
-        void UpdateScore()
-        {
-            scoreText.text = "SCORE:" + (int)score;
-        }
+      //  void UpdateScore()
+      //  {
+      //      scoreText.text = "SCORE:" + (int)score;
+      //  }
 
         private void InitiateMarkers()
         {
@@ -437,16 +437,19 @@ namespace QualisysRealTime.Unity
 			// // // // // // // // GRAB OMNITY OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //
 	        // Figure out why this isn't grabbing during Start!!!
 	        // Only runs if CameraObject is empty
-			init();
-			rtClient = RTClient.GetInstance();
+			//init();
+			// rtClient = RTClient.GetInstance();
 			//markers = new List<GameObject>();
-			markerRoot = gameObject;
+			//markerRoot = gameObject;
 
-			PlayerPerspective = GameObject.Find("PlayerPerspective");
+			//PlayerPerspective = GameObject.Find("PlayerPerspective");
 
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			if (rtClient == null) rtClient = RTClient.GetInstance();
+            if (rtClient == null)
+            {
+                rtClient = RTClient.GetInstance();
+            }
 			if (rtClient.GetStreamingStatus() && !streaming)
 			{
 				InitiateMarkers();
@@ -682,8 +685,6 @@ namespace QualisysRealTime.Unity
 			}
 
 
-			left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-
 			if (center_walkway1_position.z < -20f)
 			{
 				center_walkway1_position.z = center_walkway9_position.z + 10f;
@@ -791,36 +792,28 @@ namespace QualisysRealTime.Unity
 					left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 				if (left_walkway2_position[2] >= 40 && left_walkway2_position[2] <= 50) {
-
 					left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 				if (left_walkway3_position[2] >= 40 && left_walkway3_position[2] <= 50) {
-
 					left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 				if (left_walkway4_position[2] >= 40 && left_walkway4_position[2] <= 50) {
 					left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway4.material.SetColor("_Color", Color.red);
 				}
 				if (left_walkway5_position[2] >= 40 && left_walkway5_position[2] <= 50) {
 					left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-				//	right_walkway5.material.SetColor("_Color", Color.red);
 				}
 				if (left_walkway6_position[2] >= 40 && left_walkway6_position[2] <= 50) {
 					left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-				//	right_walkway6.material.SetColor("_Color", Color.red);
 				}
 				if (left_walkway7_position[2] >= 40 && left_walkway7_position[2] <= 50) {
 					left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-				//	right_walkway7.material.SetColor("_Color", Color.red);
 				}
 				if (left_walkway8_position[2] >= 40 && left_walkway8_position[2] <= 50) {
 					left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-				//	right_walkway8.material.SetColor("_Color", Color.red);
 				}
 				if (left_walkway9_position[2] >= 40 && left_walkway9_position[2] <= 50) {
 					left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-				//	right_walkway9.material.SetColor("_Color", Color.red);
 				}
 			}
 
@@ -830,36 +823,28 @@ namespace QualisysRealTime.Unity
 					right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 				if (right_walkway2_position [2] >= 40 && right_walkway2_position [2] <= 50) {
-
 					right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 				if (right_walkway3_position [2] >= 40 && right_walkway3_position [2] <= 50) {
-
 					right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 				if (right_walkway4_position [2] >= 40 && right_walkway4_position [2] <= 50) {
-					right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway4.material.SetColor("_Color", Color.red);
+                    right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 				}
 				if (right_walkway5_position [2] >= 40 && right_walkway5_position [2] <= 50) {
 					right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway5.material.SetColor("_Color", Color.red);
 				}
 				if (right_walkway6_position [2] >= 40 && right_walkway6_position [2] <= 50) {
 					right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway6.material.SetColor("_Color", Color.red);
 				}
 				if (right_walkway7_position [2] >= 40 && right_walkway7_position [2] <= 50) {
 					right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway7.material.SetColor("_Color", Color.red);
 				}
 				if (right_walkway8_position [2] >= 40 && right_walkway8_position [2] <= 50) {
 					right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway8.material.SetColor("_Color", Color.red);
 				}
 				if (right_walkway9_position [2] >= 40 && right_walkway9_position [2] <= 50) {
 					right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-					//	right_walkway9.material.SetColor("_Color", Color.red);
 				}
 			}
 
@@ -897,9 +882,9 @@ namespace QualisysRealTime.Unity
             // if either heel marker crosses into the OK TO STEP ZONE then do nothing with score //
             // Otherwise, if in STEP ZONE then add a point for every heel strike // 
 
-            if (lheel_pos_labview_x >= .5) {
-                AddScore(1);
-            }
+           // if (lheel_pos_labview_x >= .5) {
+           //     AddScore(1);
+           // }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
