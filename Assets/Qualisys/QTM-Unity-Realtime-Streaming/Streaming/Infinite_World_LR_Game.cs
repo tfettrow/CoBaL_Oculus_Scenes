@@ -22,7 +22,8 @@ namespace QualisysRealTime.Unity
 		// private string HeadMarker = "L-frame - 1";
 
         // from marker set
-        private string HeadMarker = "LFHD";
+        private string HeadMarker1 = "LFHD";
+        private string HeadMarker2 = "RFHD";
         private string LHeelMarker = "LHEEL";
         private string RHeelMarker = "RHEEL";
         private RTClient rtClient;
@@ -393,15 +394,15 @@ namespace QualisysRealTime.Unity
             markers.Clear();
             markerData = rtClient.Markers;
 
-            for (int i = 0; i < markerData.Count; i++)
-            {
-                GameObject newMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                newMarker.name = markerData[i].Label;
-                //newMarker.transform.parent = markerRoot.transform;
-                //newMarker.transform.localScale = Vector3.one * markerScale;
-                //newMarker.SetActive(false);
-                markers.Add(newMarker);
-            }
+           // for (int i = 0; i < markerData.Count; i++)
+           // {
+           //     GameObject newMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+           //     newMarker.name = markerData[i].Label;
+           //     //newMarker.transform.parent = markerRoot.transform;
+           //     //newMarker.transform.localScale = Vector3.one * markerScale;
+           //     //newMarker.SetActive(false);
+           //     markers.Add(newMarker);
+           // }
         }
 
         // UDP Start //
@@ -474,7 +475,7 @@ namespace QualisysRealTime.Unity
 			{
 				if (markerData[i].Position.magnitude > 0)
 				{
-					if (markerData[i].Label == HeadMarker)
+					if (markerData[i].Label == HeadMarker1)
 					{
 						HeadPosition_qtm_x = markerData[i].Position.z;
 						HeadPosition_qtm.x = HeadPosition_qtm_x;
@@ -516,8 +517,9 @@ namespace QualisysRealTime.Unity
 				}
 				if (num_of_UDP_vals == 4) {
 					//float.TryParse (word, out ground_translation_y_labview);
-					float.TryParse(word, out beltSpeed);
-				}
+					float.TryParse(word, out ground_translation_y_labview);
+                    ground_translation_z_unity = ground_translation_y_labview;
+                }
 				if (num_of_UDP_vals == 5) {
 					float.TryParse (word, out falling_rotation_y_labview);
 					falling_rotation_z_unity = falling_rotation_y_labview;
@@ -541,7 +543,7 @@ namespace QualisysRealTime.Unity
 			// // // // // // MOVE THE SCENE OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // //
 			// Moves the original/ parent object, thus moving all children objects in the scene assigned to the parent object
 			current_object_position = OrigObject.transform.position;//- ground_translation_z_unity - 50f; // 50 = starting position Parent Object in scene
-			OrigObjectPosition[2] = (current_object_position[2]) - (beltSpeed * Time.deltaTime);
+			OrigObjectPosition[2] = (current_object_position[2]) - (ground_translation_z_unity);
 			OrigObject.transform.position = OrigObjectPosition;
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -553,21 +555,21 @@ namespace QualisysRealTime.Unity
 			//TextureOffset_right[1] = -ground_translation_z_unity/2f;
 			current_texture_offset = main_floor.material.GetTextureOffset("_MainTex");
 
-			dt = Time.deltaTime;
+			//dt = Time.deltaTime;
 
 
-			TextureOffset[1] = current_texture_offset[1] - (beltSpeed/10f * dt);// offset update based on scale of plane being used... find a way to automate..
+			TextureOffset[1] = current_texture_offset[1] - (ground_translation_z_unity/ 10f);// offset update based on scale of plane being used... find a way to automate..
 
 
 			main_floor.material.SetTextureOffset("_MainTex", TextureOffset); // Get rid of New Vector...
 			//left_path.material.SetTextureOffset("_MainTex", TextureOffset_left); // Get rid of New Vector...
 			//right_path.material.SetTextureOffset("_MainTex", TextureOffset_right); // Get rid of New Vector...
             //left_path.material.SetColor("_Color", Color.green);
-            //right_path.material.SetColor("_Color", Color.gray);
+            //right_path.material.SetColor("_Color", Color.gray);h
 
-			left_walkway1.transform.Translate(0, 0, -beltSpeed * dt);
-			left_walkway2.transform.Translate(0, 0, -beltSpeed * dt);
-			left_walkway3.transform.Translate(0, 0, -beltSpeed * dt);
+			left_walkway1.transform.Translate(0, 0, -ground_translation_z_unity);
+			left_walkway2.transform.Translate(0, 0, -ground_translation_z_unity);
+			left_walkway3.transform.Translate(0, 0, -ground_translation_z_unity);
 			left_walkway4.transform.Translate(0, 0, -beltSpeed * dt);
 			left_walkway5.transform.Translate(0, 0, -beltSpeed * dt);
 			left_walkway6.transform.Translate(0, 0, -beltSpeed * dt);
@@ -788,62 +790,79 @@ namespace QualisysRealTime.Unity
 
 			if (Stim_Zone == 1)
 			{
-				if (left_walkway1_position[2] >= 40 && left_walkway1_position[2] <= 50) {
+				if (Mathf.Round(left_walkway1_position[2]) == 45){
 					left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway2_position[2] >= 40 && left_walkway2_position[2] <= 50) {
+				if (Mathf.Round(left_walkway2_position[2]) == 45)
+                {
 					left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway3_position[2] >= 40 && left_walkway3_position[2] <= 50) {
+				if (Mathf.Round(left_walkway3_position[2]) == 45)
+                {
 					left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway4_position[2] >= 40 && left_walkway4_position[2] <= 50) {
+				if (Mathf.Round(left_walkway4_position[2]) == 45)
+                {
 					left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway5_position[2] >= 40 && left_walkway5_position[2] <= 50) {
+				if (Mathf.Round(left_walkway5_position[2]) == 45)
+                {
 					left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway6_position[2] >= 40 && left_walkway6_position[2] <= 50) {
+				if (Mathf.Round(left_walkway6_position[2]) == 45)
+                {
 					left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway7_position[2] >= 40 && left_walkway7_position[2] <= 50) {
+				if (Mathf.Round(left_walkway7_position[2]) == 45)
+                {
 					left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway8_position[2] >= 40 && left_walkway8_position[2] <= 50) {
+				if (Mathf.Round(left_walkway8_position[2]) == 45)
+                {
 					left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (left_walkway9_position[2] >= 40 && left_walkway9_position[2] <= 50) {
+				if (Mathf.Round(left_walkway9_position[2]) == 45)
+                {
 					left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 			}
 
 			if (Stim_Zone == 2) {
 				
-				if (right_walkway1_position [2] >= 40 && right_walkway1_position [2] <= 50) {
+				if (Mathf.Round(right_walkway1_position[2]) == 45)
+                {
 					right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway2_position [2] >= 40 && right_walkway2_position [2] <= 50) {
+				if (Mathf.Round(right_walkway2_position[2]) == 45)
+                {
 					right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway3_position [2] >= 40 && right_walkway3_position [2] <= 50) {
+				if (Mathf.Round(right_walkway3_position [2]) == 45)
+                {
 					right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway4_position [2] >= 40 && right_walkway4_position [2] <= 50) {
+				if (Mathf.Round(right_walkway4_position [2]) == 45)
+                {
                     right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 				}
-				if (right_walkway5_position [2] >= 40 && right_walkway5_position [2] <= 50) {
+				if (Mathf.Round(right_walkway5_position [2]) == 45)
+                {
 					right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway6_position [2] >= 40 && right_walkway6_position [2] <= 50) {
+				if (Mathf.Round(right_walkway6_position [2]) == 45)
+                {
 					right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway7_position [2] >= 40 && right_walkway7_position [2] <= 50) {
+				if (Mathf.Round(right_walkway7_position [2]) == 45)
+                {
 					right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway8_position [2] >= 40 && right_walkway8_position [2] <= 50) {
+				if (Mathf.Round(right_walkway8_position [2]) == 45)
+                {
 					right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
-				if (right_walkway9_position [2] >= 40 && right_walkway9_position [2] <= 50) {
+				if (Mathf.Round(right_walkway9_position [2]) == 45)
+                {
 					right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
 				}
 			}
@@ -882,7 +901,7 @@ namespace QualisysRealTime.Unity
             // if either heel marker crosses into the OK TO STEP ZONE then do nothing with score //
             // Otherwise, if in STEP ZONE then add a point for every heel strike // 
 
-           // if (lheel_pos_labview_x >= .5) {
+           //if (lheel_pos_labview_x >= .5) {
            //     AddScore(1);
            // }
 
