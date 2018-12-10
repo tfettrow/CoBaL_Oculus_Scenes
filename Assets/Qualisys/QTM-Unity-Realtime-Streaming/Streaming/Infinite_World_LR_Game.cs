@@ -134,8 +134,16 @@ namespace QualisysRealTime.Unity
 		private Vector2 TextureOffset_left;
 		private Vector2 TextureOffset_right;
 
-	    // Should hard code this once determine appropriate values...
-	    private float Distance = 125f;
+        private float row_doubles;
+        private float LeftLaneLengths;
+        private float CenterLaneLengths;
+        private float RightLaneLengths;
+        private float LeftLaneColors;
+        private float CenterLaneColors;
+        private float RightLaneColors;
+
+        // Should hard code this once determine appropriate values...
+        private float Distance = 125f;
 	    private float LeftRightSideLength = 10f;
 		private float TopWallLength = 4f;
 	    private float DepthofWall = 15f;
@@ -234,69 +242,519 @@ namespace QualisysRealTime.Unity
             SceneObject = GameObject.Find("SceneOrigin");
             PlayerPerspective = GameObject.Find("PlayerPerspective");
 
+            // Assign walkways
+            left_walkway1 = GameObject.Find("left_walkway1");
+            left_walkway2 = GameObject.Find("left_walkway2");
+            left_walkway3 = GameObject.Find("left_walkway3");
+            left_walkway4 = GameObject.Find("left_walkway4");
+            left_walkway5 = GameObject.Find("left_walkway5");
+            left_walkway6 = GameObject.Find("left_walkway6");
+            left_walkway7 = GameObject.Find("left_walkway7");
+            left_walkway8 = GameObject.Find("left_walkway8");
+            left_walkway9 = GameObject.Find("left_walkway9");
+
+            center_walkway1 = GameObject.Find("center_walkway1");
+            center_walkway2 = GameObject.Find("center_walkway2");
+            center_walkway3 = GameObject.Find("center_walkway3");
+            center_walkway4 = GameObject.Find("center_walkway4");
+            center_walkway5 = GameObject.Find("center_walkway5");
+            center_walkway6 = GameObject.Find("center_walkway6");
+            center_walkway7 = GameObject.Find("center_walkway7");
+            center_walkway8 = GameObject.Find("center_walkway8");
+            center_walkway9 = GameObject.Find("center_walkway9");
+
+            right_walkway1 = GameObject.Find("right_walkway1");
+            right_walkway2 = GameObject.Find("right_walkway2");
+            right_walkway3 = GameObject.Find("right_walkway3");
+            right_walkway4 = GameObject.Find("right_walkway4");
+            right_walkway5 = GameObject.Find("right_walkway5");
+            right_walkway6 = GameObject.Find("right_walkway6");
+            right_walkway7 = GameObject.Find("right_walkway7");
+            right_walkway8 = GameObject.Find("right_walkway8");
+            right_walkway9 = GameObject.Find("right_walkway9");
+            // // // Load the VR Randomization CSV // // // //
             //PlayerPerspective = GameObject.Find("PlayerPerspective");
+            TextAsset PlaneInfo = Resources.Load<TextAsset>("lanes");
+            string[] PlaneInfo_string = PlaneInfo.text.Split(new char[] { '\n' });
+            // Debug.Log(PlaneInfo_string.Length);
 
-			// // // // //  What is the game plan? // // // // //
+           for (int i = 0; i < PlaneInfo_string.Length - 1; i ++)
+           {
+               String[] row_string = PlaneInfo_string[i].Split(new char[] {','});
+                //Debug.Log(row_string.Length);
+                for (int i2 = 0; i2 < row_string.Length - 1; i2 ++)
+                {
+                    float.TryParse(row_string[i2], out row_doubles);
+                    if (i == 0)
+                    {
+                         LeftLaneLengths = row_doubles;
+                        Debug.Log(LeftLaneLengths);
+                    }
+                    if (i == 1)
+                    {
+                         LeftLaneColors = row_doubles;
+                         //Debug.Log(LeftLaneColors);
+                    }
+                    if (i == 2)
+                    {
+                         CenterLaneLengths = row_doubles;
+                    }
+                    if (i == 3)
+                    {
+                         CenterLaneColors = row_doubles;
+                    }
+                    if (i == 4)
+                    {
+                         RightLaneLengths = row_doubles;
+                    }
+                    if (i == 5)
+                    {
+                         RightLaneColors = row_doubles;
+                    }
 
-			left_walkway1 = GameObject.Find ("left_walkway1");
-			left_walkway2 = GameObject.Find("left_walkway2");
-			left_walkway3 = GameObject.Find("left_walkway3");
-			left_walkway4 = GameObject.Find("left_walkway4");
-			left_walkway5 = GameObject.Find("left_walkway5");
-			left_walkway6 = GameObject.Find("left_walkway6");
-			left_walkway7 = GameObject.Find("left_walkway7");
-			left_walkway8 = GameObject.Find("left_walkway8");
-			left_walkway9 = GameObject.Find("left_walkway9");
+                    if (LeftLaneColors == 0)
+                    {
+                        Color color_left = Color.green;
+                    }
 
-			left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+                    if (CenterLaneColors == 0)
+                    {
+                        Color color_center = Color.green;
+                    }
+                    if (RightLaneColors == 0)
+                    {
+                        Color color_right = Color.green;
+                    }
 
-			right_walkway1 = GameObject.Find ("right_walkway1");
-			right_walkway2 = GameObject.Find("right_walkway2");
-			right_walkway3 = GameObject.Find("right_walkway3");
-			right_walkway4 = GameObject.Find("right_walkway4");
-			right_walkway5 = GameObject.Find("right_walkway5");
-			right_walkway6 = GameObject.Find("right_walkway6");
-			right_walkway7 = GameObject.Find("right_walkway7");
-			right_walkway8 = GameObject.Find("right_walkway8");
-			right_walkway9 = GameObject.Find("right_walkway9");
+                    if (i2 == 0)
+                    {
+                        left_walkway1.transform.localPosition = new Vector3(-10, (1 / 10), (30 - LeftLaneLengths / 2));
+                        left_walkway1.transform.localScale = new Vector3(1, 1, LeftLaneLengths / 10);
+                        
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 1)
+                    {
+                        if (LeftLaneColors == 0)
+                        { 
+                            left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 2)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 3)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 4)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 5)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 6)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 7)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    if (i2 == 8)
+                    {
+                        if (LeftLaneColors == 0)
+                        {
+                            left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (LeftLaneColors == 1)
+                        {
+                            left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (LeftLaneColors == 2)
+                        {
+                            left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (CenterLaneColors == 0)
+                        {
+                            center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (CenterLaneColors == 1)
+                        {
+                            center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (CenterLaneColors == 2)
+                        {
+                            center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                        if (RightLaneColors == 0)
+                        {
+                            right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                        }
+                        if (RightLaneColors == 1)
+                        {
+                            right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        }
+                        if (RightLaneColors == 2)
+                        {
+                            right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        }
+                    }
+                    //if (i2 == 9)
+                    //{
+                    //    if (LeftLaneColors == 0)
+                    //    {
+                    //        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //    }
+                    //    if (LeftLaneColors == 1)
+                    //    {
+                    //        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                    //    }
+                    //    if (LeftLaneColors == 2)
+                    //    {
+                    //        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    //    }
+                    //    if (CenterLaneColors == 0)
+                    //    {
+                    //        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //    }
+                    //    if (CenterLaneColors == 1)
+                    //    {
+                    //        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                    //    }
+                    //    if (CenterLaneColors == 2)
+                    //    {
+                    //        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    //    }
+                    //    if (RightLaneColors == 0)
+                    //    {
+                    //        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //    }
+                    //    if (RightLaneColors == 1)
+                    //    {
+                    //        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                    //    }
+                    //    if (RightLaneColors == 2)
+                    //    {
+                    //        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    //    }
+                    //}
 
-			right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+                    //left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                    //left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 
-			center_walkway1 = GameObject.Find ("center_walkway1");
-			center_walkway2 = GameObject.Find("center_walkway2");
-			center_walkway3 = GameObject.Find("center_walkway3");
-			center_walkway4 = GameObject.Find("center_walkway4");
-			center_walkway5 = GameObject.Find("center_walkway5");
-			center_walkway6 = GameObject.Find("center_walkway6");
-			center_walkway7 = GameObject.Find("center_walkway7");
-			center_walkway8 = GameObject.Find("center_walkway8");
-			center_walkway9 = GameObject.Find("center_walkway9");
 
-			center_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			center_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+                }
+            }
+            // // // // // // // // // // // // // // // // // // // // // // // //
+
+           
+
+			
+			
+			//right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			//right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			//right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			//right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			//right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			//right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+			//right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
+
+
+			
+			
+			//center_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			//center_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			//center_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			//center_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			//center_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			//center_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+			//center_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 
 			//left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
 			//left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
