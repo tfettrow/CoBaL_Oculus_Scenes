@@ -30,11 +30,35 @@ namespace QualisysRealTime.Unity
 		private GameObject markerRoot;
 		private List<GameObject> markers;
 
+        private Vector3 HeadPosition_qtm;
+        private float HeadPosition1_qtm_x;
+        private float HeadPosition1_qtm_y;
+        private float HeadPosition1_qtm_z;
+        private float HeadPosition2_qtm_x;
+        private float HeadPosition2_qtm_y;
+        private float HeadPosition2_qtm_z;
 
-		// // // // // // // INITIALIZE VARIABLES // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
-		//public Transform OmnityDomeTransform;
-		// Number of Cubes in Scene
-		private int num_Objects = 500;
+
+        private float lheel_pos_labview_x;
+        private float rheel_pos_labview_x;
+        private float lheel_pos_qtm_x;
+        private float rheel_pos_qtm_x;
+
+
+
+        public GameObject PlayerPerspective;
+        // labview and qtm translation values                         
+        private Vector3 HeadPosition_labview;
+        private float HeadPosition_labview_x;
+        private float HeadPosition_labview_y;
+        private float HeadPosition_labview_z;
+
+       
+
+        // // // // // // // INITIALIZE VARIABLES // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
+        //public Transform OmnityDomeTransform;
+        // Number of Cubes in Scene
+        private int num_Objects = 500;
 		// for plane ground
 		//private int num_walkway_planes = 9;
 	    public Renderer main_floor;
@@ -180,18 +204,76 @@ namespace QualisysRealTime.Unity
 		private Vector3 center_walkway18_position;
 
 		private Vector3 left_walkway1_localPosition;
+        private Vector3 left_walkway2_localPosition;
+        private Vector3 left_walkway3_localPosition;
+        private Vector3 left_walkway4_localPosition;
+        private Vector3 left_walkway5_localPosition;
+        private Vector3 left_walkway6_localPosition;
+        private Vector3 left_walkway7_localPosition;
+        private Vector3 left_walkway8_localPosition;
+        private Vector3 left_walkway9_localPosition;
 
-		//private Renderer center_walkway1;
-		//private Renderer center_walkway2;
-		//private Renderer center_walkway3;
-		//private Renderer center_walkway4;
-		//private Renderer center_walkway5;
-		//private Renderer center_walkway6;
-		//private Renderer center_walkway7;
-		//private Renderer center_walkway8;
-		//private Renderer center_walkway9;
+        private Vector3 right_walkway1_localPosition;
+        private Vector3 right_walkway2_localPosition;
+        private Vector3 right_walkway3_localPosition;
+        private Vector3 right_walkway4_localPosition;
+        private Vector3 right_walkway5_localPosition;
+        private Vector3 right_walkway6_localPosition;
+        private Vector3 right_walkway7_localPosition;
+        private Vector3 right_walkway8_localPosition;
+        private Vector3 right_walkway9_localPosition;
 
-	    private Vector2 TextureOffset;
+        private Vector3 center_walkway1_localPosition;
+        private Vector3 center_walkway2_localPosition;
+        private Vector3 center_walkway3_localPosition;
+        private Vector3 center_walkway4_localPosition;
+        private Vector3 center_walkway5_localPosition;
+        private Vector3 center_walkway6_localPosition;
+        private Vector3 center_walkway7_localPosition;
+        private Vector3 center_walkway8_localPosition;
+        private Vector3 center_walkway9_localPosition;
+
+        private Vector3 left_walkway10_localPosition;
+        private Vector3 left_walkway11_localPosition;
+        private Vector3 left_walkway12_localPosition;
+        private Vector3 left_walkway13_localPosition;
+        private Vector3 left_walkway14_localPosition;
+        private Vector3 left_walkway15_localPosition;
+        private Vector3 left_walkway16_localPosition;
+        private Vector3 left_walkway17_localPosition;
+        private Vector3 left_walkway18_localPosition;
+
+        private Vector3 right_walkway10_localPosition;
+        private Vector3 right_walkway11_localPosition;
+        private Vector3 right_walkway12_localPosition;
+        private Vector3 right_walkway13_localPosition;
+        private Vector3 right_walkway14_localPosition;
+        private Vector3 right_walkway15_localPosition;
+        private Vector3 right_walkway16_localPosition;
+        private Vector3 right_walkway17_localPosition;
+        private Vector3 right_walkway18_localPosition;
+
+        private Vector3 center_walkway10_localPosition;
+        private Vector3 center_walkway11_localPosition;
+        private Vector3 center_walkway12_localPosition;
+        private Vector3 center_walkway13_localPosition;
+        private Vector3 center_walkway14_localPosition;
+        private Vector3 center_walkway15_localPosition;
+        private Vector3 center_walkway16_localPosition;
+        private Vector3 center_walkway17_localPosition;
+        private Vector3 center_walkway18_localPosition;
+
+        //private Renderer center_walkway1;
+        //private Renderer center_walkway2;
+        //private Renderer center_walkway3;
+        //private Renderer center_walkway4;
+        //private Renderer center_walkway5;
+        //private Renderer center_walkway6;
+        //private Renderer center_walkway7;
+        //private Renderer center_walkway8;
+        //private Renderer center_walkway9;
+
+        private Vector2 TextureOffset;
 		private Vector2 TextureOffset_left;
 		private Vector2 TextureOffset_right;
 
@@ -238,22 +320,7 @@ namespace QualisysRealTime.Unity
 		private Vector3 current_texture_offset;
 		public Vector3 current_object_position;
 
-		public GameObject PlayerPerspective;
-		// labview and qtm translation values                         
-		private Vector3 HeadPosition_labview;
-		private float HeadPosition_labview_x;
-		private float HeadPosition_labview_y;
-		private float HeadPosition_labview_z;
-		private Vector3 HeadPosition_qtm;
-		private float HeadPosition_qtm_x;
-		private float HeadPosition_qtm_y;
-		private float HeadPosition_qtm_z;
-        
-        private float lheel_pos_labview_x;
-        private float rheel_pos_labview_x;
-        private float lheel_pos_qtm_x;
-        private float rheel_pos_qtm_x;
-
+		
 
         private float falling_position_z;
 		private float falling_position_x;
@@ -378,13 +445,13 @@ namespace QualisysRealTime.Unity
 						if (i2 == 0)
 						{
 							left_walkway1.transform.localScale = new Vector3(1, 1, LaneLengths / 10);
-							left_walkway1.transform.localPosition = new Vector3(-10f, .01f, 30f - LaneLengths/2);
+							left_walkway1.transform.localPosition = new Vector3(-10f, .01f, 30f - LaneLengths/2 -1);
 
 							center_walkway1.transform.localScale = new Vector3(1, 1, LaneLengths / 10);
-							center_walkway1.transform.localPosition = new Vector3(0f, .01f, 30f - LaneLengths/2);
+							center_walkway1.transform.localPosition = new Vector3(0f, .01f, 30f - LaneLengths/2 - 1);
 
 							right_walkway1.transform.localScale = new Vector3(1, 1, LaneLengths / 10);
-							right_walkway1.transform.localPosition = new Vector3(10f, .01f, 30f - LaneLengths/2);
+							right_walkway1.transform.localPosition = new Vector3(10f, .01f, 30f - LaneLengths/2 - 1);
 						}
 						if (i2 == 1)
 						{
@@ -1108,21 +1175,26 @@ namespace QualisysRealTime.Unity
 				{
 					if (markerData[i].Label == HeadMarker1)
 					{
-						HeadPosition_qtm_x = markerData[i].Position.z;
-						HeadPosition_qtm.x = HeadPosition_qtm_x;
-						HeadPosition_qtm_y = markerData[i].Position.y;
-						HeadPosition_qtm.y = HeadPosition_qtm_y;
-						HeadPosition_qtm_z = markerData[i].Position.x;
-						HeadPosition_qtm.z = HeadPosition_qtm_z;
+						HeadPosition1_qtm_x = markerData[i].Position.z;
+						HeadPosition1_qtm_y = markerData[i].Position.y;
+						HeadPosition1_qtm_z = markerData[i].Position.x;
 					}
-
-					//markers[i].name = markerData[i].Label;
-					//markers[i].GetComponent<Renderer>().material.color = markerData[i].Color;
-					//markers[i].transform.localPosition = markerData[i].Position;
-					// markers[i].SetActive(true);
-					// markers[i].GetComponent<Renderer>().enabled = visibleMarkers;
-					// markers[i].transform.localScale = Vector3.one * markerScale;
-				}
+                    if (markerData[i].Label == HeadMarker2)
+                    {
+                        HeadPosition2_qtm_x = markerData[i].Position.z;
+                        HeadPosition2_qtm_y = markerData[i].Position.y;
+                        HeadPosition2_qtm_z = markerData[i].Position.x;
+                    }
+                    HeadPosition_qtm.x = -(HeadPosition1_qtm_x + HeadPosition2_qtm_x) / 2;
+                    HeadPosition_qtm.y = (HeadPosition1_qtm_y + HeadPosition2_qtm_y) / 2;
+                    HeadPosition_qtm.z = (HeadPosition1_qtm_z + HeadPosition2_qtm_z) / 2;
+                    //markers[i].name = markerData[i].Label;
+                    //markers[i].GetComponent<Renderer>().material.color = markerData[i].Color;
+                    //markers[i].transform.localPosition = markerData[i].Position;
+                    // markers[i].SetActive(true);
+                    // markers[i].GetComponent<Renderer>().enabled = visibleMarkers;
+                    // markers[i].transform.localScale = Vector3.one * markerScale;
+                }
 			}
 			// // // // // // // // READ LABVIEW UDP STRING // // // // // // // //// // // // // // // //// // // // // // // //// // 
 			// reads string - splits the characters based on "," - assigns the characters to the variables based on the order within the string
@@ -1271,8 +1343,7 @@ namespace QualisysRealTime.Unity
 			left_walkway17_position = left_walkway17.transform.position;
 			left_walkway18_position = left_walkway18.transform.position;
 
-
-			right_walkway10_position = right_walkway10.transform.position;
+        	right_walkway10_position = right_walkway10.transform.position;
 			right_walkway11_position = right_walkway11.transform.position;
 			right_walkway12_position = right_walkway12.transform.position;
 			right_walkway13_position = right_walkway13.transform.position;
@@ -1293,6 +1364,61 @@ namespace QualisysRealTime.Unity
 			center_walkway18_position = center_walkway18.transform.position;
 
 			left_walkway1_localPosition = left_walkway1.transform.localPosition;
+            left_walkway2_localPosition = left_walkway2.transform.localPosition;
+            left_walkway3_localPosition = left_walkway3.transform.localPosition;
+            left_walkway4_localPosition = left_walkway4.transform.localPosition;
+            left_walkway5_localPosition = left_walkway5.transform.localPosition;
+            left_walkway6_localPosition = left_walkway6.transform.localPosition;
+            left_walkway7_localPosition = left_walkway7.transform.localPosition;
+            left_walkway8_localPosition = left_walkway8.transform.localPosition;
+            left_walkway9_localPosition = left_walkway9.transform.localPosition;
+            left_walkway10_localPosition = left_walkway10.transform.localPosition;
+            left_walkway11_localPosition = left_walkway11.transform.localPosition;
+            left_walkway12_localPosition = left_walkway12.transform.localPosition;
+            left_walkway13_localPosition = left_walkway13.transform.localPosition;
+            left_walkway14_localPosition = left_walkway14.transform.localPosition;
+            left_walkway15_localPosition = left_walkway15.transform.localPosition;
+            left_walkway16_localPosition = left_walkway16.transform.localPosition;
+            left_walkway17_localPosition = left_walkway17.transform.localPosition;
+            left_walkway18_localPosition = left_walkway18.transform.localPosition;
+
+            center_walkway1_localPosition = center_walkway1.transform.localPosition;
+            center_walkway2_localPosition = center_walkway2.transform.localPosition;
+            center_walkway3_localPosition = center_walkway3.transform.localPosition;
+            center_walkway4_localPosition = center_walkway4.transform.localPosition;
+            center_walkway5_localPosition = center_walkway5.transform.localPosition;
+            center_walkway6_localPosition = center_walkway6.transform.localPosition;
+            center_walkway7_localPosition = center_walkway7.transform.localPosition;
+            center_walkway8_localPosition = center_walkway8.transform.localPosition;
+            center_walkway9_localPosition = center_walkway9.transform.localPosition;
+            center_walkway10_localPosition = center_walkway10.transform.localPosition;
+            center_walkway11_localPosition = center_walkway11.transform.localPosition;
+            center_walkway12_localPosition = center_walkway12.transform.localPosition;
+            center_walkway13_localPosition = center_walkway13.transform.localPosition;
+            center_walkway14_localPosition = center_walkway14.transform.localPosition;
+            center_walkway15_localPosition = center_walkway15.transform.localPosition;
+            center_walkway16_localPosition = center_walkway16.transform.localPosition;
+            center_walkway17_localPosition = center_walkway17.transform.localPosition;
+            center_walkway18_localPosition = center_walkway18.transform.localPosition;
+
+            right_walkway1_localPosition = right_walkway1.transform.localPosition;
+            right_walkway2_localPosition = right_walkway2.transform.localPosition;
+            right_walkway3_localPosition = right_walkway3.transform.localPosition;
+            right_walkway4_localPosition = right_walkway4.transform.localPosition;
+            right_walkway5_localPosition = right_walkway5.transform.localPosition;
+            right_walkway6_localPosition = right_walkway6.transform.localPosition;
+            right_walkway7_localPosition = right_walkway7.transform.localPosition;
+            right_walkway8_localPosition = right_walkway8.transform.localPosition;
+            right_walkway9_localPosition = right_walkway9.transform.localPosition;
+            right_walkway10_localPosition = right_walkway10.transform.localPosition;
+            right_walkway11_localPosition = right_walkway11.transform.localPosition;
+            right_walkway12_localPosition = right_walkway12.transform.localPosition;
+            right_walkway13_localPosition = right_walkway13.transform.localPosition;
+            right_walkway14_localPosition = right_walkway14.transform.localPosition;
+            right_walkway15_localPosition = right_walkway15.transform.localPosition;
+            right_walkway16_localPosition = right_walkway16.transform.localPosition;
+            right_walkway17_localPosition = right_walkway17.transform.localPosition;
+            right_walkway18_localPosition = right_walkway18.transform.localPosition;
 
             if (left_walkway1_position.z < -25f)
             {
@@ -1423,258 +1549,258 @@ namespace QualisysRealTime.Unity
 
 
 			/// // // // // center lane /// // 
-			if (left_walkway1_position.z < -25f)
+			if (center_walkway1_position.z < -25f)
 			{
-				left_walkway1_localPosition.z = left_walkway18.transform.localPosition.z + left_walkway18.transform.localScale.z*10/2 + left_walkway1.transform.localScale.z *10/2;
-				left_walkway1.transform.localPosition = left_walkway1_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway1_localPosition.z = center_walkway18.transform.localPosition.z + center_walkway18.transform.localScale.z*10/2 + center_walkway1.transform.localScale.z *10/2;
+				center_walkway1.transform.localPosition = center_walkway1_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway2_position.z < -25f)
+			if (center_walkway2_position.z < -25f)
 			{
-				left_walkway2_localPosition.z = left_walkway1.transform.localPosition.z + left_walkway1.transform.localScale.z*10/2 + left_walkway2.transform.localScale.z *10/2;
-				left_walkway2.transform.localPosition = left_walkway2_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway2_localPosition.z = center_walkway1.transform.localPosition.z + center_walkway1.transform.localScale.z*10/2 + center_walkway2.transform.localScale.z *10/2;
+				center_walkway2.transform.localPosition = center_walkway2_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway3_position.z < -25f)
+			if (center_walkway3_position.z < -25f)
 			{
-				left_walkway3_localPosition.z = left_walkway2.transform.localPosition.z + left_walkway2.transform.localScale.z*10/2 + left_walkway3.transform.localScale.z *10/2;
-				left_walkway3.transform.localPosition = left_walkway3_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway3_localPosition.z = center_walkway2.transform.localPosition.z + center_walkway2.transform.localScale.z*10/2 + center_walkway3.transform.localScale.z *10/2;
+				center_walkway3.transform.localPosition = center_walkway3_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway4_position.z < -25f)
+			if (center_walkway4_position.z < -25f)
 			{
-				left_walkway4_localPosition.z = left_walkway3.transform.localPosition.z + left_walkway3.transform.localScale.z*10/2 + left_walkway4.transform.localScale.z *10/2;
-				left_walkway4.transform.localPosition = left_walkway4_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway4_localPosition.z = center_walkway3.transform.localPosition.z + center_walkway3.transform.localScale.z*10/2 + center_walkway4.transform.localScale.z *10/2;
+				center_walkway4.transform.localPosition = center_walkway4_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway5_position.z < -25f)
+			if (center_walkway5_position.z < -25f)
 			{
-				left_walkway5_localPosition.z = left_walkway4.transform.localPosition.z + left_walkway4.transform.localScale.z*10/2 + left_walkway5.transform.localScale.z *10/2;
-				left_walkway5.transform.localPosition = left_walkway5_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway5_localPosition.z = center_walkway4.transform.localPosition.z + center_walkway4.transform.localScale.z*10/2 + center_walkway5.transform.localScale.z *10/2;
+				center_walkway5.transform.localPosition = center_walkway5_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway6_position.z < -25f)
+			if (center_walkway6_position.z < -25f)
 			{
-				left_walkway6_localPosition.z = left_walkway5.transform.localPosition.z + left_walkway5.transform.localScale.z*10/2 + left_walkway6.transform.localScale.z *10/2;
-				left_walkway6.transform.localPosition = left_walkway6_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway6_localPosition.z = center_walkway5.transform.localPosition.z + center_walkway5.transform.localScale.z*10/2 + center_walkway6.transform.localScale.z *10/2;
+				center_walkway6.transform.localPosition = center_walkway6_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway7_position.z < -25f)
+			if (center_walkway7_position.z < -25f)
 			{
-				left_walkway7_localPosition.z = left_walkway6.transform.localPosition.z + left_walkway6.transform.localScale.z*10/2 + left_walkway7.transform.localScale.z *10/2;
-				left_walkway7.transform.localPosition = left_walkway7_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway7_localPosition.z = center_walkway6.transform.localPosition.z + center_walkway6.transform.localScale.z*10/2 + center_walkway7.transform.localScale.z *10/2;
+				center_walkway7.transform.localPosition = center_walkway7_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway8_position.z < -25f)
+			if (center_walkway8_position.z < -25f)
 			{
-				left_walkway8_localPosition.z = left_walkway7.transform.localPosition.z + left_walkway7.transform.localScale.z*10/2 + left_walkway8.transform.localScale.z *10/2;
-				left_walkway8.transform.localPosition = left_walkway8_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
-
-			if (left_walkway9_position.z < -25f)
-			{
-				left_walkway9_localPosition.z = left_walkway8.transform.localPosition.z + left_walkway8.transform.localScale.z*10/2 + left_walkway9.transform.localScale.z *10/2;
-				left_walkway9.transform.localPosition = left_walkway9_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway8_localPosition.z = center_walkway7.transform.localPosition.z + center_walkway7.transform.localScale.z*10/2 + center_walkway8.transform.localScale.z *10/2;
+				center_walkway8.transform.localPosition = center_walkway8_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway10_position.z < -25f)
+			if (center_walkway9_position.z < -25f)
 			{
-				left_walkway10_localPosition.z = left_walkway9.transform.localPosition.z + left_walkway9.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway10.transform.localPosition = left_walkway10_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway9_localPosition.z = center_walkway8.transform.localPosition.z + center_walkway8.transform.localScale.z*10/2 + center_walkway9.transform.localScale.z *10/2;
+				center_walkway9.transform.localPosition = center_walkway9_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway11_position.z < -25f)
+			if (center_walkway10_position.z < -25f)
 			{
-				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway11.transform.localScale.z *10/2;
-				left_walkway11.transform.localPosition = left_walkway11_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway10_localPosition.z = center_walkway9.transform.localPosition.z + center_walkway9.transform.localScale.z*10/2 + center_walkway10.transform.localScale.z *10/2;
+				center_walkway10.transform.localPosition = center_walkway10_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway10_position.z < -25f)
+			if (center_walkway11_position.z < -25f)
 			{
-				left_walkway10_localPosition.z = left_walkway9.transform.localPosition.z + left_walkway9.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway10.transform.localPosition = left_walkway10_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway11_localPosition.z = center_walkway10.transform.localPosition.z + center_walkway10.transform.localScale.z*10/2 + center_walkway11.transform.localScale.z *10/2;
+				center_walkway11.transform.localPosition = center_walkway11_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway11_position.z < -25f)
+			if (center_walkway10_position.z < -25f)
 			{
-				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway11.transform.localPosition = left_walkway11_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway10_localPosition.z = center_walkway9.transform.localPosition.z + center_walkway9.transform.localScale.z*10/2 + center_walkway10.transform.localScale.z *10/2;
+				center_walkway10.transform.localPosition = center_walkway10_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway12_position.z < -25f)
+
+			if (center_walkway11_position.z < -25f)
 			{
-				left_walkway12_localPosition.z = left_walkway11.transform.localPosition.z + left_walkway11.transform.localScale.z*10/2 + left_walkway12.transform.localScale.z *10/2;
-				left_walkway12.transform.localPosition = left_walkway12_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway11_localPosition.z = center_walkway10.transform.localPosition.z + center_walkway10.transform.localScale.z*10/2 + center_walkway11.transform.localScale.z *10/2;
+				center_walkway11.transform.localPosition = center_walkway11_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway13_position.z < -25f)
+			if (center_walkway12_position.z < -25f)
 			{
-				left_walkway13_localPosition.z = left_walkway12.transform.localPosition.z + left_walkway12.transform.localScale.z*10/2 + left_walkway13.transform.localScale.z *10/2;
-				left_walkway13.transform.localPosition = left_walkway13_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway12_localPosition.z = center_walkway11.transform.localPosition.z + center_walkway11.transform.localScale.z*10/2 + center_walkway12.transform.localScale.z *10/2;
+				center_walkway12.transform.localPosition = center_walkway12_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway14_position.z < -25f)
+			if (center_walkway13_position.z < -25f)
 			{
-				left_walkway14_localPosition.z = left_walkway13.transform.localPosition.z + left_walkway13.transform.localScale.z*10/2 + left_walkway14.transform.localScale.z *10/2;
-				left_walkway14.transform.localPosition = left_walkway14_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway13_localPosition.z = center_walkway12.transform.localPosition.z + center_walkway12.transform.localScale.z*10/2 + center_walkway13.transform.localScale.z *10/2;
+				center_walkway13.transform.localPosition = center_walkway13_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway15_position.z < -25f)
+			if (center_walkway14_position.z < -25f)
 			{
-				left_walkway15_localPosition.z = left_walkway14.transform.localPosition.z + left_walkway14.transform.localScale.z*10/2 + left_walkway14.transform.localScale.z *10/2;
-				left_walkway15.transform.localPosition = left_walkway15_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway14_localPosition.z = center_walkway13.transform.localPosition.z + center_walkway13.transform.localScale.z*10/2 + center_walkway14.transform.localScale.z *10/2;
+				center_walkway14.transform.localPosition = center_walkway14_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway16_position.z < -25f)
+			if (center_walkway15_position.z < -25f)
 			{
-				left_walkway16_localPosition.z = left_walkway15.transform.localPosition.z + left_walkway15.transform.localScale.z*10/2 + left_walkway16.transform.localScale.z *10/2;
-				left_walkway16.transform.localPosition = left_walkway16_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway15_localPosition.z = center_walkway14.transform.localPosition.z + center_walkway14.transform.localScale.z*10/2 + center_walkway15.transform.localScale.z *10/2;
+				center_walkway15.transform.localPosition = center_walkway15_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway17_position.z < -25f)
+			if (center_walkway16_position.z < -25f)
 			{
-				left_walkway17_localPosition.z = left_walkway16.transform.localPosition.z + left_walkway16.transform.localScale.z*10/2 + left_walkway16.transform.localScale.z *10/2;
-				left_walkway17.transform.localPosition = left_walkway17_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway16_localPosition.z = center_walkway15.transform.localPosition.z + center_walkway15.transform.localScale.z*10/2 + center_walkway16.transform.localScale.z *10/2;
+				center_walkway16.transform.localPosition = center_walkway16_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway18_position.z < -25f)
+			if (center_walkway17_position.z < -25f)
 			{
-				left_walkway18_localPosition.z = left_walkway17.transform.localPosition.z + left_walkway17.transform.localScale.z*10/2 + left_walkway17.transform.localScale.z *10/2;
-				left_walkway18.transform.localPosition = left_walkway18_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				center_walkway17_localPosition.z = center_walkway16.transform.localPosition.z + center_walkway16.transform.localScale.z*10/2 + center_walkway17.transform.localScale.z *10/2;
+				center_walkway17.transform.localPosition = center_walkway17_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+			}
+			if (center_walkway18_position.z < -25f)
+			{
+				center_walkway18_localPosition.z = center_walkway17.transform.localPosition.z + center_walkway17.transform.localScale.z*10/2 + center_walkway18.transform.localScale.z *10/2;
+				center_walkway18.transform.localPosition = center_walkway18_localPosition;
+				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 
 			// // // // // // right lane // // // // // // // 
-			if (left_walkway1_position.z < -25f)
+			if (right_walkway1_position.z < -25f)
 			{
-				left_walkway1_localPosition.z = left_walkway18.transform.localPosition.z + left_walkway18.transform.localScale.z*10/2 + left_walkway1.transform.localScale.z *10/2;
-				left_walkway1.transform.localPosition = left_walkway1_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway1_localPosition.z = right_walkway18.transform.localPosition.z + right_walkway18.transform.localScale.z*10/2 + right_walkway1.transform.localScale.z *10/2;
+				right_walkway1.transform.localPosition = right_walkway1_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway2_position.z < -25f)
+			if (right_walkway2_position.z < -25f)
 			{
-				left_walkway2_localPosition.z = left_walkway1.transform.localPosition.z + left_walkway1.transform.localScale.z*10/2 + left_walkway2.transform.localScale.z *10/2;
-				left_walkway2.transform.localPosition = left_walkway2_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway2_localPosition.z = right_walkway1.transform.localPosition.z + right_walkway1.transform.localScale.z*10/2 + right_walkway2.transform.localScale.z *10/2;
+				right_walkway2.transform.localPosition = right_walkway2_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway3_position.z < -25f)
+			if (right_walkway3_position.z < -25f)
 			{
-				left_walkway3_localPosition.z = left_walkway2.transform.localPosition.z + left_walkway2.transform.localScale.z*10/2 + left_walkway3.transform.localScale.z *10/2;
-				left_walkway3.transform.localPosition = left_walkway3_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway3_localPosition.z = right_walkway2.transform.localPosition.z + right_walkway2.transform.localScale.z*10/2 + right_walkway3.transform.localScale.z *10/2;
+				right_walkway3.transform.localPosition = right_walkway3_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway4_position.z < -25f)
+			if (right_walkway4_position.z < -25f)
 			{
-				left_walkway4_localPosition.z = left_walkway3.transform.localPosition.z + left_walkway3.transform.localScale.z*10/2 + left_walkway4.transform.localScale.z *10/2;
-				left_walkway4.transform.localPosition = left_walkway4_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway4_localPosition.z = right_walkway3.transform.localPosition.z + right_walkway3.transform.localScale.z*10/2 + right_walkway4.transform.localScale.z *10/2;
+				right_walkway4.transform.localPosition = right_walkway4_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway5_position.z < -25f)
+			if (right_walkway5_position.z < -25f)
 			{
-				left_walkway5_localPosition.z = left_walkway4.transform.localPosition.z + left_walkway4.transform.localScale.z*10/2 + left_walkway5.transform.localScale.z *10/2;
-				left_walkway5.transform.localPosition = left_walkway5_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway5_localPosition.z = right_walkway4.transform.localPosition.z + right_walkway4.transform.localScale.z*10/2 + right_walkway5.transform.localScale.z *10/2;
+				right_walkway5.transform.localPosition = right_walkway5_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway6_position.z < -25f)
+			if (right_walkway6_position.z < -25f)
 			{
-				left_walkway6_localPosition.z = left_walkway5.transform.localPosition.z + left_walkway5.transform.localScale.z*10/2 + left_walkway6.transform.localScale.z *10/2;
-				left_walkway6.transform.localPosition = left_walkway6_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway6_localPosition.z = right_walkway5.transform.localPosition.z + right_walkway5.transform.localScale.z*10/2 + right_walkway6.transform.localScale.z *10/2;
+				right_walkway6.transform.localPosition = right_walkway6_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway7_position.z < -25f)
+			if (right_walkway7_position.z < -25f)
 			{
-				left_walkway7_localPosition.z = left_walkway6.transform.localPosition.z + left_walkway6.transform.localScale.z*10/2 + left_walkway7.transform.localScale.z *10/2;
-				left_walkway7.transform.localPosition = left_walkway7_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway7_localPosition.z = right_walkway6.transform.localPosition.z + right_walkway6.transform.localScale.z*10/2 + right_walkway7.transform.localScale.z *10/2;
+				right_walkway7.transform.localPosition = right_walkway7_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway8_position.z < -25f)
+			if (right_walkway8_position.z < -25f)
 			{
-				left_walkway8_localPosition.z = left_walkway7.transform.localPosition.z + left_walkway7.transform.localScale.z*10/2 + left_walkway8.transform.localScale.z *10/2;
-				left_walkway8.transform.localPosition = left_walkway8_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
-
-			if (left_walkway9_position.z < -25f)
-			{
-				left_walkway9_localPosition.z = left_walkway8.transform.localPosition.z + left_walkway8.transform.localScale.z*10/2 + left_walkway9.transform.localScale.z *10/2;
-				left_walkway9.transform.localPosition = left_walkway9_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway8_localPosition.z = right_walkway7.transform.localPosition.z + right_walkway7.transform.localScale.z*10/2 + right_walkway8.transform.localScale.z *10/2;
+				right_walkway8.transform.localPosition = right_walkway8_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway10_position.z < -25f)
+			if (right_walkway9_position.z < -25f)
 			{
-				left_walkway10_localPosition.z = left_walkway9.transform.localPosition.z + left_walkway9.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway10.transform.localPosition = left_walkway10_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway9_localPosition.z = right_walkway8.transform.localPosition.z + right_walkway8.transform.localScale.z*10/2 + right_walkway9.transform.localScale.z *10/2;
+				right_walkway9.transform.localPosition = right_walkway9_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway11_position.z < -25f)
+			if (right_walkway10_position.z < -25f)
 			{
-				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway11.transform.localScale.z *10/2;
-				left_walkway11.transform.localPosition = left_walkway11_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway10_localPosition.z = right_walkway9.transform.localPosition.z + right_walkway9.transform.localScale.z*10/2 + right_walkway10.transform.localScale.z *10/2;
+				right_walkway10.transform.localPosition = right_walkway10_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway10_position.z < -25f)
+			if (right_walkway11_position.z < -25f)
 			{
-				left_walkway10_localPosition.z = left_walkway9.transform.localPosition.z + left_walkway9.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway10.transform.localPosition = left_walkway10_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway11_localPosition.z = right_walkway10.transform.localPosition.z + right_walkway10.transform.localScale.z*10/2 + right_walkway11.transform.localScale.z *10/2;
+				right_walkway11.transform.localPosition = right_walkway11_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (left_walkway11_position.z < -25f)
+			if (right_walkway10_position.z < -25f)
 			{
-				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway11.transform.localPosition = left_walkway11_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway10_localPosition.z = right_walkway9.transform.localPosition.z + right_walkway9.transform.localScale.z*10/2 + right_walkway10.transform.localScale.z *10/2;
+				right_walkway10.transform.localPosition = right_walkway10_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway12_position.z < -25f)
+
+			if (right_walkway11_position.z < -25f)
 			{
-				left_walkway12_localPosition.z = left_walkway11.transform.localPosition.z + left_walkway11.transform.localScale.z*10/2 + left_walkway12.transform.localScale.z *10/2;
-				left_walkway12.transform.localPosition = left_walkway12_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway11_localPosition.z = right_walkway10.transform.localPosition.z + right_walkway10.transform.localScale.z*10/2 + right_walkway10.transform.localScale.z *10/2;
+				right_walkway11.transform.localPosition = right_walkway11_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway13_position.z < -25f)
+			if (right_walkway12_position.z < -25f)
 			{
-				left_walkway13_localPosition.z = left_walkway12.transform.localPosition.z + left_walkway12.transform.localScale.z*10/2 + left_walkway13.transform.localScale.z *10/2;
-				left_walkway13.transform.localPosition = left_walkway13_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway12_localPosition.z = right_walkway11.transform.localPosition.z + right_walkway11.transform.localScale.z*10/2 + right_walkway12.transform.localScale.z *10/2;
+				right_walkway12.transform.localPosition = right_walkway12_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway14_position.z < -25f)
+			if (right_walkway13_position.z < -25f)
 			{
-				left_walkway14_localPosition.z = left_walkway13.transform.localPosition.z + left_walkway13.transform.localScale.z*10/2 + left_walkway14.transform.localScale.z *10/2;
-				left_walkway14.transform.localPosition = left_walkway14_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway13_localPosition.z = right_walkway12.transform.localPosition.z + right_walkway12.transform.localScale.z*10/2 + right_walkway13.transform.localScale.z *10/2;
+				right_walkway13.transform.localPosition = right_walkway13_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway15_position.z < -25f)
+			if (right_walkway14_position.z < -25f)
 			{
-				left_walkway15_localPosition.z = left_walkway14.transform.localPosition.z + left_walkway14.transform.localScale.z*10/2 + left_walkway14.transform.localScale.z *10/2;
-				left_walkway15.transform.localPosition = left_walkway15_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway14_localPosition.z = right_walkway13.transform.localPosition.z + right_walkway13.transform.localScale.z*10/2 + right_walkway14.transform.localScale.z *10/2;
+				right_walkway14.transform.localPosition = right_walkway14_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway16_position.z < -25f)
+			if (right_walkway15_position.z < -25f)
 			{
-				left_walkway16_localPosition.z = left_walkway15.transform.localPosition.z + left_walkway15.transform.localScale.z*10/2 + left_walkway16.transform.localScale.z *10/2;
-				left_walkway16.transform.localPosition = left_walkway16_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway15_localPosition.z = right_walkway14.transform.localPosition.z + right_walkway14.transform.localScale.z*10/2 + right_walkway14.transform.localScale.z *10/2;
+				right_walkway15.transform.localPosition = right_walkway15_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway17_position.z < -25f)
+			if (right_walkway16_position.z < -25f)
 			{
-				left_walkway17_localPosition.z = left_walkway16.transform.localPosition.z + left_walkway16.transform.localScale.z*10/2 + left_walkway16.transform.localScale.z *10/2;
-				left_walkway17.transform.localPosition = left_walkway17_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway16_localPosition.z = right_walkway15.transform.localPosition.z + right_walkway15.transform.localScale.z*10/2 + right_walkway16.transform.localScale.z *10/2;
+				right_walkway16.transform.localPosition = right_walkway16_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-			if (left_walkway18_position.z < -25f)
+			if (right_walkway17_position.z < -25f)
 			{
-				left_walkway18_localPosition.z = left_walkway17.transform.localPosition.z + left_walkway17.transform.localScale.z*10/2 + left_walkway17.transform.localScale.z *10/2;
-				left_walkway18.transform.localPosition = left_walkway18_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+				right_walkway17_localPosition.z = right_walkway16.transform.localPosition.z + right_walkway16.transform.localScale.z*10/2 + right_walkway16.transform.localScale.z *10/2;
+				right_walkway17.transform.localPosition = right_walkway17_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+			}
+			if (right_walkway18_position.z < -25f)
+			{
+				right_walkway18_localPosition.z = right_walkway17.transform.localPosition.z + right_walkway17.transform.localScale.z*10/2 + right_walkway17.transform.localScale.z *10/2;
+				right_walkway18.transform.localPosition = right_walkway18_localPosition;
+				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
             //if (Stim_Zone == 1)
