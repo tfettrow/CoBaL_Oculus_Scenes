@@ -338,6 +338,7 @@
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\OutdoorsUDP.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\QTMSDK_SceneControl.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTBones.cs" />
+     <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTCharacterStream.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTGazeStream.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTMarkerStream.cs" />
      <Compile Include="Assets\Qualisys\QTM-Unity-Realtime-Streaming\Streaming\RTObject.cs" />
