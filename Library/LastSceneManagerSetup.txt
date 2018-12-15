@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Walking_Into_Fog_LR_Game.unity
+- path: Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1

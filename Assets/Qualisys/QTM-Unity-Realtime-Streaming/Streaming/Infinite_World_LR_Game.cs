@@ -21,15 +21,18 @@ namespace QualisysRealTime.Unity
 		// qtm demo test
 		// private string HeadMarker = "L-frame - 1";
 
-        // from marker set
+        // from mocap marker set
         private string HeadMarker1 = "LFHD";
         private string HeadMarker2 = "RFHD";
         private string LHeelMarker = "LHEEL";
         private string RHeelMarker = "RHEEL";
-        private RTClient rtClient;
+        
+		// setup some qtm sdk variables
+		private RTClient rtClient;
 		private GameObject markerRoot;
 		private List<GameObject> markers;
 
+		// variables assigned from qtm sdk read
         private Vector3 HeadPosition_qtm;
         private float HeadPosition1_qtm_x;
         private float HeadPosition1_qtm_y;
@@ -38,16 +41,13 @@ namespace QualisysRealTime.Unity
         private float HeadPosition2_qtm_y;
         private float HeadPosition2_qtm_z;
 
-
         private float lheel_pos_labview_x;
         private float rheel_pos_labview_x;
         private float lheel_pos_qtm_x;
         private float rheel_pos_qtm_x;
 
-
-
-        public GameObject PlayerPerspective;
-        // labview and qtm translation values                         
+		// // labview and head translation values                         
+	    public GameObject PlayerPerspective;
         private Vector3 HeadPosition_labview;
         private float HeadPosition_labview_x;
         private float HeadPosition_labview_y;
@@ -72,27 +72,6 @@ namespace QualisysRealTime.Unity
 		private GameObject left_walkway7;
 		private GameObject left_walkway8;
 		private GameObject left_walkway9;
-
-		private GameObject right_walkway1;
-		private GameObject right_walkway2;
-		private GameObject right_walkway3;
-		private GameObject right_walkway4;
-		private GameObject right_walkway5;
-		private GameObject right_walkway6;
-		private GameObject right_walkway7;
-		private GameObject right_walkway8;
-		private GameObject right_walkway9;
-
-		private GameObject center_walkway1;
-		private GameObject center_walkway2;
-		private GameObject center_walkway3;
-		private GameObject center_walkway4;
-		private GameObject center_walkway5;
-		private GameObject center_walkway6;
-		private GameObject center_walkway7;
-		private GameObject center_walkway8;
-		private GameObject center_walkway9;
-
 		private GameObject left_walkway10;
 		private GameObject left_walkway11;
 		private GameObject left_walkway12;
@@ -103,6 +82,15 @@ namespace QualisysRealTime.Unity
 		private GameObject left_walkway17;
 		private GameObject left_walkway18;
 
+		private GameObject right_walkway1;
+		private GameObject right_walkway2;
+		private GameObject right_walkway3;
+		private GameObject right_walkway4;
+		private GameObject right_walkway5;
+		private GameObject right_walkway6;
+		private GameObject right_walkway7;
+		private GameObject right_walkway8;
+		private GameObject right_walkway9;
 		private GameObject right_walkway10;
 		private GameObject right_walkway11;
 		private GameObject right_walkway12;
@@ -113,6 +101,15 @@ namespace QualisysRealTime.Unity
 		private GameObject right_walkway17;
 		private GameObject right_walkway18;
 
+		private GameObject center_walkway1;
+		private GameObject center_walkway2;
+		private GameObject center_walkway3;
+		private GameObject center_walkway4;
+		private GameObject center_walkway5;
+		private GameObject center_walkway6;
+		private GameObject center_walkway7;
+		private GameObject center_walkway8;
+		private GameObject center_walkway9;
 		private GameObject center_walkway10;
 		private GameObject center_walkway11;
 		private GameObject center_walkway12;
@@ -123,26 +120,6 @@ namespace QualisysRealTime.Unity
 		private GameObject center_walkway17;
 		private GameObject center_walkway18;
 
-		//private GameObject right_walkway1;
-		//private GameObject right_walkway2;
-		//private GameObject right_walkway3;
-		//private GameObject right_walkway4;
-		//private GameObject right_walkway5;
-		//private GameObject right_walkway6;
-		//private GameObject right_walkway7;
-		//private GameObject right_walkway8;
-		//private GameObject right_walkway9;
-
-		//private Vector3 right_walkway1_position;
-		//private Vector3 right_walkway2_position;
-		//private Vector3 right_walkway3_position;
-		//private Vector3 right_walkway4_position;
-		//private Vector3 right_walkway5_position;
-		//private Vector3 right_walkway6_position;
-		//private Vector3 right_walkway7_position;
-		//private Vector3 right_walkway8_position;
-		//private Vector3 right_walkway9_position;
-	
 		private Vector3 left_walkway1_position;
 		private Vector3 left_walkway2_position;
 		private Vector3 left_walkway3_position;
@@ -152,27 +129,6 @@ namespace QualisysRealTime.Unity
 		private Vector3 left_walkway7_position;
 		private Vector3 left_walkway8_position;
 		private Vector3 left_walkway9_position;
-
-		private Vector3 right_walkway1_position;
-		private Vector3 right_walkway2_position;
-		private Vector3 right_walkway3_position;
-		private Vector3 right_walkway4_position;
-		private Vector3 right_walkway5_position;
-		private Vector3 right_walkway6_position;
-		private Vector3 right_walkway7_position;
-		private Vector3 right_walkway8_position;
-		private Vector3 right_walkway9_position;
-
-		private Vector3 center_walkway1_position;
-		private Vector3 center_walkway2_position;
-		private Vector3 center_walkway3_position;
-		private Vector3 center_walkway4_position;
-		private Vector3 center_walkway5_position;
-		private Vector3 center_walkway6_position;
-		private Vector3 center_walkway7_position;
-		private Vector3 center_walkway8_position;
-		private Vector3 center_walkway9_position;
-
 		private Vector3 left_walkway10_position;
 		private Vector3 left_walkway11_position;
 		private Vector3 left_walkway12_position;
@@ -183,6 +139,16 @@ namespace QualisysRealTime.Unity
 		private Vector3 left_walkway17_position;
 		private Vector3 left_walkway18_position;
 
+
+		private Vector3 right_walkway1_position;
+		private Vector3 right_walkway2_position;
+		private Vector3 right_walkway3_position;
+		private Vector3 right_walkway4_position;
+		private Vector3 right_walkway5_position;
+		private Vector3 right_walkway6_position;
+		private Vector3 right_walkway7_position;
+		private Vector3 right_walkway8_position;
+		private Vector3 right_walkway9_position;
 		private Vector3 right_walkway10_position;
 		private Vector3 right_walkway11_position;
 		private Vector3 right_walkway12_position;
@@ -193,6 +159,15 @@ namespace QualisysRealTime.Unity
 		private Vector3 right_walkway17_position;
 		private Vector3 right_walkway18_position;
 
+		private Vector3 center_walkway1_position;
+		private Vector3 center_walkway2_position;
+		private Vector3 center_walkway3_position;
+		private Vector3 center_walkway4_position;
+		private Vector3 center_walkway5_position;
+		private Vector3 center_walkway6_position;
+		private Vector3 center_walkway7_position;
+		private Vector3 center_walkway8_position;
+		private Vector3 center_walkway9_position;
 		private Vector3 center_walkway10_position;
 		private Vector3 center_walkway11_position;
 		private Vector3 center_walkway12_position;
@@ -212,6 +187,15 @@ namespace QualisysRealTime.Unity
         private Vector3 left_walkway7_localPosition;
         private Vector3 left_walkway8_localPosition;
         private Vector3 left_walkway9_localPosition;
+		private Vector3 left_walkway10_localPosition;
+		private Vector3 left_walkway11_localPosition;
+		private Vector3 left_walkway12_localPosition;
+		private Vector3 left_walkway13_localPosition;
+		private Vector3 left_walkway14_localPosition;
+		private Vector3 left_walkway15_localPosition;
+		private Vector3 left_walkway16_localPosition;
+		private Vector3 left_walkway17_localPosition;
+		private Vector3 left_walkway18_localPosition;
 
         private Vector3 right_walkway1_localPosition;
         private Vector3 right_walkway2_localPosition;
@@ -222,6 +206,15 @@ namespace QualisysRealTime.Unity
         private Vector3 right_walkway7_localPosition;
         private Vector3 right_walkway8_localPosition;
         private Vector3 right_walkway9_localPosition;
+		private Vector3 right_walkway10_localPosition;
+		private Vector3 right_walkway11_localPosition;
+		private Vector3 right_walkway12_localPosition;
+		private Vector3 right_walkway13_localPosition;
+		private Vector3 right_walkway14_localPosition;
+		private Vector3 right_walkway15_localPosition;
+		private Vector3 right_walkway16_localPosition;
+		private Vector3 right_walkway17_localPosition;
+		private Vector3 right_walkway18_localPosition;
 
         private Vector3 center_walkway1_localPosition;
         private Vector3 center_walkway2_localPosition;
@@ -232,46 +225,15 @@ namespace QualisysRealTime.Unity
         private Vector3 center_walkway7_localPosition;
         private Vector3 center_walkway8_localPosition;
         private Vector3 center_walkway9_localPosition;
-
-        private Vector3 left_walkway10_localPosition;
-        private Vector3 left_walkway11_localPosition;
-        private Vector3 left_walkway12_localPosition;
-        private Vector3 left_walkway13_localPosition;
-        private Vector3 left_walkway14_localPosition;
-        private Vector3 left_walkway15_localPosition;
-        private Vector3 left_walkway16_localPosition;
-        private Vector3 left_walkway17_localPosition;
-        private Vector3 left_walkway18_localPosition;
-
-        private Vector3 right_walkway10_localPosition;
-        private Vector3 right_walkway11_localPosition;
-        private Vector3 right_walkway12_localPosition;
-        private Vector3 right_walkway13_localPosition;
-        private Vector3 right_walkway14_localPosition;
-        private Vector3 right_walkway15_localPosition;
-        private Vector3 right_walkway16_localPosition;
-        private Vector3 right_walkway17_localPosition;
-        private Vector3 right_walkway18_localPosition;
-
-        private Vector3 center_walkway10_localPosition;
-        private Vector3 center_walkway11_localPosition;
-        private Vector3 center_walkway12_localPosition;
-        private Vector3 center_walkway13_localPosition;
-        private Vector3 center_walkway14_localPosition;
-        private Vector3 center_walkway15_localPosition;
-        private Vector3 center_walkway16_localPosition;
-        private Vector3 center_walkway17_localPosition;
-        private Vector3 center_walkway18_localPosition;
-
-        //private Renderer center_walkway1;
-        //private Renderer center_walkway2;
-        //private Renderer center_walkway3;
-        //private Renderer center_walkway4;
-        //private Renderer center_walkway5;
-        //private Renderer center_walkway6;
-        //private Renderer center_walkway7;
-        //private Renderer center_walkway8;
-        //private Renderer center_walkway9;
+		private Vector3 center_walkway10_localPosition;
+		private Vector3 center_walkway11_localPosition;
+		private Vector3 center_walkway12_localPosition;
+		private Vector3 center_walkway13_localPosition;
+		private Vector3 center_walkway14_localPosition;
+		private Vector3 center_walkway15_localPosition;
+		private Vector3 center_walkway16_localPosition;
+		private Vector3 center_walkway17_localPosition;
+		private Vector3 center_walkway18_localPosition;
 
         private Vector2 TextureOffset;
 		private Vector2 TextureOffset_left;
@@ -320,13 +282,10 @@ namespace QualisysRealTime.Unity
 		private Vector3 current_texture_offset;
 		public Vector3 current_object_position;
 
-		
-
         private float falling_position_z;
 		private float falling_position_x;
 		private float falling_rotation_z_unity;
 	
-
 		public string text = ""; //received text
 		public string IP = "192.168.253.2";
 		public int port; // Defined on "init 
@@ -340,18 +299,6 @@ namespace QualisysRealTime.Unity
 		Vector3 this_pyramid_position;
 		Vector3 DomePosition;
 		Vector3 ChildObjectPlacement;
-
-        // score stuff // 
-        //public GUIText scoreText;
-        //public GUIText restartText;
-        //public GUIText gameOverText;
-        //private float score;
-
-        //public GameObject Score;
-
-        /// //////////////////////////////////////////////////////////////////////////////////////////////	///
-        //public float dt;
-        /// 
 
         public void Start()
         {
@@ -376,27 +323,6 @@ namespace QualisysRealTime.Unity
             left_walkway7 = GameObject.Find("left_walkway7");
             left_walkway8 = GameObject.Find("left_walkway8");
             left_walkway9 = GameObject.Find("left_walkway9");
-
-            center_walkway1 = GameObject.Find("center_walkway1");
-            center_walkway2 = GameObject.Find("center_walkway2");
-            center_walkway3 = GameObject.Find("center_walkway3");
-            center_walkway4 = GameObject.Find("center_walkway4");
-            center_walkway5 = GameObject.Find("center_walkway5");
-            center_walkway6 = GameObject.Find("center_walkway6");
-            center_walkway7 = GameObject.Find("center_walkway7");
-            center_walkway8 = GameObject.Find("center_walkway8");
-            center_walkway9 = GameObject.Find("center_walkway9");
-
-            right_walkway1 = GameObject.Find("right_walkway1");
-            right_walkway2 = GameObject.Find("right_walkway2");
-            right_walkway3 = GameObject.Find("right_walkway3");
-            right_walkway4 = GameObject.Find("right_walkway4");
-            right_walkway5 = GameObject.Find("right_walkway5");
-            right_walkway6 = GameObject.Find("right_walkway6");
-            right_walkway7 = GameObject.Find("right_walkway7");
-            right_walkway8 = GameObject.Find("right_walkway8");
-            right_walkway9 = GameObject.Find("right_walkway9");
-
 			left_walkway10 = GameObject.Find("left_walkway10");
 			left_walkway11 = GameObject.Find("left_walkway11");
 			left_walkway12 = GameObject.Find("left_walkway12");
@@ -407,6 +333,15 @@ namespace QualisysRealTime.Unity
 			left_walkway17 = GameObject.Find("left_walkway17");
 			left_walkway18 = GameObject.Find("left_walkway18");
 
+            center_walkway1 = GameObject.Find("center_walkway1");
+            center_walkway2 = GameObject.Find("center_walkway2");
+            center_walkway3 = GameObject.Find("center_walkway3");
+            center_walkway4 = GameObject.Find("center_walkway4");
+            center_walkway5 = GameObject.Find("center_walkway5");
+            center_walkway6 = GameObject.Find("center_walkway6");
+            center_walkway7 = GameObject.Find("center_walkway7");
+            center_walkway8 = GameObject.Find("center_walkway8");
+            center_walkway9 = GameObject.Find("center_walkway9");
 			center_walkway10 = GameObject.Find("center_walkway10");
 			center_walkway11 = GameObject.Find("center_walkway11");
 			center_walkway12 = GameObject.Find("center_walkway12");
@@ -417,6 +352,15 @@ namespace QualisysRealTime.Unity
 			center_walkway17 = GameObject.Find("center_walkway17");
 			center_walkway18 = GameObject.Find("center_walkway18");
 
+            right_walkway1 = GameObject.Find("right_walkway1");
+            right_walkway2 = GameObject.Find("right_walkway2");
+            right_walkway3 = GameObject.Find("right_walkway3");
+            right_walkway4 = GameObject.Find("right_walkway4");
+            right_walkway5 = GameObject.Find("right_walkway5");
+            right_walkway6 = GameObject.Find("right_walkway6");
+            right_walkway7 = GameObject.Find("right_walkway7");
+            right_walkway8 = GameObject.Find("right_walkway8");
+            right_walkway9 = GameObject.Find("right_walkway9");
 			right_walkway10 = GameObject.Find("right_walkway10");
 			right_walkway11 = GameObject.Find("right_walkway11");
 			right_walkway12 = GameObject.Find("right_walkway12");
@@ -934,117 +878,9 @@ namespace QualisysRealTime.Unity
 							center_walkway18.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 						}
                     }
-
-                  
-
-                    
-                    //if (i2 == 9)
-                    //{
-                    //    if (LeftLaneColors == 0)
-                    //    {
-                    //        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //    }
-                    //    if (LeftLaneColors == 1)
-                    //    {
-                    //        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                    //    }
-                    //    if (LeftLaneColors == 2)
-                    //    {
-                    //        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                    //    }
-                    //    if (CenterLaneColors == 0)
-                    //    {
-                    //        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //    }
-                    //    if (CenterLaneColors == 1)
-                    //    {
-                    //        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                    //    }
-                    //    if (CenterLaneColors == 2)
-                    //    {
-                    //        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                    //    }
-                    //    if (RightLaneColors == 0)
-                    //    {
-                    //        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //    }
-                    //    if (RightLaneColors == 1)
-                    //    {
-                    //        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                    //    }
-                    //    if (RightLaneColors == 2)
-                    //    {
-                    //        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                    //    }
-                    //}
-
-                    //left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-                    //left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-
-
                 }
             }
-            // // // // // // // // // // // // // // // // // // // // // // // //
-
-           
-
-			
-			
-			//right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			//right_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			//right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			//right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			//right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			//right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-			//right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.grey);
-
-
-			
-			
-			//center_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			//center_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			//center_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			//center_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			//center_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			//center_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-			//center_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
-
-			//left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-			//left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-			//left_walkway3.material.SetColor("_Color", Color.green);
-			//left_walkway4.material.SetColor("_Color", Color.green);
-			//left_walkway5.material.SetColor("_Color", Color.green);
-			//left_walkway6.material.SetColor("_Color", Color.green);
-			//left_walkway7.material.SetColor("_Color", Color.green);
-			//left_walkway8.material.SetColor("_Color", Color.green);
-			//left_walkway9.material.SetColor("_Color", Color.green);
-
-			//center_walkway1.material.SetColor("_Color", Color.gray);
-			//center_walkway2.material.SetColor("_Color", Color.gray);
-			//center_walkway3.material.SetColor("_Color", Color.gray);
-			//center_walkway4.material.SetColor("_Color", Color.gray);
-			//center_walkway5.material.SetColor("_Color", Color.gray);
-			//center_walkway6.material.SetColor("_Color", Color.gray);
-			//center_walkway7.material.SetColor("_Color", Color.gray);
-			//center_walkway8.material.SetColor("_Color", Color.gray);
-			//center_walkway9.material.SetColor("_Color", Color.gray);
-
-			//right_walkway1.material.SetColor("_Color", Color.green);
-			//right_walkway2.material.SetColor("_Color", Color.green);
-			//right_walkway3.material.SetColor("_Color", Color.green);
-			//right_walkway4.material.SetColor("_Color", Color.green);
-			//right_walkway5.material.SetColor("_Color", Color.green);
-			//right_walkway6.material.SetColor("_Color", Color.green);
-			//right_walkway7.material.SetColor("_Color", Color.green);
-			//right_walkway8.material.SetColor("_Color", Color.green);
-			//right_walkway9.material.SetColor("_Color", Color.green);
-			////////////////////////////////////////////////////////////////////////////////////
-
+            // // // // // // // // // // // // // // // // // // // // // // // //	
 
             // // // // // INSTANTIATE SCENE OBJECTS // // // // // // // // // // // // // // // // // // // // //// // // // // // // // // // // // // //// // // // // // // // // // // // // // 
             HalfSideWall = .5f * LeftRightSideLength;
@@ -1266,41 +1102,6 @@ namespace QualisysRealTime.Unity
 
 
 			main_floor.material.SetTextureOffset("_MainTex", TextureOffset); // Get rid of New Vector...
-                                                                             //left_path.material.SetTextureOffset("_MainTex", TextureOffset_left); // Get rid of New Vector...
-                                                                             //right_path.material.SetTextureOffset("_MainTex", TextureOffset_right); // Get rid of New Vector...
-                                                                             //left_path.material.SetColor("_Color", Color.green);
-                                                                             //right_path.material.SetColor("_Color", Color.gray);h
-
-            //	OrigCubeObjectPositionleft_walkway1.transform.Translate(0, 0, -ground_translation_z_unity);
-            //	left_walkway2.transform.Translate(0, 0, -ground_translation_z_unity);
-            //	left_walkway3.transform.Translate(0, 0, -ground_translation_z_unity);
-            //	left_walkway4.transform.Translate(0, 0, -beltSpeed * dt);
-            //	left_walkway5.transform.Translate(0, 0, -beltSpeed * dt);
-            //	left_walkway6.transform.Translate(0, 0, -beltSpeed * dt);
-            //	left_walkway7.transform.Translate(0, 0, -beltSpeed * dt);
-            //	left_walkway8.transform.Translate(0, 0, -beltSpeed * dt);
-            //	left_walkway9.transform.Translate(0, 0, -beltSpeed * dt);
-
-            //	right_walkway1.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway2.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway3.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway4.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway5.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway6.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway7.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway8.transform.Translate(0, 0, -beltSpeed * dt);
-            //	right_walkway9.transform.Translate(0, 0, -beltSpeed * dt);
-
-            //	center_walkway1.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway2.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway3.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway4.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway5.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway6.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway7.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway8.transform.Translate(0, 0, -beltSpeed * dt);
-            //	center_walkway9.transform.Translate(0, 0, -beltSpeed * dt);
-
 
             left_walkway1_position = left_walkway1.transform.position;
             left_walkway2_position = left_walkway2.transform.position;
@@ -1311,6 +1112,15 @@ namespace QualisysRealTime.Unity
             left_walkway7_position = left_walkway7.transform.position;
             left_walkway8_position = left_walkway8.transform.position;
             left_walkway9_position = left_walkway9.transform.position;
+			left_walkway10_position = left_walkway10.transform.position;
+			left_walkway11_position = left_walkway11.transform.position;
+			left_walkway12_position = left_walkway12.transform.position;
+			left_walkway13_position = left_walkway13.transform.position;
+			left_walkway14_position = left_walkway14.transform.position;
+			left_walkway15_position = left_walkway15.transform.position;
+			left_walkway16_position = left_walkway16.transform.position;
+			left_walkway17_position = left_walkway17.transform.position;
+			left_walkway18_position = left_walkway18.transform.position;
 
 
             right_walkway1_position = right_walkway1.transform.position;
@@ -1322,6 +1132,16 @@ namespace QualisysRealTime.Unity
             right_walkway7_position = right_walkway7.transform.position;
             right_walkway8_position = right_walkway8.transform.position;
             right_walkway9_position = right_walkway9.transform.position;
+			right_walkway10_position = right_walkway10.transform.position;
+			right_walkway11_position = right_walkway11.transform.position;
+			right_walkway12_position = right_walkway12.transform.position;
+			right_walkway13_position = right_walkway13.transform.position;
+			right_walkway14_position = right_walkway14.transform.position;
+			right_walkway15_position = right_walkway15.transform.position;
+			right_walkway16_position = right_walkway16.transform.position;
+			right_walkway17_position = right_walkway17.transform.position;
+			right_walkway18_position = right_walkway18.transform.position;
+
 
             center_walkway1_position = center_walkway1.transform.position;
             center_walkway2_position = center_walkway2.transform.position;
@@ -1332,28 +1152,7 @@ namespace QualisysRealTime.Unity
             center_walkway7_position = center_walkway7.transform.position;
             center_walkway8_position = center_walkway8.transform.position;
             center_walkway9_position = center_walkway9.transform.position;
-
-			left_walkway10_position = left_walkway10.transform.position;
-			left_walkway11_position = left_walkway11.transform.position;
-			left_walkway12_position = left_walkway12.transform.position;
-			left_walkway13_position = left_walkway13.transform.position;
-			left_walkway14_position = left_walkway14.transform.position;
-			left_walkway15_position = left_walkway15.transform.position;
-			left_walkway16_position = left_walkway16.transform.position;
-			left_walkway17_position = left_walkway17.transform.position;
-			left_walkway18_position = left_walkway18.transform.position;
-
-        	right_walkway10_position = right_walkway10.transform.position;
-			right_walkway11_position = right_walkway11.transform.position;
-			right_walkway12_position = right_walkway12.transform.position;
-			right_walkway13_position = right_walkway13.transform.position;
-			right_walkway14_position = right_walkway14.transform.position;
-			right_walkway15_position = right_walkway15.transform.position;
-			right_walkway16_position = right_walkway16.transform.position;
-			right_walkway17_position = right_walkway17.transform.position;
-			right_walkway18_position = right_walkway18.transform.position;
-
-			center_walkway10_position = center_walkway10.transform.position;
+		    center_walkway10_position = center_walkway10.transform.position;
 			center_walkway11_position = center_walkway11.transform.position;
 			center_walkway12_position = center_walkway12.transform.position;
 			center_walkway13_position = center_walkway13.transform.position;
@@ -1482,24 +1281,10 @@ namespace QualisysRealTime.Unity
 				left_walkway10.transform.localPosition = left_walkway10_localPosition;
 				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-
+	
 			if (left_walkway11_position.z < -25f)
 			{
 				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway11.transform.localScale.z *10/2;
-				left_walkway11.transform.localPosition = left_walkway11_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
-
-			if (left_walkway10_position.z < -25f)
-			{
-				left_walkway10_localPosition.z = left_walkway9.transform.localPosition.z + left_walkway9.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
-				left_walkway10.transform.localPosition = left_walkway10_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
-
-			if (left_walkway11_position.z < -25f)
-			{
-				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
 				left_walkway11.transform.localPosition = left_walkway11_localPosition;
 				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
@@ -1523,7 +1308,7 @@ namespace QualisysRealTime.Unity
 			}
 			if (left_walkway15_position.z < -25f)
 			{
-				left_walkway15_localPosition.z = left_walkway14.transform.localPosition.z + left_walkway14.transform.localScale.z*10/2 + left_walkway14.transform.localScale.z *10/2;
+				left_walkway15_localPosition.z = left_walkway14.transform.localPosition.z + left_walkway14.transform.localScale.z*10/2 + left_walkway15.transform.localScale.z *10/2;
 				left_walkway15.transform.localPosition = left_walkway15_localPosition;
 				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
@@ -1535,13 +1320,13 @@ namespace QualisysRealTime.Unity
 			}
 			if (left_walkway17_position.z < -25f)
 			{
-				left_walkway17_localPosition.z = left_walkway16.transform.localPosition.z + left_walkway16.transform.localScale.z*10/2 + left_walkway16.transform.localScale.z *10/2;
+				left_walkway17_localPosition.z = left_walkway16.transform.localPosition.z + left_walkway16.transform.localScale.z*10/2 + left_walkway17.transform.localScale.z *10/2;
 				left_walkway17.transform.localPosition = left_walkway17_localPosition;
 				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway18_position.z < -25f)
 			{
-				left_walkway18_localPosition.z = left_walkway17.transform.localPosition.z + left_walkway17.transform.localScale.z*10/2 + left_walkway17.transform.localScale.z *10/2;
+				left_walkway18_localPosition.z = left_walkway17.transform.localPosition.z + left_walkway17.transform.localScale.z*10/2 + left_walkway18.transform.localScale.z *10/2;
 				left_walkway18.transform.localPosition = left_walkway18_localPosition;
 				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
@@ -1618,20 +1403,7 @@ namespace QualisysRealTime.Unity
 				center_walkway11.transform.localPosition = center_walkway11_localPosition;
 				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-
-			if (center_walkway10_position.z < -25f)
-			{
-				center_walkway10_localPosition.z = center_walkway9.transform.localPosition.z + center_walkway9.transform.localScale.z*10/2 + center_walkway10.transform.localScale.z *10/2;
-				center_walkway10.transform.localPosition = center_walkway10_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
-
-			if (center_walkway11_position.z < -25f)
-			{
-				center_walkway11_localPosition.z = center_walkway10.transform.localPosition.z + center_walkway10.transform.localScale.z*10/2 + center_walkway11.transform.localScale.z *10/2;
-				center_walkway11.transform.localPosition = center_walkway11_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
+				
 			if (center_walkway12_position.z < -25f)
 			{
 				center_walkway12_localPosition.z = center_walkway11.transform.localPosition.z + center_walkway11.transform.localScale.z*10/2 + center_walkway12.transform.localScale.z *10/2;
@@ -1747,19 +1519,6 @@ namespace QualisysRealTime.Unity
 				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
-			if (right_walkway10_position.z < -25f)
-			{
-				right_walkway10_localPosition.z = right_walkway9.transform.localPosition.z + right_walkway9.transform.localScale.z*10/2 + right_walkway10.transform.localScale.z *10/2;
-				right_walkway10.transform.localPosition = right_walkway10_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
-
-			if (right_walkway11_position.z < -25f)
-			{
-				right_walkway11_localPosition.z = right_walkway10.transform.localPosition.z + right_walkway10.transform.localScale.z*10/2 + right_walkway10.transform.localScale.z *10/2;
-				right_walkway11.transform.localPosition = right_walkway11_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-			}
 			if (right_walkway12_position.z < -25f)
 			{
 				right_walkway12_localPosition.z = right_walkway11.transform.localPosition.z + right_walkway11.transform.localScale.z*10/2 + right_walkway12.transform.localScale.z *10/2;
@@ -1780,7 +1539,7 @@ namespace QualisysRealTime.Unity
 			}
 			if (right_walkway15_position.z < -25f)
 			{
-				right_walkway15_localPosition.z = right_walkway14.transform.localPosition.z + right_walkway14.transform.localScale.z*10/2 + right_walkway14.transform.localScale.z *10/2;
+				right_walkway15_localPosition.z = right_walkway14.transform.localPosition.z + right_walkway14.transform.localScale.z*10/2 + right_walkway15.transform.localScale.z *10/2;
 				right_walkway15.transform.localPosition = right_walkway15_localPosition;
 				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
@@ -1792,95 +1551,17 @@ namespace QualisysRealTime.Unity
 			}
 			if (right_walkway17_position.z < -25f)
 			{
-				right_walkway17_localPosition.z = right_walkway16.transform.localPosition.z + right_walkway16.transform.localScale.z*10/2 + right_walkway16.transform.localScale.z *10/2;
+				right_walkway17_localPosition.z = right_walkway16.transform.localPosition.z + right_walkway16.transform.localScale.z*10/2 + right_walkway17.transform.localScale.z *10/2;
 				right_walkway17.transform.localPosition = right_walkway17_localPosition;
 				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway18_position.z < -25f)
 			{
-				right_walkway18_localPosition.z = right_walkway17.transform.localPosition.z + right_walkway17.transform.localScale.z*10/2 + right_walkway17.transform.localScale.z *10/2;
+				right_walkway18_localPosition.z = right_walkway17.transform.localPosition.z + right_walkway17.transform.localScale.z*10/2 + right_walkway18.transform.localScale.z *10/2;
 				right_walkway18.transform.localPosition = right_walkway18_localPosition;
 				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-
-            //if (Stim_Zone == 1)
-            //{
-            //	if (Mathf.Round(left_walkway1_position[2]) == 45){
-            //		left_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway2_position[2]) == 45)
-            //             {
-            //		left_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway3_position[2]) == 45)
-            //             {
-            //		left_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway4_position[2]) == 45)
-            //             {
-            //		left_walkway4.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway5_position[2]) == 45)
-            //             {
-            //		left_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway6_position[2]) == 45)
-            //             {
-            //		left_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway7_position[2]) == 45)
-            //             {
-            //		left_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway8_position[2]) == 45)
-            //             {
-            //		left_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(left_walkway9_position[2]) == 45)
-            //             {
-            //		left_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //}
-
-            //if (Stim_Zone == 2) {
-
-            //	if (Mathf.Round(right_walkway1_position[2]) == 45)
-            //             {
-            //		right_walkway1.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway2_position[2]) == 45)
-            //             {
-            //		right_walkway2.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway3_position [2]) == 45)
-            //             {
-            //		right_walkway3.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway4_position [2]) == 45)
-            //             {
-            //                 right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway5_position [2]) == 45)
-            //             {
-            //		right_walkway5.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway6_position [2]) == 45)
-            //             {
-            //		right_walkway6.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway7_position [2]) == 45)
-            //             {
-            //		right_walkway7.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway8_position [2]) == 45)
-            //             {
-            //		right_walkway8.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //	if (Mathf.Round(right_walkway9_position [2]) == 45)
-            //             {
-            //		right_walkway9.GetComponent<Renderer> ().material.SetColor ("_Color", Color.red);
-            //	}
-            //}
+				
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1895,31 +1576,7 @@ namespace QualisysRealTime.Unity
 			{
 				PlayerPerspective.transform.position = HeadPosition_labview;
 			}
-
-            //CameraPosition.x = camera_translation_x_unity;
-            //CameraPosition.y = camera_translation_y_unity - .03f;
-            //CameraPosition.z = camera_translation_z_unity; 
-            //CameraObject.transform.position = CameraPosition;
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            // // // // // // SET DOME/OMNITY POSITION // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  
-            // the values are a manually measure distance from the world/nexus/forceplate origin to the middle of the screen/dome 
-            // DomePosition.y = 1.8f;
-            // DomePosition.z = 2f;
-            // OmnityDomeTransform.position = DomePosition;
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            // // // // // // UPDATE SCORE // // // // // // // 
-            // if either heel marker crosses into the NO STEP ZONE then turn the score RED and remove 5 points //
-            // if either heel marker crosses into the OK TO STEP ZONE then do nothing with score //
-            // Otherwise, if in STEP ZONE then add a point for every heel strike // 
-
-           //if (lheel_pos_labview_x >= .5) {
-           //     AddScore(1);
-           // }
-
+				
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			// // // // // // ROTATE THE WORLD // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
