@@ -372,7 +372,7 @@ namespace QualisysRealTime.Unity
 			right_walkway18 = GameObject.Find("right_walkway18");
             // // // Load the VR Randomization CSV // // // //
             //PlayerPerspective = GameObject.Find("PlayerPerspective");
-            TextAsset PlaneInfo = Resources.Load<TextAsset>("lanes");
+            TextAsset PlaneInfo = Resources.Load<TextAsset>("ObjectInfo_unity");
             string[] PlaneInfo_string = PlaneInfo.text.Split(new char[] { '\n' });
             // Debug.Log(PlaneInfo_string.Length);
 
@@ -389,13 +389,13 @@ namespace QualisysRealTime.Unity
 						if (i2 == 0)
 						{
 							left_walkway1.transform.localScale = new Vector3(1, 1, LaneLengths / 10);
-							left_walkway1.transform.localPosition = new Vector3(-10f, .01f, 30f - LaneLengths/2 -1);
+							left_walkway1.transform.localPosition = new Vector3(-10f, .01f, 30f - LaneLengths/2);
 
 							center_walkway1.transform.localScale = new Vector3(1, 1, LaneLengths / 10);
-							center_walkway1.transform.localPosition = new Vector3(0f, .01f, 30f - LaneLengths/2 - 1);
+							center_walkway1.transform.localPosition = new Vector3(0f, .01f, 30f - LaneLengths/2);
 
 							right_walkway1.transform.localScale = new Vector3(1, 1, LaneLengths / 10);
-							right_walkway1.transform.localPosition = new Vector3(10f, .01f, 30f - LaneLengths/2 - 1);
+							right_walkway1.transform.localPosition = new Vector3(10f, .01f, 30f - LaneLengths/2);
 						}
 						if (i2 == 1)
 						{
