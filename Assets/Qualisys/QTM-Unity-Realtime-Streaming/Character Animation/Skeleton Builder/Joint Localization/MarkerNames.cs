@@ -196,6 +196,7 @@ namespace QualisysRealTime.Unity.Skeleton
             { 
                 new string[] { "FM1", "FM5" }, 
                 new string[] { "TOE_1_MET", "TOE_5_MET" }, 
+				new string[] {"RTOE","RTOEL"},
                 new string[] { "MT_1", "MT_5" }
             };
 
@@ -253,7 +254,7 @@ namespace QualisysRealTime.Unity.Skeleton
         #endregion
         #region knee
         #region left knee
-            leftUpperKneeAKA = new List<string>() { "L_PAS", "L_SUPPAT" },
+            leftUpperKneeAKA = new List<string>() { "L_PAS", "L_SUPPAT","LTHIP" },
             leftOuterKneeAKA = new List<string>() { "L_FLE", "L_LKNEE", "LEFT_KNEE", "l_knjntln", "Lt Lat Knee", "L_KNEE_LAT", "LKNE", "LKNEE", "LLKNEE" },
             leftInnerKneeAKA = new List<string>() { "L_FME", "L_MKNEE", "LEFT_MEDIAL_KNEE", "Lt Medial Knee", "L_KNEE_MED", "LMKNEE" },
             leftLowerKneeAKA = new List<string>() { "L_TTC", "l_tubtib", "Lt Tibia", "L_TIB_1" },
