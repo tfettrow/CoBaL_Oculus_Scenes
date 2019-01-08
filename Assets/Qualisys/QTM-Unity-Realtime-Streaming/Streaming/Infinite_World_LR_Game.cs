@@ -1006,7 +1006,7 @@ namespace QualisysRealTime.Unity
 
             if (left_walkway1_position.z < -25f)
             {
-				left_walkway1_localPosition.z = left_walkway18.transform.localPosition.z + left_walkway18.transform.localScale.z*10/2 + left_walkway1.transform.localScale.z *10/2;
+				left_walkway1_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway1.transform.localScale.z *10/2;
 				left_walkway1.transform.localPosition = left_walkway1_localPosition;
             //    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
             }
@@ -1121,7 +1121,7 @@ namespace QualisysRealTime.Unity
 			/// // // // // center lane /// // 
 			if (center_walkway1_position.z < -25f)
 			{
-				center_walkway1_localPosition.z = center_walkway18.transform.localPosition.z + center_walkway18.transform.localScale.z*10/2 + center_walkway1.transform.localScale.z *10/2;
+				center_walkway1_localPosition.z = center_walkway10.transform.localPosition.z + center_walkway10.transform.localScale.z*10/2 + center_walkway1.transform.localScale.z *10/2;
 				center_walkway1.transform.localPosition = center_walkway1_localPosition;
 				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
@@ -1236,7 +1236,7 @@ namespace QualisysRealTime.Unity
 			// // // // // // right lane // // // // // // // 
 			if (right_walkway1_position.z < -25f)
 			{
-				right_walkway1_localPosition.z = right_walkway18.transform.localPosition.z + right_walkway18.transform.localScale.z*10/2 + right_walkway1.transform.localScale.z *10/2;
+				right_walkway1_localPosition.z = right_walkway10.transform.localPosition.z + right_walkway10.transform.localScale.z*10/2 + right_walkway1.transform.localScale.z *10/2;
 				right_walkway1.transform.localPosition = right_walkway1_localPosition;
 				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
