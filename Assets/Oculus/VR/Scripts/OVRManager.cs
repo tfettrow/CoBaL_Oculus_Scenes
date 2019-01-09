@@ -24,6 +24,7 @@ limitations under the License.
 #endif
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -815,7 +816,7 @@ public class OVRManager : MonoBehaviour
 	/// <summary>
 	/// If true, head tracking will affect the rotation of each OVRCameraRig's cameras.
 	/// </summary>
-	[HideInInspector]
+	[Tooltip("If true, head tracking will affect the rotation of each OVRCameraRig's cameras.")]
 	public bool useRotationTracking = true;
 
 	/// <summary>
@@ -839,6 +840,9 @@ public class OVRManager : MonoBehaviour
 	/// </summary>
 	[Tooltip("If true, the Reset View in the universal menu will cause the pose to be reset. This should generally be enabled for applications with a stationary position in the virtual world and will allow the View Reset command to place the person back to a predefined location (such as a cockpit seat). Set this to false if you have a locomotion system because resetting the view would effectively teleport the player to potentially invalid locations.")]
     public bool AllowRecenter = true;
+
+	[Tooltip("If true, the Reset View in the universal menu will cause the pose to be reset. This should generally be enabled for applications with a stationary position in the virtual world and will allow the View Reset command to place the person back to a predefined location (such as a cockpit seat). Set this to false if you have a locomotion system because resetting the view would effectively teleport the player to potentially invalid locations.")]
+	public bool AllowManualRecenter = true;
 
 	[SerializeField]
 	[Tooltip("Specifies HMD recentering behavior when controller recenter is performed. True recenters the HMD as well, false does not.")]
@@ -1159,6 +1163,12 @@ public class OVRManager : MonoBehaviour
 		if (AllowRecenter && OVRPlugin.shouldRecenter)
 		{
 			OVRManager.display.RecenterPose();
+		}
+
+		if (AllowManualRecenter && Input.GetKeyDown ("space")) 
+		{
+			OVRManager.display.RecenterPose();
+			print ("space key was hit");
 		}
 
 		if (trackingOriginType != _trackingOriginType)

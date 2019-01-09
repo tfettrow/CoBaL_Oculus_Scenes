@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.VR;
 
 
 // Options
@@ -22,8 +23,11 @@ namespace QualisysRealTime.Unity
 		// private string HeadMarker = "L-frame - 1";
 
         // from mocap marker set
-        private string HeadMarker1 = "LFHD";
-        private string HeadMarker2 = "RFHD";
+        private string LFHeadMarker = "LFHD";
+        private string RFHeadMarker = "RFHD";
+		private string LBHeadMarker = "LBHD";
+		private string RBHeadMarker = "RBHD";
+
         private string LHeelMarker = "LHEEL";
         private string RHeelMarker = "RHEEL";
         
@@ -33,13 +37,33 @@ namespace QualisysRealTime.Unity
 		private List<GameObject> markers;
 
 		// variables assigned from qtm sdk read
-        private Vector3 HeadPosition_qtm;
-        private float HeadPosition1_qtm_x;
-        private float HeadPosition1_qtm_y;
-        private float HeadPosition1_qtm_z;
-        private float HeadPosition2_qtm_x;
-        private float HeadPosition2_qtm_y;
-        private float HeadPosition2_qtm_z;
+        private Vector3 FHeadPosition_qtm;
+		private Vector3 BHeadPosition_qtm;
+		private Vector3 leftHeadPosition_qtm;
+		private Vector3 rightHeadPosition_qtm;
+	
+		private float HeadVector_x;
+		private float HeadVector_y;
+		private float HeadVector_z;
+		private float HeadRollVector_x;
+		private float HeadRollVector_y;
+		private float HeadRollVector_z;
+
+		private Vector3 HeadRotation_qtm;
+		private Vector3 HeadPosition_qtm;
+
+        private float LFHeadPosition_qtm_x;
+        private float LFHeadPosition_qtm_y;
+        private float LFHeadPosition_qtm_z;
+        private float RFHeadPosition_qtm_x;
+		private float RFHeadPosition_qtm_y;
+		private float RFHeadPosition_qtm_z;
+		private float LBHeadPosition_qtm_x;
+		private float LBHeadPosition_qtm_y;
+		private float LBHeadPosition_qtm_z;
+		private float RBHeadPosition_qtm_x;
+		private float RBHeadPosition_qtm_y;
+		private float RBHeadPosition_qtm_z;
 
         private float lheel_pos_labview_x;
         private float rheel_pos_labview_x;
@@ -311,7 +335,7 @@ namespace QualisysRealTime.Unity
             OrigPlaneObject = GameObject.Find("OrigPlane");
             ChildObjectPlacement = GameObject.Find("Object Placement Origin").transform.position;
             SceneObject = GameObject.Find("SceneOrigin");
-            PlayerPerspective = GameObject.Find("PlayerPerspective");
+            PlayerPerspective = GameObject.Find("Main Camera");
 
             // Assign walkways
             left_walkway1 = GameObject.Find("left_walkway1");
@@ -754,6 +778,13 @@ namespace QualisysRealTime.Unity
 		/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		void Update(){
+			if (Input.GetKeyDown ("space")) 
+			{
+				UnityEngine.VR.InputTracking.Recenter;
+				//OVRManager.display.RecenterPose();
+				print ("space key was hit");
+			}
+
 			// // // // // // // // GRAB OMNITY OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //
 	        // Figure out why this isn't grabbing during Start!!!
 	        // Only runs if CameraObject is empty
@@ -794,22 +825,65 @@ namespace QualisysRealTime.Unity
 			{
 				if (markerData[i].Position.magnitude > 0)
 				{
-					if (markerData[i].Label == HeadMarker1)
+					if (markerData[i].Label == LFHeadMarker)
 					{
-						HeadPosition1_qtm_x = markerData[i].Position.z;
-						HeadPosition1_qtm_y = markerData[i].Position.y;
-						HeadPosition1_qtm_z = markerData[i].Position.x;
+						LFHeadPosition_qtm_x = markerData[i].Position.z;
+						LFHeadPosition_qtm_y = markerData[i].Position.y;
+						LFHeadPosition_qtm_z = markerData[i].Position.x;
 					}
-                    if (markerData[i].Label == HeadMarker2)
+                    if (markerData[i].Label == RFHeadMarker)
                     {
-                        HeadPosition2_qtm_x = markerData[i].Position.z;
-                        HeadPosition2_qtm_y = markerData[i].Position.y;
-                        HeadPosition2_qtm_z = markerData[i].Position.x;
+                        RFHeadPosition_qtm_x = markerData[i].Position.z;
+                        RFHeadPosition_qtm_y = markerData[i].Position.y;
+                        RFHeadPosition_qtm_z = markerData[i].Position.x;
                     }
-                    HeadPosition_qtm.x = -(HeadPosition1_qtm_x + HeadPosition2_qtm_x) / 2;
-                    HeadPosition_qtm.y = (HeadPosition1_qtm_y + HeadPosition2_qtm_y) / 2;
-                    HeadPosition_qtm.z = (HeadPosition1_qtm_z + HeadPosition2_qtm_z) / 2;
-                    //markers[i].name = markerData[i].Label;
+					if (markerData[i].Label == LBHeadMarker)
+					{
+						LBHeadPosition_qtm_x = markerData[i].Position.z;
+						LBHeadPosition_qtm_y = markerData[i].Position.y;
+						LBHeadPosition_qtm_z = markerData[i].Position.x;
+					}
+					if (markerData[i].Label == RBHeadMarker)
+					{
+						RBHeadPosition_qtm_x = markerData[i].Position.z;
+						RBHeadPosition_qtm_y = markerData[i].Position.y;
+						RBHeadPosition_qtm_z = markerData[i].Position.x;
+					}
+                    FHeadPosition_qtm.x = -(LFHeadPosition_qtm_x + RFHeadPosition_qtm_x) / 2;
+                    FHeadPosition_qtm.y = (LFHeadPosition_qtm_y + RFHeadPosition_qtm_y) / 2;
+                    FHeadPosition_qtm.z = (LFHeadPosition_qtm_z + RFHeadPosition_qtm_z) / 2;
+       
+					BHeadPosition_qtm.x  = -(LBHeadPosition_qtm_x + RBHeadPosition_qtm_x) / 2;
+					BHeadPosition_qtm.y  = (LBHeadPosition_qtm_y + RBHeadPosition_qtm_y) / 2;
+					BHeadPosition_qtm.z  = (LBHeadPosition_qtm_z + RBHeadPosition_qtm_z) / 2;
+
+					leftHeadPosition_qtm.x = -(LFHeadPosition_qtm_x + LBHeadPosition_qtm_x) / 2;
+					leftHeadPosition_qtm.y  = (LFHeadPosition_qtm_y + LBHeadPosition_qtm_y) / 2;
+					leftHeadPosition_qtm.z  = (LFHeadPosition_qtm_z + LBHeadPosition_qtm_z) / 2;
+
+					rightHeadPosition_qtm.x = -(RFHeadPosition_qtm_x + RBHeadPosition_qtm_x) / 2;
+					rightHeadPosition_qtm.y  = (RFHeadPosition_qtm_y + RBHeadPosition_qtm_y) / 2;
+					rightHeadPosition_qtm.z  = (RFHeadPosition_qtm_z + RBHeadPosition_qtm_z) / 2;
+
+					HeadRollVector_x = leftHeadPosition_qtm.x - rightHeadPosition_qtm.x;
+					HeadRollVector_y = leftHeadPosition_qtm.y - rightHeadPosition_qtm.y;
+					HeadRollVector_z = leftHeadPosition_qtm.z - rightHeadPosition_qtm.z;
+
+					HeadVector_x = FHeadPosition_qtm.x - BHeadPosition_qtm.x;
+					HeadVector_y = FHeadPosition_qtm.y - BHeadPosition_qtm.y;
+					HeadVector_z = FHeadPosition_qtm.z - BHeadPosition_qtm.z;
+								
+					HeadRotation_qtm.x = (float) Math.Atan2 ((double)HeadVector_y, (double)HeadVector_z) * Mathf.Rad2Deg;
+					HeadRotation_qtm.y = (float) Math.Atan2 ((double)HeadVector_x, (double)HeadVector_z) * Mathf.Rad2Deg;
+					//HeadRotation_qtm.z = (float) Math.Atan2 ((double)HeadVector_y, (double)HeadRollVector_x) * Mathf.Rad2Deg;
+
+					//HeadRotation_qtm.y = HeadRotation_qtm.y * Mathf.Rad2Deg;
+					//HeadRotation_qtm.y = Mathf.R (HeadRotation_qtm.y);
+
+					//HeadRotation_qtm.x = Math.Atan2(
+
+					HeadPosition_qtm = FHeadPosition_qtm;
+					//markers[i].name = markerData[i].Label;
                     //markers[i].GetComponent<Renderer>().material.color = markerData[i].Color;
                     //markers[i].transform.localPosition = markerData[i].Position;
                     // markers[i].SetActive(true);
@@ -1356,6 +1430,7 @@ namespace QualisysRealTime.Unity
             if (QTM == true)
 			{
 				PlayerPerspective.transform.position = HeadPosition_qtm;
+				PlayerPerspective.transform.localEulerAngles = HeadRotation_qtm;
 			}
 			if (QTM == false)
 			{
