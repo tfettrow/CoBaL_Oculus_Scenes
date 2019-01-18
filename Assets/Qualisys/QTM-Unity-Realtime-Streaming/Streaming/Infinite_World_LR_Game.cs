@@ -19,8 +19,9 @@ namespace QualisysRealTime.Unity
 	public class Infinite_World_LR_Game: MonoBehaviour{
 		// Initialize udp variables
 		private List<LabeledMarker> markerData;
-		// qtm demo test
-		// private string HeadMarker = "L-frame - 1";
+        private List<SixDOFBody> QTMrigidBodies;
+        // qtm demo test
+        // private string HeadMarker = "L-frame - 1";
 
         // from mocap marker set
         private string LFHeadMarker = "LFHD";
@@ -30,6 +31,8 @@ namespace QualisysRealTime.Unity
 
         private string LHeelMarker = "LHEEL";
         private string RHeelMarker = "RHEEL";
+
+        private string OculusHeadBody = "Head";
         
 		// setup some qtm sdk variables
 		private RTClient rtClient;
@@ -49,7 +52,8 @@ namespace QualisysRealTime.Unity
 		private float HeadRollVector_y;
 		private float HeadRollVector_z;
 
-		private Vector3 HeadRotation_qtm;
+		public Vector3 HeadRotation_qtm;
+
 		private Vector3 HeadPosition_qtm;
 
         private float LFHeadPosition_qtm_x;
@@ -302,8 +306,9 @@ namespace QualisysRealTime.Unity
 		private float falling_rotation_y_labview;
 		private float ground_translation_y_labview;
 		private float ground_translation_z_unity;
+        public float VRreset;
 
-		private Vector3 current_texture_offset;
+        private Vector3 current_texture_offset;
 		public Vector3 current_object_position;
 
         private float falling_position_z;
@@ -335,7 +340,7 @@ namespace QualisysRealTime.Unity
             OrigPlaneObject = GameObject.Find("OrigPlane");
             ChildObjectPlacement = GameObject.Find("Object Placement Origin").transform.position;
             SceneObject = GameObject.Find("SceneOrigin");
-            PlayerPerspective = GameObject.Find("Main Camera");
+            PlayerPerspective = GameObject.Find("PlayerPerspective");
 
             // Assign walkways
             left_walkway1 = GameObject.Find("left_walkway1");
@@ -736,6 +741,7 @@ namespace QualisysRealTime.Unity
 
             markers.Clear();
             markerData = rtClient.Markers;
+            QTMrigidBodies = rtClient.Bodies;
 
            // for (int i = 0; i < markerData.Count; i++)
            // {
@@ -778,22 +784,6 @@ namespace QualisysRealTime.Unity
 		/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		void Update(){
-			if (Input.GetKeyDown ("space")) 
-			{
-				UnityEngine.VR.InputTracking.Recenter;
-				//OVRManager.display.RecenterPose();
-				print ("space key was hit");
-			}
-
-			// // // // // // // // GRAB OMNITY OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //
-	        // Figure out why this isn't grabbing during Start!!!
-	        // Only runs if CameraObject is empty
-			//init();
-			// rtClient = RTClient.GetInstance();
-			//markers = new List<GameObject>();
-			//markerRoot = gameObject;
-
-			//PlayerPerspective = GameObject.Find("PlayerPerspective");
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -812,7 +802,9 @@ namespace QualisysRealTime.Unity
 				InitiateMarkers();
 			}
 
+            // is this necessary twice? other instance in instantiate markers
 			markerData = rtClient.Markers;
+            QTMrigidBodies = rtClient.Bodies;
 
 			if (markerData == null && markerData.Count == 0)
 				return;
@@ -873,8 +865,12 @@ namespace QualisysRealTime.Unity
 					HeadVector_y = FHeadPosition_qtm.y - BHeadPosition_qtm.y;
 					HeadVector_z = FHeadPosition_qtm.z - BHeadPosition_qtm.z;
 								
-					HeadRotation_qtm.x = (float) Math.Atan2 ((double)HeadVector_y, (double)HeadVector_z) * Mathf.Rad2Deg;
-					HeadRotation_qtm.y = (float) Math.Atan2 ((double)HeadVector_x, (double)HeadVector_z) * Mathf.Rad2Deg;
+					//HeadRotation_qtm.x = -(float) Math.Atan2 ((double)HeadVector_y, (double)HeadVector_z) * Mathf.Rad2Deg;
+					//HeadRotation_qtm.y = (float) Math.Atan2 ((double)HeadVector_x, (double)HeadVector_y) * Mathf.Rad2Deg; // ok but idk why it rotates during pitch
+
+
+
+
 					//HeadRotation_qtm.z = (float) Math.Atan2 ((double)HeadVector_y, (double)HeadRollVector_x) * Mathf.Rad2Deg;
 
 					//HeadRotation_qtm.y = HeadRotation_qtm.y * Mathf.Rad2Deg;
@@ -883,6 +879,7 @@ namespace QualisysRealTime.Unity
 					//HeadRotation_qtm.x = Math.Atan2(
 
 					HeadPosition_qtm = FHeadPosition_qtm;
+                   // HeadRotation_qtm = 
 					//markers[i].name = markerData[i].Label;
                     //markers[i].GetComponent<Renderer>().material.color = markerData[i].Color;
                     //markers[i].transform.localPosition = markerData[i].Position;
@@ -891,9 +888,20 @@ namespace QualisysRealTime.Unity
                     // markers[i].transform.localScale = Vector3.one * markerScale;
                 }
 			}
-			// // // // // // // // READ LABVIEW UDP STRING // // // // // // // //// // // // // // // //// // // // // // // //// // 
-			// reads string - splits the characters based on "," - assigns the characters to the variables based on the order within the string
-			char[] delimiter1 = new char[] { ',' };
+
+            for (int i = 0; i < QTMrigidBodies.Count; i++)
+            {
+                if (QTMrigidBodies[i].Name == OculusHeadBody)
+                {
+                    HeadRotation_qtm.y = QTMrigidBodies[i].Rotation.eulerAngles.y;
+                    //LFHeadPosition_qtm_x = markerData[i].Position.z;
+                    //LFHeadPosition_qtm_y = markerData[i].Position.y;
+                    //LFHeadPosition_qtm_z = markerData[i].Position.x;
+                }
+            }
+                // // // // // // // // READ LABVIEW UDP STRING // // // // // // // //// // // // // // // //// // // // // // // //// // 
+                // reads string - splits the characters based on "," - assigns the characters to the variables based on the order within the string
+                char[] delimiter1 = new char[] { ',' };
 			var strvalues = lastReceivedUDPPacket.Split (delimiter1, StringSplitOptions.None);
 			
 			foreach (string word in strvalues) {
@@ -922,18 +930,23 @@ namespace QualisysRealTime.Unity
 					float.TryParse (word, out falling_rotation_y_labview);
 					falling_rotation_z_unity = falling_rotation_y_labview;
 				}
-				if (num_of_UDP_vals == 6) {
-					float.TryParse (word, out Stim_Zone);
-				}
-                if (num_of_UDP_vals == 7)
+                if (num_of_UDP_vals == 6)
+                    float.TryParse(word, out VRreset);
                 {
-                    float.TryParse(word, out lheel_pos_labview_x);
+
                 }
-                if (num_of_UDP_vals == 8)
-                {
-                    float.TryParse(word, out rheel_pos_labview_x);
+                    //if (num_of_UDP_vals == 6) {
+                    //	float.TryParse (word, out Stim_Zone);
+                    //}
+                    // if (num_of_UDP_vals == 7)
+                    //{
+                    //     float.TryParse(word, out lheel_pos_labview_x);
+                    // }
+                    // if (num_of_UDP_vals == 8)
+                    //{
+                    //     float.TryParse(word, out rheel_pos_labview_x);
+                    // }
                 }
-            }
 			num_of_UDP_vals = 0;
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -949,7 +962,7 @@ namespace QualisysRealTime.Unity
             // // // // // // Move THE SCENE GROUND // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // 
             // Move the texture with speed of treadmill
             // need to implement beltspeed instead.. Are there problems with variable update with this?
-            TextureOffset[1] = - ground_translation_z_unity/10f; // offset update based on scale of plane being used... find a way to automate..
+            TextureOffset[1] = - ground_translation_z_unity/5f; // offset update based on scale of plane being used... find a way to automate..
             //TextureOffset_left[1] = -ground_translation_z_unity/2f;
             //TextureOffset_right[1] = -ground_translation_z_unity/2f;
             current_texture_offset = main_floor.material.GetTextureOffset("_MainTex");
@@ -1430,8 +1443,10 @@ namespace QualisysRealTime.Unity
             if (QTM == true)
 			{
 				PlayerPerspective.transform.position = HeadPosition_qtm;
-				PlayerPerspective.transform.localEulerAngles = HeadRotation_qtm;
-			}
+                PlayerPerspective.transform.localEulerAngles = HeadRotation_qtm;
+               // HeadRotation_qtm = HeadRotation_qtm;
+
+            }
 			if (QTM == false)
 			{
 				PlayerPerspective.transform.position = HeadPosition_labview;

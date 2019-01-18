@@ -841,9 +841,6 @@ public class OVRManager : MonoBehaviour
 	[Tooltip("If true, the Reset View in the universal menu will cause the pose to be reset. This should generally be enabled for applications with a stationary position in the virtual world and will allow the View Reset command to place the person back to a predefined location (such as a cockpit seat). Set this to false if you have a locomotion system because resetting the view would effectively teleport the player to potentially invalid locations.")]
     public bool AllowRecenter = true;
 
-	[Tooltip("If true, the Reset View in the universal menu will cause the pose to be reset. This should generally be enabled for applications with a stationary position in the virtual world and will allow the View Reset command to place the person back to a predefined location (such as a cockpit seat). Set this to false if you have a locomotion system because resetting the view would effectively teleport the player to potentially invalid locations.")]
-	public bool AllowManualRecenter = true;
-
 	[SerializeField]
 	[Tooltip("Specifies HMD recentering behavior when controller recenter is performed. True recenters the HMD as well, false does not.")]
 	private bool _reorientHMDOnControllerRecenter = true;
@@ -1165,11 +1162,6 @@ public class OVRManager : MonoBehaviour
 			OVRManager.display.RecenterPose();
 		}
 
-		if (AllowManualRecenter && Input.GetKeyDown ("space")) 
-		{
-			OVRManager.display.RecenterPose();
-			print ("space key was hit");
-		}
 
 		if (trackingOriginType != _trackingOriginType)
 			trackingOriginType = _trackingOriginType;
