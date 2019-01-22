@@ -16,9 +16,9 @@ using UnityEngine.VR;
 // 
 namespace QualisysRealTime.Unity
 {
-	public class Infinite_World_LR_Game: MonoBehaviour{
-		// Initialize udp variables
-		private List<LabeledMarker> markerData;
+    public class Infinite_World_LR_Game : MonoBehaviour {
+        // Initialize udp variables
+        private List<LabeledMarker> markerData;
         private List<SixDOFBody> QTMrigidBodies;
         // qtm demo test
         // private string HeadMarker = "L-frame - 1";
@@ -26,187 +26,187 @@ namespace QualisysRealTime.Unity
         // from mocap marker set
         private string LFHeadMarker = "LFHD";
         private string RFHeadMarker = "RFHD";
-		private string LBHeadMarker = "LBHD";
-		private string RBHeadMarker = "RBHD";
+        private string LBHeadMarker = "LBHD";
+        private string RBHeadMarker = "RBHD";
 
         private string LHeelMarker = "LHEEL";
         private string RHeelMarker = "RHEEL";
 
         private string OculusHeadBody = "Head";
-        
-		// setup some qtm sdk variables
-		private RTClient rtClient;
-		private GameObject markerRoot;
-		private List<GameObject> markers;
 
-		// variables assigned from qtm sdk read
+        // setup some qtm sdk variables
+        private RTClient rtClient;
+        private GameObject markerRoot;
+        private List<GameObject> markers;
+
+        // variables assigned from qtm sdk read
         private Vector3 FHeadPosition_qtm;
-		private Vector3 BHeadPosition_qtm;
-		private Vector3 leftHeadPosition_qtm;
-		private Vector3 rightHeadPosition_qtm;
-	
-		private float HeadVector_x;
-		private float HeadVector_y;
-		private float HeadVector_z;
-		private float HeadRollVector_x;
-		private float HeadRollVector_y;
-		private float HeadRollVector_z;
+        private Vector3 BHeadPosition_qtm;
+        private Vector3 leftHeadPosition_qtm;
+        private Vector3 rightHeadPosition_qtm;
 
-		public Vector3 HeadRotation_qtm;
+        private float HeadVector_x;
+        private float HeadVector_y;
+        private float HeadVector_z;
+        private float HeadRollVector_x;
+        private float HeadRollVector_y;
+        private float HeadRollVector_z;
 
-		private Vector3 HeadPosition_qtm;
+        //public Vector3 HeadRotation_qtm;
+
+        private Vector3 HeadPosition_qtm;
 
         private float LFHeadPosition_qtm_x;
         private float LFHeadPosition_qtm_y;
         private float LFHeadPosition_qtm_z;
         private float RFHeadPosition_qtm_x;
-		private float RFHeadPosition_qtm_y;
-		private float RFHeadPosition_qtm_z;
-		private float LBHeadPosition_qtm_x;
-		private float LBHeadPosition_qtm_y;
-		private float LBHeadPosition_qtm_z;
-		private float RBHeadPosition_qtm_x;
-		private float RBHeadPosition_qtm_y;
-		private float RBHeadPosition_qtm_z;
+        private float RFHeadPosition_qtm_y;
+        private float RFHeadPosition_qtm_z;
+        private float LBHeadPosition_qtm_x;
+        private float LBHeadPosition_qtm_y;
+        private float LBHeadPosition_qtm_z;
+        private float RBHeadPosition_qtm_x;
+        private float RBHeadPosition_qtm_y;
+        private float RBHeadPosition_qtm_z;
 
         private float lheel_pos_labview_x;
         private float rheel_pos_labview_x;
         private float lheel_pos_qtm_x;
         private float rheel_pos_qtm_x;
 
-		// // labview and head translation values                         
-	    public GameObject PlayerPerspective;
+        // // labview and head translation values                         
+        public GameObject PlayerPerspective;
         private Vector3 HeadPosition_labview;
         private float HeadPosition_labview_x;
         private float HeadPosition_labview_y;
         private float HeadPosition_labview_z;
 
-       
+
 
         // // // // // // // INITIALIZE VARIABLES // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
         //public Transform OmnityDomeTransform;
         // Number of Cubes in Scene
         private int num_Objects = 500;
-		// for plane ground
-		//private int num_walkway_planes = 9;
-	    public Renderer main_floor;
+        // for plane ground
+        //private int num_walkway_planes = 9;
+        public Renderer main_floor;
 
-		private GameObject left_walkway1;
-		private GameObject left_walkway2;
-		private GameObject left_walkway3;
-		private GameObject left_walkway4;
-		private GameObject left_walkway5;
-		private GameObject left_walkway6;
-		private GameObject left_walkway7;
-		private GameObject left_walkway8;
-		private GameObject left_walkway9;
-		private GameObject left_walkway10;
-		private GameObject left_walkway11;
-		private GameObject left_walkway12;
-		private GameObject left_walkway13;
-		private GameObject left_walkway14;
-		private GameObject left_walkway15;
-		private GameObject left_walkway16;
-		private GameObject left_walkway17;
-		private GameObject left_walkway18;
+        private GameObject left_walkway1;
+        private GameObject left_walkway2;
+        private GameObject left_walkway3;
+        private GameObject left_walkway4;
+        private GameObject left_walkway5;
+        private GameObject left_walkway6;
+        private GameObject left_walkway7;
+        private GameObject left_walkway8;
+        private GameObject left_walkway9;
+        private GameObject left_walkway10;
+        private GameObject left_walkway11;
+        private GameObject left_walkway12;
+        private GameObject left_walkway13;
+        private GameObject left_walkway14;
+        private GameObject left_walkway15;
+        private GameObject left_walkway16;
+        private GameObject left_walkway17;
+        private GameObject left_walkway18;
 
-		private GameObject right_walkway1;
-		private GameObject right_walkway2;
-		private GameObject right_walkway3;
-		private GameObject right_walkway4;
-		private GameObject right_walkway5;
-		private GameObject right_walkway6;
-		private GameObject right_walkway7;
-		private GameObject right_walkway8;
-		private GameObject right_walkway9;
-		private GameObject right_walkway10;
-		private GameObject right_walkway11;
-		private GameObject right_walkway12;
-		private GameObject right_walkway13;
-		private GameObject right_walkway14;
-		private GameObject right_walkway15;
-		private GameObject right_walkway16;
-		private GameObject right_walkway17;
-		private GameObject right_walkway18;
+        private GameObject right_walkway1;
+        private GameObject right_walkway2;
+        private GameObject right_walkway3;
+        private GameObject right_walkway4;
+        private GameObject right_walkway5;
+        private GameObject right_walkway6;
+        private GameObject right_walkway7;
+        private GameObject right_walkway8;
+        private GameObject right_walkway9;
+        private GameObject right_walkway10;
+        private GameObject right_walkway11;
+        private GameObject right_walkway12;
+        private GameObject right_walkway13;
+        private GameObject right_walkway14;
+        private GameObject right_walkway15;
+        private GameObject right_walkway16;
+        private GameObject right_walkway17;
+        private GameObject right_walkway18;
 
-		private GameObject center_walkway1;
-		private GameObject center_walkway2;
-		private GameObject center_walkway3;
-		private GameObject center_walkway4;
-		private GameObject center_walkway5;
-		private GameObject center_walkway6;
-		private GameObject center_walkway7;
-		private GameObject center_walkway8;
-		private GameObject center_walkway9;
-		private GameObject center_walkway10;
-		private GameObject center_walkway11;
-		private GameObject center_walkway12;
-		private GameObject center_walkway13;
-		private GameObject center_walkway14;
-		private GameObject center_walkway15;
-		private GameObject center_walkway16;
-		private GameObject center_walkway17;
-		private GameObject center_walkway18;
+        private GameObject center_walkway1;
+        private GameObject center_walkway2;
+        private GameObject center_walkway3;
+        private GameObject center_walkway4;
+        private GameObject center_walkway5;
+        private GameObject center_walkway6;
+        private GameObject center_walkway7;
+        private GameObject center_walkway8;
+        private GameObject center_walkway9;
+        private GameObject center_walkway10;
+        private GameObject center_walkway11;
+        private GameObject center_walkway12;
+        private GameObject center_walkway13;
+        private GameObject center_walkway14;
+        private GameObject center_walkway15;
+        private GameObject center_walkway16;
+        private GameObject center_walkway17;
+        private GameObject center_walkway18;
 
-		private Vector3 left_walkway1_position;
-		private Vector3 left_walkway2_position;
-		private Vector3 left_walkway3_position;
-		private Vector3 left_walkway4_position;
-		private Vector3 left_walkway5_position;
-		private Vector3 left_walkway6_position;
-		private Vector3 left_walkway7_position;
-		private Vector3 left_walkway8_position;
-		private Vector3 left_walkway9_position;
-		private Vector3 left_walkway10_position;
-		private Vector3 left_walkway11_position;
-		private Vector3 left_walkway12_position;
-		private Vector3 left_walkway13_position;
-		private Vector3 left_walkway14_position;
-		private Vector3 left_walkway15_position;
-		private Vector3 left_walkway16_position;
-		private Vector3 left_walkway17_position;
-		private Vector3 left_walkway18_position;
+        private Vector3 left_walkway1_position;
+        private Vector3 left_walkway2_position;
+        private Vector3 left_walkway3_position;
+        private Vector3 left_walkway4_position;
+        private Vector3 left_walkway5_position;
+        private Vector3 left_walkway6_position;
+        private Vector3 left_walkway7_position;
+        private Vector3 left_walkway8_position;
+        private Vector3 left_walkway9_position;
+        private Vector3 left_walkway10_position;
+        private Vector3 left_walkway11_position;
+        private Vector3 left_walkway12_position;
+        private Vector3 left_walkway13_position;
+        private Vector3 left_walkway14_position;
+        private Vector3 left_walkway15_position;
+        private Vector3 left_walkway16_position;
+        private Vector3 left_walkway17_position;
+        private Vector3 left_walkway18_position;
 
 
-		private Vector3 right_walkway1_position;
-		private Vector3 right_walkway2_position;
-		private Vector3 right_walkway3_position;
-		private Vector3 right_walkway4_position;
-		private Vector3 right_walkway5_position;
-		private Vector3 right_walkway6_position;
-		private Vector3 right_walkway7_position;
-		private Vector3 right_walkway8_position;
-		private Vector3 right_walkway9_position;
-		private Vector3 right_walkway10_position;
-		private Vector3 right_walkway11_position;
-		private Vector3 right_walkway12_position;
-		private Vector3 right_walkway13_position;
-		private Vector3 right_walkway14_position;
-		private Vector3 right_walkway15_position;
-		private Vector3 right_walkway16_position;
-		private Vector3 right_walkway17_position;
-		private Vector3 right_walkway18_position;
+        private Vector3 right_walkway1_position;
+        private Vector3 right_walkway2_position;
+        private Vector3 right_walkway3_position;
+        private Vector3 right_walkway4_position;
+        private Vector3 right_walkway5_position;
+        private Vector3 right_walkway6_position;
+        private Vector3 right_walkway7_position;
+        private Vector3 right_walkway8_position;
+        private Vector3 right_walkway9_position;
+        private Vector3 right_walkway10_position;
+        private Vector3 right_walkway11_position;
+        private Vector3 right_walkway12_position;
+        private Vector3 right_walkway13_position;
+        private Vector3 right_walkway14_position;
+        private Vector3 right_walkway15_position;
+        private Vector3 right_walkway16_position;
+        private Vector3 right_walkway17_position;
+        private Vector3 right_walkway18_position;
 
-		private Vector3 center_walkway1_position;
-		private Vector3 center_walkway2_position;
-		private Vector3 center_walkway3_position;
-		private Vector3 center_walkway4_position;
-		private Vector3 center_walkway5_position;
-		private Vector3 center_walkway6_position;
-		private Vector3 center_walkway7_position;
-		private Vector3 center_walkway8_position;
-		private Vector3 center_walkway9_position;
-		private Vector3 center_walkway10_position;
-		private Vector3 center_walkway11_position;
-		private Vector3 center_walkway12_position;
-		private Vector3 center_walkway13_position;
-		private Vector3 center_walkway14_position;
-		private Vector3 center_walkway15_position;
-		private Vector3 center_walkway16_position;
-		private Vector3 center_walkway17_position;
-		private Vector3 center_walkway18_position;
+        private Vector3 center_walkway1_position;
+        private Vector3 center_walkway2_position;
+        private Vector3 center_walkway3_position;
+        private Vector3 center_walkway4_position;
+        private Vector3 center_walkway5_position;
+        private Vector3 center_walkway6_position;
+        private Vector3 center_walkway7_position;
+        private Vector3 center_walkway8_position;
+        private Vector3 center_walkway9_position;
+        private Vector3 center_walkway10_position;
+        private Vector3 center_walkway11_position;
+        private Vector3 center_walkway12_position;
+        private Vector3 center_walkway13_position;
+        private Vector3 center_walkway14_position;
+        private Vector3 center_walkway15_position;
+        private Vector3 center_walkway16_position;
+        private Vector3 center_walkway17_position;
+        private Vector3 center_walkway18_position;
 
-		private Vector3 left_walkway1_localPosition;
+        private Vector3 left_walkway1_localPosition;
         private Vector3 left_walkway2_localPosition;
         private Vector3 left_walkway3_localPosition;
         private Vector3 left_walkway4_localPosition;
@@ -215,15 +215,15 @@ namespace QualisysRealTime.Unity
         private Vector3 left_walkway7_localPosition;
         private Vector3 left_walkway8_localPosition;
         private Vector3 left_walkway9_localPosition;
-		private Vector3 left_walkway10_localPosition;
-		private Vector3 left_walkway11_localPosition;
-		private Vector3 left_walkway12_localPosition;
-		private Vector3 left_walkway13_localPosition;
-		private Vector3 left_walkway14_localPosition;
-		private Vector3 left_walkway15_localPosition;
-		private Vector3 left_walkway16_localPosition;
-		private Vector3 left_walkway17_localPosition;
-		private Vector3 left_walkway18_localPosition;
+        private Vector3 left_walkway10_localPosition;
+        private Vector3 left_walkway11_localPosition;
+        private Vector3 left_walkway12_localPosition;
+        private Vector3 left_walkway13_localPosition;
+        private Vector3 left_walkway14_localPosition;
+        private Vector3 left_walkway15_localPosition;
+        private Vector3 left_walkway16_localPosition;
+        private Vector3 left_walkway17_localPosition;
+        private Vector3 left_walkway18_localPosition;
 
         private Vector3 right_walkway1_localPosition;
         private Vector3 right_walkway2_localPosition;
@@ -234,15 +234,15 @@ namespace QualisysRealTime.Unity
         private Vector3 right_walkway7_localPosition;
         private Vector3 right_walkway8_localPosition;
         private Vector3 right_walkway9_localPosition;
-		private Vector3 right_walkway10_localPosition;
-		private Vector3 right_walkway11_localPosition;
-		private Vector3 right_walkway12_localPosition;
-		private Vector3 right_walkway13_localPosition;
-		private Vector3 right_walkway14_localPosition;
-		private Vector3 right_walkway15_localPosition;
-		private Vector3 right_walkway16_localPosition;
-		private Vector3 right_walkway17_localPosition;
-		private Vector3 right_walkway18_localPosition;
+        private Vector3 right_walkway10_localPosition;
+        private Vector3 right_walkway11_localPosition;
+        private Vector3 right_walkway12_localPosition;
+        private Vector3 right_walkway13_localPosition;
+        private Vector3 right_walkway14_localPosition;
+        private Vector3 right_walkway15_localPosition;
+        private Vector3 right_walkway16_localPosition;
+        private Vector3 right_walkway17_localPosition;
+        private Vector3 right_walkway18_localPosition;
 
         private Vector3 center_walkway1_localPosition;
         private Vector3 center_walkway2_localPosition;
@@ -253,62 +253,64 @@ namespace QualisysRealTime.Unity
         private Vector3 center_walkway7_localPosition;
         private Vector3 center_walkway8_localPosition;
         private Vector3 center_walkway9_localPosition;
-		private Vector3 center_walkway10_localPosition;
-		private Vector3 center_walkway11_localPosition;
-		private Vector3 center_walkway12_localPosition;
-		private Vector3 center_walkway13_localPosition;
-		private Vector3 center_walkway14_localPosition;
-		private Vector3 center_walkway15_localPosition;
-		private Vector3 center_walkway16_localPosition;
-		private Vector3 center_walkway17_localPosition;
-		private Vector3 center_walkway18_localPosition;
+        private Vector3 center_walkway10_localPosition;
+        private Vector3 center_walkway11_localPosition;
+        private Vector3 center_walkway12_localPosition;
+        private Vector3 center_walkway13_localPosition;
+        private Vector3 center_walkway14_localPosition;
+        private Vector3 center_walkway15_localPosition;
+        private Vector3 center_walkway16_localPosition;
+        private Vector3 center_walkway17_localPosition;
+        private Vector3 center_walkway18_localPosition;
 
         private Vector2 TextureOffset;
-		private Vector2 TextureOffset_left;
-		private Vector2 TextureOffset_right;
+        private Vector2 TextureOffset_left;
+        private Vector2 TextureOffset_right;
 
         private float row_doubles;
         private float LaneLengths;
         private float LaneColors;
-        
+
         // Should hard code this once determine appropriate values...
         private float Distance = 125f;
-	    private float LeftRightSideLength = 10f;
-		private float TopWallLength = 4f;
-	    private float DepthofWall = 15f;
-		private float HalfTopWall;
-	    private float HalfSideWall;
-		// Receiving Thread
-		Thread receiveThread;
-		UdpClient client;
-		// Define all game objects
-		public GameObject SquarePrefab;
-		//public GameObject CameraObject;
-		public GameObject OrigCubeObject;
+        private float LeftRightSideLength = 10f;
+        private float TopWallLength = 4f;
+        private float DepthofWall = 15f;
+        private float HalfTopWall;
+        private float HalfSideWall;
+        // Receiving Thread
+        Thread receiveThread;
+        UdpClient client;
+        // Define all game objects
+        public GameObject SquarePrefab;
+        //public GameObject CameraObject;
+        public GameObject OrigCubeObject;
         public GameObject OrigPlaneObject;
-		public GameObject SceneObject;
+        public GameObject SceneObject;
 
-		// Variables being read from UDP
-		//UDP route//
-		[Header("QTM")]
-		public bool QTM;
-		private bool streaming = false;
+        // Variables being read from UDP
+        //UDP route//
+        [Header("QTM")]
+        public bool QTM;
+        private bool streaming = false;
 
-		private float num_of_UDP_vals;
+        private float num_of_UDP_vals;
 
-		private float Stim_Zone;
+        private float Stim_Zone;
 
-		private float dt;
+        private float dt;
 
-		// Treadmill//
-		private float beltSpeed;
-		private float ground_translation_y;
-		private float falling_rotation_y_labview;
-		private float ground_translation_y_labview;
-		private float ground_translation_z_unity;
+        // Treadmill//
+        private float beltSpeed;
+        private float ground_translation_y;
+        private float falling_rotation_y_labview;
+        private float ground_translation_y_labview;
+        private float ground_translation_z_unity;
         //public float VRreset;
-		private float correct_gyro_labview;
-		public static float correct_gyro_infiniteworld {get;set;}
+        private float correct_gyro_labview;
+        private static float correct_gyro_infiniteworld { get; set; }
+
+        public static float HeadRotation_qtm_y {get;set;}
 
         private Vector3 current_texture_offset;
 		public Vector3 current_object_position;
@@ -895,7 +897,9 @@ namespace QualisysRealTime.Unity
             {
                 if (QTMrigidBodies[i].Name == OculusHeadBody)
                 {
-                    HeadRotation_qtm.y = QTMrigidBodies[i].Rotation.eulerAngles.y;
+                    HeadRotation_qtm_y = QTMrigidBodies[i].Rotation.eulerAngles.y;
+                   // HeadRotation_qtm.x = 0;
+                    
                     //LFHeadPosition_qtm_x = markerData[i].Position.z;
                     //LFHeadPosition_qtm_y = markerData[i].Position.y;
                     //LFHeadPosition_qtm_z = markerData[i].Position.x;
@@ -1444,7 +1448,7 @@ namespace QualisysRealTime.Unity
             if (QTM == true)
 			{
 				PlayerPerspective.transform.position = HeadPosition_qtm;
-                PlayerPerspective.transform.localEulerAngles = HeadRotation_qtm;
+                //PlayerPerspective.transform.localEulerAngles = HeadRotation_qtm;
                // HeadRotation_qtm = HeadRotation_qtm;
 
             }
