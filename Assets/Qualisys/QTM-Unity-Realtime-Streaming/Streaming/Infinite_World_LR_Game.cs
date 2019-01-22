@@ -306,7 +306,9 @@ namespace QualisysRealTime.Unity
 		private float falling_rotation_y_labview;
 		private float ground_translation_y_labview;
 		private float ground_translation_z_unity;
-        public float VRreset;
+        //public float VRreset;
+		private float correct_gyro_labview;
+		public static float correct_gyro_infiniteworld {get;set;}
 
         private Vector3 current_texture_offset;
 		public Vector3 current_object_position;
@@ -931,9 +933,8 @@ namespace QualisysRealTime.Unity
 					falling_rotation_z_unity = falling_rotation_y_labview;
 				}
                 if (num_of_UDP_vals == 6)
-                    float.TryParse(word, out VRreset);
-                {
-
+					float.TryParse(word, out correct_gyro_labview);{
+					correct_gyro_infiniteworld = correct_gyro_labview;
                 }
                     //if (num_of_UDP_vals == 6) {
                     //	float.TryParse (word, out Stim_Zone);
