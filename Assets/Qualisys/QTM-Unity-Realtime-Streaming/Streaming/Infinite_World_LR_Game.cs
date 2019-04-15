@@ -29,8 +29,8 @@ namespace QualisysRealTime.Unity
         private string LBHeadMarker = "LBHD";
         private string RBHeadMarker = "RBHD";
 
-        private string LHeelMarker = "LHEEL";
-        private string RHeelMarker = "RHEEL";
+        private string LHeelMarker = "LHEE";
+        private string RHeelMarker = "RHEE";
 
         private string OculusHeadBody = "Head";
 
@@ -44,15 +44,6 @@ namespace QualisysRealTime.Unity
         private Vector3 BHeadPosition_qtm;
         private Vector3 leftHeadPosition_qtm;
         private Vector3 rightHeadPosition_qtm;
-
-        private float HeadVector_x;
-        private float HeadVector_y;
-        private float HeadVector_z;
-        private float HeadRollVector_x;
-        private float HeadRollVector_y;
-        private float HeadRollVector_z;
-
-        //public Vector3 HeadRotation_qtm;
 
         private Vector3 HeadPosition_qtm;
 
@@ -84,13 +75,11 @@ namespace QualisysRealTime.Unity
 
 
         // // // // // // // INITIALIZE VARIABLES // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
-        //public Transform OmnityDomeTransform;
         // Number of Cubes in Scene
         private int num_Objects = 500;
-        // for plane ground
-        //private int num_walkway_planes = 9;
         public Renderer main_floor;
 
+        // Define all walkways
         private GameObject left_walkway1;
         private GameObject left_walkway2;
         private GameObject left_walkway3;
@@ -101,14 +90,6 @@ namespace QualisysRealTime.Unity
         private GameObject left_walkway8;
         private GameObject left_walkway9;
         private GameObject left_walkway10;
-        private GameObject left_walkway11;
-        private GameObject left_walkway12;
-        private GameObject left_walkway13;
-        private GameObject left_walkway14;
-        private GameObject left_walkway15;
-        private GameObject left_walkway16;
-        private GameObject left_walkway17;
-        private GameObject left_walkway18;
 
         private GameObject right_walkway1;
         private GameObject right_walkway2;
@@ -120,14 +101,6 @@ namespace QualisysRealTime.Unity
         private GameObject right_walkway8;
         private GameObject right_walkway9;
         private GameObject right_walkway10;
-        private GameObject right_walkway11;
-        private GameObject right_walkway12;
-        private GameObject right_walkway13;
-        private GameObject right_walkway14;
-        private GameObject right_walkway15;
-        private GameObject right_walkway16;
-        private GameObject right_walkway17;
-        private GameObject right_walkway18;
 
         private GameObject center_walkway1;
         private GameObject center_walkway2;
@@ -139,14 +112,6 @@ namespace QualisysRealTime.Unity
         private GameObject center_walkway8;
         private GameObject center_walkway9;
         private GameObject center_walkway10;
-        private GameObject center_walkway11;
-        private GameObject center_walkway12;
-        private GameObject center_walkway13;
-        private GameObject center_walkway14;
-        private GameObject center_walkway15;
-        private GameObject center_walkway16;
-        private GameObject center_walkway17;
-        private GameObject center_walkway18;
 
         private Vector3 left_walkway1_position;
         private Vector3 left_walkway2_position;
@@ -158,15 +123,6 @@ namespace QualisysRealTime.Unity
         private Vector3 left_walkway8_position;
         private Vector3 left_walkway9_position;
         private Vector3 left_walkway10_position;
-        private Vector3 left_walkway11_position;
-        private Vector3 left_walkway12_position;
-        private Vector3 left_walkway13_position;
-        private Vector3 left_walkway14_position;
-        private Vector3 left_walkway15_position;
-        private Vector3 left_walkway16_position;
-        private Vector3 left_walkway17_position;
-        private Vector3 left_walkway18_position;
-
 
         private Vector3 right_walkway1_position;
         private Vector3 right_walkway2_position;
@@ -178,14 +134,6 @@ namespace QualisysRealTime.Unity
         private Vector3 right_walkway8_position;
         private Vector3 right_walkway9_position;
         private Vector3 right_walkway10_position;
-        private Vector3 right_walkway11_position;
-        private Vector3 right_walkway12_position;
-        private Vector3 right_walkway13_position;
-        private Vector3 right_walkway14_position;
-        private Vector3 right_walkway15_position;
-        private Vector3 right_walkway16_position;
-        private Vector3 right_walkway17_position;
-        private Vector3 right_walkway18_position;
 
         private Vector3 center_walkway1_position;
         private Vector3 center_walkway2_position;
@@ -197,14 +145,6 @@ namespace QualisysRealTime.Unity
         private Vector3 center_walkway8_position;
         private Vector3 center_walkway9_position;
         private Vector3 center_walkway10_position;
-        private Vector3 center_walkway11_position;
-        private Vector3 center_walkway12_position;
-        private Vector3 center_walkway13_position;
-        private Vector3 center_walkway14_position;
-        private Vector3 center_walkway15_position;
-        private Vector3 center_walkway16_position;
-        private Vector3 center_walkway17_position;
-        private Vector3 center_walkway18_position;
 
         private Vector3 left_walkway1_localPosition;
         private Vector3 left_walkway2_localPosition;
@@ -216,14 +156,6 @@ namespace QualisysRealTime.Unity
         private Vector3 left_walkway8_localPosition;
         private Vector3 left_walkway9_localPosition;
         private Vector3 left_walkway10_localPosition;
-        private Vector3 left_walkway11_localPosition;
-        private Vector3 left_walkway12_localPosition;
-        private Vector3 left_walkway13_localPosition;
-        private Vector3 left_walkway14_localPosition;
-        private Vector3 left_walkway15_localPosition;
-        private Vector3 left_walkway16_localPosition;
-        private Vector3 left_walkway17_localPosition;
-        private Vector3 left_walkway18_localPosition;
 
         private Vector3 right_walkway1_localPosition;
         private Vector3 right_walkway2_localPosition;
@@ -235,14 +167,6 @@ namespace QualisysRealTime.Unity
         private Vector3 right_walkway8_localPosition;
         private Vector3 right_walkway9_localPosition;
         private Vector3 right_walkway10_localPosition;
-        private Vector3 right_walkway11_localPosition;
-        private Vector3 right_walkway12_localPosition;
-        private Vector3 right_walkway13_localPosition;
-        private Vector3 right_walkway14_localPosition;
-        private Vector3 right_walkway15_localPosition;
-        private Vector3 right_walkway16_localPosition;
-        private Vector3 right_walkway17_localPosition;
-        private Vector3 right_walkway18_localPosition;
 
         private Vector3 center_walkway1_localPosition;
         private Vector3 center_walkway2_localPosition;
@@ -254,14 +178,6 @@ namespace QualisysRealTime.Unity
         private Vector3 center_walkway8_localPosition;
         private Vector3 center_walkway9_localPosition;
         private Vector3 center_walkway10_localPosition;
-        private Vector3 center_walkway11_localPosition;
-        private Vector3 center_walkway12_localPosition;
-        private Vector3 center_walkway13_localPosition;
-        private Vector3 center_walkway14_localPosition;
-        private Vector3 center_walkway15_localPosition;
-        private Vector3 center_walkway16_localPosition;
-        private Vector3 center_walkway17_localPosition;
-        private Vector3 center_walkway18_localPosition;
 
         private Vector2 TextureOffset;
         private Vector2 TextureOffset_left;
@@ -278,12 +194,13 @@ namespace QualisysRealTime.Unity
         private float DepthofWall = 15f;
         private float HalfTopWall;
         private float HalfSideWall;
+        
         // Receiving Thread
         Thread receiveThread;
         UdpClient client;
-        // Define all game objects
+
+        // Define game objects
         public GameObject SquarePrefab;
-        //public GameObject CameraObject;
         public GameObject OrigCubeObject;
         public GameObject OrigPlaneObject;
         public GameObject SceneObject;
@@ -293,12 +210,7 @@ namespace QualisysRealTime.Unity
         [Header("QTM")]
         public bool QTM;
         private bool streaming = false;
-
         private float num_of_UDP_vals;
-
-        private float Stim_Zone;
-
-        private float dt;
 
         // Treadmill//
         private float beltSpeed;
@@ -306,7 +218,6 @@ namespace QualisysRealTime.Unity
         private float falling_rotation_y_labview;
         private float ground_translation_y_labview;
         private float ground_translation_z_unity;
-        //public float VRreset;
         private float correct_gyro_labview;
         private static float correct_gyro_infiniteworld { get; set; }
 
@@ -323,6 +234,7 @@ namespace QualisysRealTime.Unity
 		public string IP = "192.168.253.2";
 		public int port; // Defined on "init 
 		public string lastReceivedUDPPacket = "";
+
 		// Variables used for updating object positions in unity environment
 		Vector3 CameraPosition;
 		Vector3 FallingRotation;
@@ -357,14 +269,6 @@ namespace QualisysRealTime.Unity
             left_walkway8 = GameObject.Find("left_walkway8");
             left_walkway9 = GameObject.Find("left_walkway9");
 			left_walkway10 = GameObject.Find("left_walkway10");
-//			left_walkway11 = GameObject.Find("left_walkway11");
-//			left_walkway12 = GameObject.Find("left_walkway12");
-//			left_walkway13 = GameObject.Find("left_walkway13");
-//			left_walkway14 = GameObject.Find("left_walkway14");
-//			left_walkway15 = GameObject.Find("left_walkway15");
-//			left_walkway16 = GameObject.Find("left_walkway16");
-//			left_walkway17 = GameObject.Find("left_walkway17");
-//			left_walkway18 = GameObject.Find("left_walkway18");
 
             center_walkway1 = GameObject.Find("center_walkway1");
             center_walkway2 = GameObject.Find("center_walkway2");
@@ -376,14 +280,6 @@ namespace QualisysRealTime.Unity
             center_walkway8 = GameObject.Find("center_walkway8");
             center_walkway9 = GameObject.Find("center_walkway9");
 			center_walkway10 = GameObject.Find("center_walkway10");
-//			center_walkway11 = GameObject.Find("center_walkway11");
-//			center_walkway12 = GameObject.Find("center_walkway12");
-//			center_walkway13 = GameObject.Find("center_walkway13");
-//			center_walkway14 = GameObject.Find("center_walkway14");
-//			center_walkway15 = GameObject.Find("center_walkway15");
-//			center_walkway16 = GameObject.Find("center_walkway16");
-//			center_walkway17 = GameObject.Find("center_walkway17");
-//			center_walkway18 = GameObject.Find("center_walkway18");
 
             right_walkway1 = GameObject.Find("right_walkway1");
             right_walkway2 = GameObject.Find("right_walkway2");
@@ -395,24 +291,16 @@ namespace QualisysRealTime.Unity
             right_walkway8 = GameObject.Find("right_walkway8");
             right_walkway9 = GameObject.Find("right_walkway9");
 			right_walkway10 = GameObject.Find("right_walkway10");
-//			right_walkway11 = GameObject.Find("right_walkway11");
-//			right_walkway12 = GameObject.Find("right_walkway12");
-//			right_walkway13 = GameObject.Find("right_walkway13");
-//			right_walkway14 = GameObject.Find("right_walkway14");
-//			right_walkway15 = GameObject.Find("right_walkway15");
-//			right_walkway16 = GameObject.Find("right_walkway16");
-//			right_walkway17 = GameObject.Find("right_walkway17");
-//			right_walkway18 = GameObject.Find("right_walkway18");
+
             // // // Load the VR Randomization CSV // // // //
-            //PlayerPerspective = GameObject.Find("PlayerPerspective");
             TextAsset PlaneInfo = Resources.Load<TextAsset>("ObjectInfo_unity");
             string[] PlaneInfo_string = PlaneInfo.text.Split(new char[] { '\n' });
-            // Debug.Log(PlaneInfo_string.Length);
 
-           for (int i = 0; i < PlaneInfo_string.Length - 1; i ++)
+
+            // // // Assign Lane Positions // // // //
+            for (int i = 0; i < PlaneInfo_string.Length - 1; i ++)
            {
                String[] row_string = PlaneInfo_string[i].Split(new char[] {','});
-                //Debug.Log(row_string.Length);
                 for (int i2 = 0; i2 < row_string.Length; i2 ++)
                 {
                     float.TryParse(row_string[i2], out row_doubles);
@@ -531,10 +419,10 @@ namespace QualisysRealTime.Unity
 						}
 
                     }
+                    // // // Assign Lane Colors // // // //
                     if (i == 1)
                     {
-                         LaneColors = row_doubles;
-                         //Debug.Log(LeftLaneColors);
+                        LaneColors = row_doubles;
 						if (i2 == 0) 
 						{
 							if (LaneColors == 0) {
@@ -724,18 +612,6 @@ namespace QualisysRealTime.Unity
             }
         }
 
-
-       // public void AddScore(int newScoreValue)
-       // {
-       ////     score = +newScoreValue;
-       //     UpdateScore();
-      ///  }
-
-      //  void UpdateScore()
-      //  {
-      //      scoreText.text = "SCORE:" + (int)score;
-      //  }
-
         private void InitiateMarkers()
         {
             foreach (var marker in markers)
@@ -746,16 +622,6 @@ namespace QualisysRealTime.Unity
             markers.Clear();
             markerData = rtClient.Markers;
             QTMrigidBodies = rtClient.Bodies;
-
-           // for (int i = 0; i < markerData.Count; i++)
-           // {
-           //     GameObject newMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-           //     newMarker.name = markerData[i].Label;
-           //     //newMarker.transform.parent = markerRoot.transform;
-           //     //newMarker.transform.localScale = Vector3.one * markerScale;
-           //     //newMarker.SetActive(false);
-           //     markers.Add(newMarker);
-           // }
         }
 
         // UDP Start //
@@ -791,6 +657,7 @@ namespace QualisysRealTime.Unity
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            // 
             if (rtClient == null)
             {
                 rtClient = RTClient.GetInstance();
@@ -805,18 +672,11 @@ namespace QualisysRealTime.Unity
 				streaming = false;
 				InitiateMarkers();
 			}
-
-            // is this necessary twice? other instance in instantiate markers
 			markerData = rtClient.Markers;
             QTMrigidBodies = rtClient.Bodies;
 
 			if (markerData == null && markerData.Count == 0)
 				return;
-
-			//if (markers.Count != markerData.Count)
-			//{
-			//	InitiateMarkers();
-			//}
 			for (int i = 0; i < markerData.Count; i++)
 			{
 				if (markerData[i].Position.magnitude > 0)
@@ -848,48 +708,8 @@ namespace QualisysRealTime.Unity
                     FHeadPosition_qtm.x = -(LFHeadPosition_qtm_x + RFHeadPosition_qtm_x) / 2;
                     FHeadPosition_qtm.y = (LFHeadPosition_qtm_y + RFHeadPosition_qtm_y) / 2;
                     FHeadPosition_qtm.z = (LFHeadPosition_qtm_z + RFHeadPosition_qtm_z) / 2;
-       
-					BHeadPosition_qtm.x  = -(LBHeadPosition_qtm_x + RBHeadPosition_qtm_x) / 2;
-					BHeadPosition_qtm.y  = (LBHeadPosition_qtm_y + RBHeadPosition_qtm_y) / 2;
-					BHeadPosition_qtm.z  = (LBHeadPosition_qtm_z + RBHeadPosition_qtm_z) / 2;
-
-					leftHeadPosition_qtm.x = -(LFHeadPosition_qtm_x + LBHeadPosition_qtm_x) / 2;
-					leftHeadPosition_qtm.y  = (LFHeadPosition_qtm_y + LBHeadPosition_qtm_y) / 2;
-					leftHeadPosition_qtm.z  = (LFHeadPosition_qtm_z + LBHeadPosition_qtm_z) / 2;
-
-					rightHeadPosition_qtm.x = -(RFHeadPosition_qtm_x + RBHeadPosition_qtm_x) / 2;
-					rightHeadPosition_qtm.y  = (RFHeadPosition_qtm_y + RBHeadPosition_qtm_y) / 2;
-					rightHeadPosition_qtm.z  = (RFHeadPosition_qtm_z + RBHeadPosition_qtm_z) / 2;
-
-					HeadRollVector_x = leftHeadPosition_qtm.x - rightHeadPosition_qtm.x;
-					HeadRollVector_y = leftHeadPosition_qtm.y - rightHeadPosition_qtm.y;
-					HeadRollVector_z = leftHeadPosition_qtm.z - rightHeadPosition_qtm.z;
-
-					HeadVector_x = FHeadPosition_qtm.x - BHeadPosition_qtm.x;
-					HeadVector_y = FHeadPosition_qtm.y - BHeadPosition_qtm.y;
-					HeadVector_z = FHeadPosition_qtm.z - BHeadPosition_qtm.z;
-								
-					//HeadRotation_qtm.x = -(float) Math.Atan2 ((double)HeadVector_y, (double)HeadVector_z) * Mathf.Rad2Deg;
-					//HeadRotation_qtm.y = (float) Math.Atan2 ((double)HeadVector_x, (double)HeadVector_y) * Mathf.Rad2Deg; // ok but idk why it rotates during pitch
-
-
-
-
-					//HeadRotation_qtm.z = (float) Math.Atan2 ((double)HeadVector_y, (double)HeadRollVector_x) * Mathf.Rad2Deg;
-
-					//HeadRotation_qtm.y = HeadRotation_qtm.y * Mathf.Rad2Deg;
-					//HeadRotation_qtm.y = Mathf.R (HeadRotation_qtm.y);
-
-					//HeadRotation_qtm.x = Math.Atan2(
-
+			
 					HeadPosition_qtm = FHeadPosition_qtm;
-                   // HeadRotation_qtm = 
-					//markers[i].name = markerData[i].Label;
-                    //markers[i].GetComponent<Renderer>().material.color = markerData[i].Color;
-                    //markers[i].transform.localPosition = markerData[i].Position;
-                    // markers[i].SetActive(true);
-                    // markers[i].GetComponent<Renderer>().enabled = visibleMarkers;
-                    // markers[i].transform.localScale = Vector3.one * markerScale;
                 }
 			}
 
@@ -898,37 +718,28 @@ namespace QualisysRealTime.Unity
                 if (QTMrigidBodies[i].Name == OculusHeadBody)
                 {
                     HeadRotation_qtm_y = QTMrigidBodies[i].Rotation.eulerAngles.y;
-                   // HeadRotation_qtm.x = 0;
-                    
-                    //LFHeadPosition_qtm_x = markerData[i].Position.z;
-                    //LFHeadPosition_qtm_y = markerData[i].Position.y;
-                    //LFHeadPosition_qtm_z = markerData[i].Position.x;
                 }
             }
-                // // // // // // // // READ LABVIEW UDP STRING // // // // // // // //// // // // // // // //// // // // // // // //// // 
-                // reads string - splits the characters based on "," - assigns the characters to the variables based on the order within the string
-                char[] delimiter1 = new char[] { ',' };
+            // // // // // // // // READ LABVIEW UDP STRING // // // // // // // //// // // // // // // //// // // // // // // //// // 
+            // reads string - splits the characters based on "," - assigns the characters to the variables based on the order within the string
+            char[] delimiter1 = new char[] { ',' };
 			var strvalues = lastReceivedUDPPacket.Split (delimiter1, StringSplitOptions.None);
 			
 			foreach (string word in strvalues) {
 				num_of_UDP_vals++;
 				if (num_of_UDP_vals == 1) {
-					// float.TryParse (word, out camera_translation_x_labview);
 					float.TryParse(word, out HeadPosition_labview_x);
 					HeadPosition_labview.x = HeadPosition_labview_x / 1000;
 				}
 				if (num_of_UDP_vals == 2) {
-					//float.TryParse (word, out camera_translation_y_labview);
 					float.TryParse(word, out HeadPosition_labview_y);
 					HeadPosition_labview.z = HeadPosition_labview_y / 1000;
 				}
 				if (num_of_UDP_vals == 3) {
-					//float.TryParse (word, out camera_translation_z_labview);
 					float.TryParse(word, out HeadPosition_labview_z);
 					HeadPosition_labview.y = HeadPosition_labview_z / 1000;
 				}
 				if (num_of_UDP_vals == 4) {
-					//float.TryParse (word, out ground_translation_y_labview);
 					float.TryParse(word, out ground_translation_y_labview);
                     ground_translation_z_unity = ground_translation_y_labview;
                 }
@@ -940,17 +751,6 @@ namespace QualisysRealTime.Unity
 					float.TryParse(word, out correct_gyro_labview);{
 					correct_gyro_infiniteworld = correct_gyro_labview;
                 }
-                    //if (num_of_UDP_vals == 6) {
-                    //	float.TryParse (word, out Stim_Zone);
-                    //}
-                    // if (num_of_UDP_vals == 7)
-                    //{
-                    //     float.TryParse(word, out lheel_pos_labview_x);
-                    // }
-                    // if (num_of_UDP_vals == 8)
-                    //{
-                    //     float.TryParse(word, out rheel_pos_labview_x);
-                    // }
                 }
 			num_of_UDP_vals = 0;
 
@@ -958,7 +758,6 @@ namespace QualisysRealTime.Unity
 
 			// // // // // // MOVE THE SCENE OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // //
 			// Moves the original/ parent object, thus moving all children objects in the scene assigned to the parent object
-			//current_object_position = OrigCubeObject.transform.position;//- ground_translation_z_unity - 50f; // 50 = starting position Parent Object in scene
 			OrigCubeObjectPosition[2] =  - (ground_translation_z_unity) - 50f;
 			OrigCubeObject.transform.position = OrigCubeObjectPosition;
             OrigPlaneObject.transform.position = OrigCubeObjectPosition;
@@ -968,15 +767,7 @@ namespace QualisysRealTime.Unity
             // Move the texture with speed of treadmill
             // need to implement beltspeed instead.. Are there problems with variable update with this?
             TextureOffset[1] = - ground_translation_z_unity/5f; // offset update based on scale of plane being used... find a way to automate..
-            //TextureOffset_left[1] = -ground_translation_z_unity/2f;
-            //TextureOffset_right[1] = -ground_translation_z_unity/2f;
             current_texture_offset = main_floor.material.GetTextureOffset("_MainTex");
-
-			//dt = Time.deltaTime;
-
-
-			//TextureOffset[1] = current_texture_offset[1] - (ground_translation_z_unity/ 4f);// offset update based on scale of plane being used... find a way to automate..
-
 
 			main_floor.material.SetTextureOffset("_MainTex", TextureOffset); // Get rid of New Vector...
 
@@ -990,15 +781,6 @@ namespace QualisysRealTime.Unity
             left_walkway8_position = left_walkway8.transform.position;
             left_walkway9_position = left_walkway9.transform.position;
 			left_walkway10_position = left_walkway10.transform.position;
-//			left_walkway11_position = left_walkway11.transform.position;
-//			left_walkway12_position = left_walkway12.transform.position;
-//			left_walkway13_position = left_walkway13.transform.position;
-//			left_walkway14_position = left_walkway14.transform.position;
-//			left_walkway15_position = left_walkway15.transform.position;
-//			left_walkway16_position = left_walkway16.transform.position;
-//			left_walkway17_position = left_walkway17.transform.position;
-//			left_walkway18_position = left_walkway18.transform.position;
-
 
             right_walkway1_position = right_walkway1.transform.position;
             right_walkway2_position = right_walkway2.transform.position;
@@ -1010,15 +792,6 @@ namespace QualisysRealTime.Unity
             right_walkway8_position = right_walkway8.transform.position;
             right_walkway9_position = right_walkway9.transform.position;
 			right_walkway10_position = right_walkway10.transform.position;
-//			right_walkway11_position = right_walkway11.transform.position;
-//			right_walkway12_position = right_walkway12.transform.position;
-//			right_walkway13_position = right_walkway13.transform.position;
-//			right_walkway14_position = right_walkway14.transform.position;
-//			right_walkway15_position = right_walkway15.transform.position;
-//			right_walkway16_position = right_walkway16.transform.position;
-//			right_walkway17_position = right_walkway17.transform.position;
-//			right_walkway18_position = right_walkway18.transform.position;
-
 
             center_walkway1_position = center_walkway1.transform.position;
             center_walkway2_position = center_walkway2.transform.position;
@@ -1030,14 +803,6 @@ namespace QualisysRealTime.Unity
             center_walkway8_position = center_walkway8.transform.position;
             center_walkway9_position = center_walkway9.transform.position;
 		    center_walkway10_position = center_walkway10.transform.position;
-//			center_walkway11_position = center_walkway11.transform.position;
-//			center_walkway12_position = center_walkway12.transform.position;
-//			center_walkway13_position = center_walkway13.transform.position;
-//			center_walkway14_position = center_walkway14.transform.position;
-//			center_walkway15_position = center_walkway15.transform.position;
-//			center_walkway16_position = center_walkway16.transform.position;
-//			center_walkway17_position = center_walkway17.transform.position;
-//			center_walkway18_position = center_walkway18.transform.position;
 
 			left_walkway1_localPosition = left_walkway1.transform.localPosition;
             left_walkway2_localPosition = left_walkway2.transform.localPosition;
@@ -1049,14 +814,6 @@ namespace QualisysRealTime.Unity
             left_walkway8_localPosition = left_walkway8.transform.localPosition;
             left_walkway9_localPosition = left_walkway9.transform.localPosition;
             left_walkway10_localPosition = left_walkway10.transform.localPosition;
-//            left_walkway11_localPosition = left_walkway11.transform.localPosition;
-//            left_walkway12_localPosition = left_walkway12.transform.localPosition;
-//            left_walkway13_localPosition = left_walkway13.transform.localPosition;
-//            left_walkway14_localPosition = left_walkway14.transform.localPosition;
-//            left_walkway15_localPosition = left_walkway15.transform.localPosition;
-//            left_walkway16_localPosition = left_walkway16.transform.localPosition;
-//            left_walkway17_localPosition = left_walkway17.transform.localPosition;
-//            left_walkway18_localPosition = left_walkway18.transform.localPosition;
 
             center_walkway1_localPosition = center_walkway1.transform.localPosition;
             center_walkway2_localPosition = center_walkway2.transform.localPosition;
@@ -1068,14 +825,6 @@ namespace QualisysRealTime.Unity
             center_walkway8_localPosition = center_walkway8.transform.localPosition;
             center_walkway9_localPosition = center_walkway9.transform.localPosition;
             center_walkway10_localPosition = center_walkway10.transform.localPosition;
-//            center_walkway11_localPosition = center_walkway11.transform.localPosition;
-//            center_walkway12_localPosition = center_walkway12.transform.localPosition;
-//            center_walkway13_localPosition = center_walkway13.transform.localPosition;
-//            center_walkway14_localPosition = center_walkway14.transform.localPosition;
-//            center_walkway15_localPosition = center_walkway15.transform.localPosition;
-//            center_walkway16_localPosition = center_walkway16.transform.localPosition;
-//            center_walkway17_localPosition = center_walkway17.transform.localPosition;
-//            center_walkway18_localPosition = center_walkway18.transform.localPosition;
 
             right_walkway1_localPosition = right_walkway1.transform.localPosition;
             right_walkway2_localPosition = right_walkway2.transform.localPosition;
@@ -1087,127 +836,59 @@ namespace QualisysRealTime.Unity
             right_walkway8_localPosition = right_walkway8.transform.localPosition;
             right_walkway9_localPosition = right_walkway9.transform.localPosition;
             right_walkway10_localPosition = right_walkway10.transform.localPosition;
-//            right_walkway11_localPosition = right_walkway11.transform.localPosition;
-//            right_walkway12_localPosition = right_walkway12.transform.localPosition;
-//            right_walkway13_localPosition = right_walkway13.transform.localPosition;
-//            right_walkway14_localPosition = right_walkway14.transform.localPosition;
-//            right_walkway15_localPosition = right_walkway15.transform.localPosition;
-//            right_walkway16_localPosition = right_walkway16.transform.localPosition;
-//            right_walkway17_localPosition = right_walkway17.transform.localPosition;
-//            right_walkway18_localPosition = right_walkway18.transform.localPosition;
 
             if (left_walkway1_position.z < -25f)
             {
 				left_walkway1_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway1.transform.localScale.z *10/2;
 				left_walkway1.transform.localPosition = left_walkway1_localPosition;
-            //    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
             }
 			if (left_walkway2_position.z < -25f)
 			{
 				left_walkway2_localPosition.z = left_walkway1.transform.localPosition.z + left_walkway1.transform.localScale.z*10/2 + left_walkway2.transform.localScale.z *10/2;
 				left_walkway2.transform.localPosition = left_walkway2_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway3_position.z < -25f)
 			{
 				left_walkway3_localPosition.z = left_walkway2.transform.localPosition.z + left_walkway2.transform.localScale.z*10/2 + left_walkway3.transform.localScale.z *10/2;
 				left_walkway3.transform.localPosition = left_walkway3_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway4_position.z < -25f)
 			{
 				left_walkway4_localPosition.z = left_walkway3.transform.localPosition.z + left_walkway3.transform.localScale.z*10/2 + left_walkway4.transform.localScale.z *10/2;
 				left_walkway4.transform.localPosition = left_walkway4_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway5_position.z < -25f)
 			{
 				left_walkway5_localPosition.z = left_walkway4.transform.localPosition.z + left_walkway4.transform.localScale.z*10/2 + left_walkway5.transform.localScale.z *10/2;
 				left_walkway5.transform.localPosition = left_walkway5_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway6_position.z < -25f)
 			{
 				left_walkway6_localPosition.z = left_walkway5.transform.localPosition.z + left_walkway5.transform.localScale.z*10/2 + left_walkway6.transform.localScale.z *10/2;
 				left_walkway6.transform.localPosition = left_walkway6_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway7_position.z < -25f)
 			{
 				left_walkway7_localPosition.z = left_walkway6.transform.localPosition.z + left_walkway6.transform.localScale.z*10/2 + left_walkway7.transform.localScale.z *10/2;
 				left_walkway7.transform.localPosition = left_walkway7_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (left_walkway8_position.z < -25f)
 			{
 				left_walkway8_localPosition.z = left_walkway7.transform.localPosition.z + left_walkway7.transform.localScale.z*10/2 + left_walkway8.transform.localScale.z *10/2;
 				left_walkway8.transform.localPosition = left_walkway8_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 			if (left_walkway9_position.z < -25f)
 			{
 				left_walkway9_localPosition.z = left_walkway8.transform.localPosition.z + left_walkway8.transform.localScale.z*10/2 + left_walkway9.transform.localScale.z *10/2;
 				left_walkway9.transform.localPosition = left_walkway9_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 			if (left_walkway10_position.z < -25f)
 			{
 				left_walkway10_localPosition.z = left_walkway9.transform.localPosition.z + left_walkway9.transform.localScale.z*10/2 + left_walkway10.transform.localScale.z *10/2;
 				left_walkway10.transform.localPosition = left_walkway10_localPosition;
-				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-//	
-//			if (left_walkway11_position.z < -25f)
-//			{
-//				left_walkway11_localPosition.z = left_walkway10.transform.localPosition.z + left_walkway10.transform.localScale.z*10/2 + left_walkway11.transform.localScale.z *10/2;
-//				left_walkway11.transform.localPosition = left_walkway11_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway12_position.z < -25f)
-//			{
-//				left_walkway12_localPosition.z = left_walkway11.transform.localPosition.z + left_walkway11.transform.localScale.z*10/2 + left_walkway12.transform.localScale.z *10/2;
-//				left_walkway12.transform.localPosition = left_walkway12_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway13_position.z < -25f)
-//			{
-//				left_walkway13_localPosition.z = left_walkway12.transform.localPosition.z + left_walkway12.transform.localScale.z*10/2 + left_walkway13.transform.localScale.z *10/2;
-//				left_walkway13.transform.localPosition = left_walkway13_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway14_position.z < -25f)
-//			{
-//				left_walkway14_localPosition.z = left_walkway13.transform.localPosition.z + left_walkway13.transform.localScale.z*10/2 + left_walkway14.transform.localScale.z *10/2;
-//				left_walkway14.transform.localPosition = left_walkway14_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway15_position.z < -25f)
-//			{
-//				left_walkway15_localPosition.z = left_walkway14.transform.localPosition.z + left_walkway14.transform.localScale.z*10/2 + left_walkway15.transform.localScale.z *10/2;
-//				left_walkway15.transform.localPosition = left_walkway15_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway16_position.z < -25f)
-//			{
-//				left_walkway16_localPosition.z = left_walkway15.transform.localPosition.z + left_walkway15.transform.localScale.z*10/2 + left_walkway16.transform.localScale.z *10/2;
-//				left_walkway16.transform.localPosition = left_walkway16_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway17_position.z < -25f)
-//			{
-//				left_walkway17_localPosition.z = left_walkway16.transform.localPosition.z + left_walkway16.transform.localScale.z*10/2 + left_walkway17.transform.localScale.z *10/2;
-//				left_walkway17.transform.localPosition = left_walkway17_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (left_walkway18_position.z < -25f)
-//			{
-//				left_walkway18_localPosition.z = left_walkway17.transform.localPosition.z + left_walkway17.transform.localScale.z*10/2 + left_walkway18.transform.localScale.z *10/2;
-//				left_walkway18.transform.localPosition = left_walkway18_localPosition;
-//				//    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-				
 
 
 			/// // // // // center lane /// // 
@@ -1215,230 +896,108 @@ namespace QualisysRealTime.Unity
 			{
 				center_walkway1_localPosition.z = center_walkway10.transform.localPosition.z + center_walkway10.transform.localScale.z*10/2 + center_walkway1.transform.localScale.z *10/2;
 				center_walkway1.transform.localPosition = center_walkway1_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway2_position.z < -25f)
 			{
 				center_walkway2_localPosition.z = center_walkway1.transform.localPosition.z + center_walkway1.transform.localScale.z*10/2 + center_walkway2.transform.localScale.z *10/2;
 				center_walkway2.transform.localPosition = center_walkway2_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway3_position.z < -25f)
 			{
 				center_walkway3_localPosition.z = center_walkway2.transform.localPosition.z + center_walkway2.transform.localScale.z*10/2 + center_walkway3.transform.localScale.z *10/2;
 				center_walkway3.transform.localPosition = center_walkway3_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway4_position.z < -25f)
 			{
 				center_walkway4_localPosition.z = center_walkway3.transform.localPosition.z + center_walkway3.transform.localScale.z*10/2 + center_walkway4.transform.localScale.z *10/2;
 				center_walkway4.transform.localPosition = center_walkway4_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway5_position.z < -25f)
 			{
 				center_walkway5_localPosition.z = center_walkway4.transform.localPosition.z + center_walkway4.transform.localScale.z*10/2 + center_walkway5.transform.localScale.z *10/2;
 				center_walkway5.transform.localPosition = center_walkway5_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway6_position.z < -25f)
 			{
 				center_walkway6_localPosition.z = center_walkway5.transform.localPosition.z + center_walkway5.transform.localScale.z*10/2 + center_walkway6.transform.localScale.z *10/2;
 				center_walkway6.transform.localPosition = center_walkway6_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway7_position.z < -25f)
 			{
 				center_walkway7_localPosition.z = center_walkway6.transform.localPosition.z + center_walkway6.transform.localScale.z*10/2 + center_walkway7.transform.localScale.z *10/2;
 				center_walkway7.transform.localPosition = center_walkway7_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (center_walkway8_position.z < -25f)
 			{
 				center_walkway8_localPosition.z = center_walkway7.transform.localPosition.z + center_walkway7.transform.localScale.z*10/2 + center_walkway8.transform.localScale.z *10/2;
 				center_walkway8.transform.localPosition = center_walkway8_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 			if (center_walkway9_position.z < -25f)
 			{
 				center_walkway9_localPosition.z = center_walkway8.transform.localPosition.z + center_walkway8.transform.localScale.z*10/2 + center_walkway9.transform.localScale.z *10/2;
 				center_walkway9.transform.localPosition = center_walkway9_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 			if (center_walkway10_position.z < -25f)
 			{
 				center_walkway10_localPosition.z = center_walkway9.transform.localPosition.z + center_walkway9.transform.localScale.z*10/2 + center_walkway10.transform.localScale.z *10/2;
 				center_walkway10.transform.localPosition = center_walkway10_localPosition;
-				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-//
-//			if (center_walkway11_position.z < -25f)
-//			{
-//				center_walkway11_localPosition.z = center_walkway10.transform.localPosition.z + center_walkway10.transform.localScale.z*10/2 + center_walkway11.transform.localScale.z *10/2;
-//				center_walkway11.transform.localPosition = center_walkway11_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//				
-//			if (center_walkway12_position.z < -25f)
-//			{
-//				center_walkway12_localPosition.z = center_walkway11.transform.localPosition.z + center_walkway11.transform.localScale.z*10/2 + center_walkway12.transform.localScale.z *10/2;
-//				center_walkway12.transform.localPosition = center_walkway12_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (center_walkway13_position.z < -25f)
-//			{
-//				center_walkway13_localPosition.z = center_walkway12.transform.localPosition.z + center_walkway12.transform.localScale.z*10/2 + center_walkway13.transform.localScale.z *10/2;
-//				center_walkway13.transform.localPosition = center_walkway13_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (center_walkway14_position.z < -25f)
-//			{
-//				center_walkway14_localPosition.z = center_walkway13.transform.localPosition.z + center_walkway13.transform.localScale.z*10/2 + center_walkway14.transform.localScale.z *10/2;
-//				center_walkway14.transform.localPosition = center_walkway14_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (center_walkway15_position.z < -25f)
-//			{
-//				center_walkway15_localPosition.z = center_walkway14.transform.localPosition.z + center_walkway14.transform.localScale.z*10/2 + center_walkway15.transform.localScale.z *10/2;
-//				center_walkway15.transform.localPosition = center_walkway15_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (center_walkway16_position.z < -25f)
-//			{
-//				center_walkway16_localPosition.z = center_walkway15.transform.localPosition.z + center_walkway15.transform.localScale.z*10/2 + center_walkway16.transform.localScale.z *10/2;
-//				center_walkway16.transform.localPosition = center_walkway16_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (center_walkway17_position.z < -25f)
-//			{
-//				center_walkway17_localPosition.z = center_walkway16.transform.localPosition.z + center_walkway16.transform.localScale.z*10/2 + center_walkway17.transform.localScale.z *10/2;
-//				center_walkway17.transform.localPosition = center_walkway17_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (center_walkway18_position.z < -25f)
-//			{
-//				center_walkway18_localPosition.z = center_walkway17.transform.localPosition.z + center_walkway17.transform.localScale.z*10/2 + center_walkway18.transform.localScale.z *10/2;
-//				center_walkway18.transform.localPosition = center_walkway18_localPosition;
-//				//    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-
-
+           
 			// // // // // // right lane // // // // // // // 
 			if (right_walkway1_position.z < -25f)
 			{
 				right_walkway1_localPosition.z = right_walkway10.transform.localPosition.z + right_walkway10.transform.localScale.z*10/2 + right_walkway1.transform.localScale.z *10/2;
 				right_walkway1.transform.localPosition = right_walkway1_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway2_position.z < -25f)
 			{
 				right_walkway2_localPosition.z = right_walkway1.transform.localPosition.z + right_walkway1.transform.localScale.z*10/2 + right_walkway2.transform.localScale.z *10/2;
 				right_walkway2.transform.localPosition = right_walkway2_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway3_position.z < -25f)
 			{
 				right_walkway3_localPosition.z = right_walkway2.transform.localPosition.z + right_walkway2.transform.localScale.z*10/2 + right_walkway3.transform.localScale.z *10/2;
 				right_walkway3.transform.localPosition = right_walkway3_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway4_position.z < -25f)
 			{
 				right_walkway4_localPosition.z = right_walkway3.transform.localPosition.z + right_walkway3.transform.localScale.z*10/2 + right_walkway4.transform.localScale.z *10/2;
 				right_walkway4.transform.localPosition = right_walkway4_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway5_position.z < -25f)
 			{
 				right_walkway5_localPosition.z = right_walkway4.transform.localPosition.z + right_walkway4.transform.localScale.z*10/2 + right_walkway5.transform.localScale.z *10/2;
 				right_walkway5.transform.localPosition = right_walkway5_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway6_position.z < -25f)
 			{
 				right_walkway6_localPosition.z = right_walkway5.transform.localPosition.z + right_walkway5.transform.localScale.z*10/2 + right_walkway6.transform.localScale.z *10/2;
 				right_walkway6.transform.localPosition = right_walkway6_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway7_position.z < -25f)
 			{
 				right_walkway7_localPosition.z = right_walkway6.transform.localPosition.z + right_walkway6.transform.localScale.z*10/2 + right_walkway7.transform.localScale.z *10/2;
 				right_walkway7.transform.localPosition = right_walkway7_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 			if (right_walkway8_position.z < -25f)
 			{
 				right_walkway8_localPosition.z = right_walkway7.transform.localPosition.z + right_walkway7.transform.localScale.z*10/2 + right_walkway8.transform.localScale.z *10/2;
 				right_walkway8.transform.localPosition = right_walkway8_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 			if (right_walkway9_position.z < -25f)
 			{
 				right_walkway9_localPosition.z = right_walkway8.transform.localPosition.z + right_walkway8.transform.localScale.z*10/2 + right_walkway9.transform.localScale.z *10/2;
 				right_walkway9.transform.localPosition = right_walkway9_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
 
 			if (right_walkway10_position.z < -25f)
 			{
 				right_walkway10_localPosition.z = right_walkway9.transform.localPosition.z + right_walkway9.transform.localScale.z*10/2 + right_walkway10.transform.localScale.z *10/2;
 				right_walkway10.transform.localPosition = right_walkway10_localPosition;
-				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
 			}
-//
-//			if (right_walkway11_position.z < -25f)
-//			{
-//				right_walkway11_localPosition.z = right_walkway10.transform.localPosition.z + right_walkway10.transform.localScale.z*10/2 + right_walkway11.transform.localScale.z *10/2;
-//				right_walkway11.transform.localPosition = right_walkway11_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//
-//			if (right_walkway12_position.z < -25f)
-//			{
-//				right_walkway12_localPosition.z = right_walkway11.transform.localPosition.z + right_walkway11.transform.localScale.z*10/2 + right_walkway12.transform.localScale.z *10/2;
-//				right_walkway12.transform.localPosition = right_walkway12_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (right_walkway13_position.z < -25f)
-//			{
-//				right_walkway13_localPosition.z = right_walkway12.transform.localPosition.z + right_walkway12.transform.localScale.z*10/2 + right_walkway13.transform.localScale.z *10/2;
-//				right_walkway13.transform.localPosition = right_walkway13_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (right_walkway14_position.z < -25f)
-//			{
-//				right_walkway14_localPosition.z = right_walkway13.transform.localPosition.z + right_walkway13.transform.localScale.z*10/2 + right_walkway14.transform.localScale.z *10/2;
-//				right_walkway14.transform.localPosition = right_walkway14_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (right_walkway15_position.z < -25f)
-//			{
-//				right_walkway15_localPosition.z = right_walkway14.transform.localPosition.z + right_walkway14.transform.localScale.z*10/2 + right_walkway15.transform.localScale.z *10/2;
-//				right_walkway15.transform.localPosition = right_walkway15_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (right_walkway16_position.z < -25f)
-//			{
-//				right_walkway16_localPosition.z = right_walkway15.transform.localPosition.z + right_walkway15.transform.localScale.z*10/2 + right_walkway16.transform.localScale.z *10/2;
-//				right_walkway16.transform.localPosition = right_walkway16_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (right_walkway17_position.z < -25f)
-//			{
-//				right_walkway17_localPosition.z = right_walkway16.transform.localPosition.z + right_walkway16.transform.localScale.z*10/2 + right_walkway17.transform.localScale.z *10/2;
-//				right_walkway17.transform.localPosition = right_walkway17_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//			if (right_walkway18_position.z < -25f)
-//			{
-//				right_walkway18_localPosition.z = right_walkway17.transform.localPosition.z + right_walkway17.transform.localScale.z*10/2 + right_walkway18.transform.localScale.z *10/2;
-//				right_walkway18.transform.localPosition = right_walkway18_localPosition;
-//				//    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-//			}
-//				
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1448,9 +1007,6 @@ namespace QualisysRealTime.Unity
             if (QTM == true)
 			{
 				PlayerPerspective.transform.position = HeadPosition_qtm;
-                //PlayerPerspective.transform.localEulerAngles = HeadRotation_qtm;
-               // HeadRotation_qtm = HeadRotation_qtm;
-
             }
 			if (QTM == false)
 			{
