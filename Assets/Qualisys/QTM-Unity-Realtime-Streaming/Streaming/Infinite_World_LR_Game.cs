@@ -1,5 +1,3 @@
-////// Deebs /////
-
 using UnityEngine;
 using System;
 using System.Text;
@@ -46,6 +44,9 @@ namespace QualisysRealTime.Unity
         private Vector3 BHeadPosition_qtm;
         private Vector3 leftHeadPosition_qtm;
         private Vector3 rightHeadPosition_qtm;
+    
+        private Vector3 RHeelPosition_qtm;
+        private Vector3 LHeelPosition_qtm;
 
         private Vector3 HeadPosition_qtm;
 
@@ -62,6 +63,13 @@ namespace QualisysRealTime.Unity
         private float RBHeadPosition_qtm_y;
         private float RBHeadPosition_qtm_z;
 
+        //private float RHeelPosition_qtm_x;
+       // private float RHeelPosition_qtm_y;
+       // private float RHeelPosition_qtm_z;
+       // private float LHeelPosition_qtm_x;
+       // private float LHeelPosition_qtm_y;
+       // private float LHeelPosition_qtm_z;
+
         private float lheel_pos_labview_x;
         private float rheel_pos_labview_x;
         private float lheel_pos_qtm_x;
@@ -74,7 +82,8 @@ namespace QualisysRealTime.Unity
         private float HeadPosition_labview_y;
         private float HeadPosition_labview_z;
 
-
+        // Right and Left Heel Game Objects
+        private GameObject RightHeel;
 
         // // // // // // // INITIALIZE VARIABLES // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
         // Number of Cubes in Scene
@@ -259,6 +268,8 @@ namespace QualisysRealTime.Unity
             ChildObjectPlacement = GameObject.Find("Object Placement Origin").transform.position;
             SceneObject = GameObject.Find("SceneOrigin");
             PlayerPerspective = GameObject.Find("PlayerPerspective");
+
+            RightHeel = GameObject.Find("RightHeel");
 
             // Assign walkways
             left_walkway1 = GameObject.Find("left_walkway1");
@@ -707,11 +718,23 @@ namespace QualisysRealTime.Unity
 						RBHeadPosition_qtm_y = markerData[i].Position.y;
 						RBHeadPosition_qtm_z = markerData[i].Position.x;
 					}
+                    if (markerData[i].Label == RHeelMarker)
+                    {
+                        RHeelPosition_qtm.x = -markerData[i].Position.z;
+                        RHeelPosition_qtm.y = markerData[i].Position.y;
+                        RHeelPosition_qtm.z = markerData[i].Position.x;
+                    }
+                    if (markerData[i].Label == LHeelMarker)
+                    {
+                        LHeelPosition_qtm.x = -markerData[i].Position.z;
+                        LHeelPosition_qtm.y = markerData[i].Position.y;
+                        LHeelPosition_qtm.z = markerData[i].Position.x;
+                    }
                     FHeadPosition_qtm.x = -(LFHeadPosition_qtm_x + RFHeadPosition_qtm_x) / 2;
                     FHeadPosition_qtm.y = (LFHeadPosition_qtm_y + RFHeadPosition_qtm_y) / 2;
                     FHeadPosition_qtm.z = (LFHeadPosition_qtm_z + RFHeadPosition_qtm_z) / 2;
-			
-					HeadPosition_qtm = FHeadPosition_qtm;
+                      
+                    HeadPosition_qtm = FHeadPosition_qtm;
                 }
 			}
 
@@ -1009,6 +1032,7 @@ namespace QualisysRealTime.Unity
             if (QTM == true)
 			{
 				PlayerPerspective.transform.position = HeadPosition_qtm;
+                RightHeel.transform.position = RHeelPosition_qtm;
             }
 			if (QTM == false)
 			{
