@@ -7,6 +7,7 @@ using System.Threading;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.VR;
+using System.Collections;
 
 
 // Options
@@ -84,6 +85,12 @@ namespace QualisysRealTime.Unity
 
         // Right and Left Heel Game Objects
         private GameObject RightHeel;
+        private GameObject LeftHeel; 
+
+        // Labview Heelstrike variables
+        private float right_heelstrike_lightup;
+        private float left_heelstrike_lightup;
+       
 
         // // // // // // // INITIALIZE VARIABLES // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
         // Number of Cubes in Scene
@@ -270,6 +277,7 @@ namespace QualisysRealTime.Unity
             PlayerPerspective = GameObject.Find("PlayerPerspective");
 
             RightHeel = GameObject.Find("RightHeel");
+            LeftHeel = GameObject.Find("LeftHeel");
 
             // Assign walkways
             left_walkway1 = GameObject.Find("left_walkway1");
@@ -664,9 +672,14 @@ namespace QualisysRealTime.Unity
 				}
 			}
 		}
-		/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		void Update(){
+        IEnumerator ExecuteAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+        }
+
+        void Update(){
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
              // /// // QTM SDK // /// //
@@ -738,6 +751,9 @@ namespace QualisysRealTime.Unity
                 }
 			}
 
+
+
+
             for (int i = 0; i < QTMrigidBodies.Count; i++)
             {
                 if (QTMrigidBodies[i].Name == OculusHeadBody)
@@ -749,41 +765,543 @@ namespace QualisysRealTime.Unity
             // reads string - splits the characters based on "," - assigns the characters to the variables based on the order within the string
             char[] delimiter1 = new char[] { ',' };
 			var strvalues = lastReceivedUDPPacket.Split (delimiter1, StringSplitOptions.None);
-			
-			foreach (string word in strvalues) {
-				num_of_UDP_vals++;
-				if (num_of_UDP_vals == 1) {
-					float.TryParse(word, out HeadPosition_labview_x);
-					HeadPosition_labview.x = HeadPosition_labview_x / 1000;
-				}
-				if (num_of_UDP_vals == 2) {
-					float.TryParse(word, out HeadPosition_labview_y);
-					HeadPosition_labview.z = HeadPosition_labview_y / 1000;
-				}
-				if (num_of_UDP_vals == 3) {
-					float.TryParse(word, out HeadPosition_labview_z);
-					HeadPosition_labview.y = HeadPosition_labview_z / 1000;
-				}
-				if (num_of_UDP_vals == 4) {
-					float.TryParse(word, out ground_translation_y_labview);
+
+            foreach (string word in strvalues)
+            {
+                num_of_UDP_vals++;
+                if (num_of_UDP_vals == 1)
+                {
+                    float.TryParse(word, out HeadPosition_labview_x);
+                    HeadPosition_labview.x = HeadPosition_labview_x / 1000;
+                }
+                if (num_of_UDP_vals == 2)
+                {
+                    float.TryParse(word, out HeadPosition_labview_y);
+                    HeadPosition_labview.z = HeadPosition_labview_y / 1000;
+                }
+                if (num_of_UDP_vals == 3)
+                {
+                    float.TryParse(word, out HeadPosition_labview_z);
+                    HeadPosition_labview.y = HeadPosition_labview_z / 1000;
+                }
+                if (num_of_UDP_vals == 4)
+                {
+                    float.TryParse(word, out ground_translation_y_labview);
                     ground_translation_z_unity = ground_translation_y_labview;
                 }
-				if (num_of_UDP_vals == 5) {
-					float.TryParse (word, out falling_rotation_y_labview);
-					falling_rotation_z_unity = falling_rotation_y_labview;
-				}
+                if (num_of_UDP_vals == 5)
+                {
+                    float.TryParse(word, out falling_rotation_y_labview);
+                    falling_rotation_z_unity = falling_rotation_y_labview;
+                }
+
                 if (num_of_UDP_vals == 6)
-					float.TryParse(word, out correct_gyro_labview);{
-					correct_gyro_infiniteworld = correct_gyro_labview;
+                {
+                    float.TryParse(word, out right_heelstrike_lightup);   
                 }
+                if (num_of_UDP_vals == 7)
+                {
+                    float.TryParse(word, out left_heelstrike_lightup);
                 }
-			num_of_UDP_vals = 0;
+            }
+                num_of_UDP_vals = 0;
 
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////// Heel strikes in each lane ////////////////////////////////////
 
-			// // // // // // MOVE THE SCENE OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // //
-			// Moves the original/ parent object, thus moving all children objects in the scene assigned to the parent object
-			OrigCubeObjectPosition[2] =  - (ground_translation_z_unity) - 50f;
+            if (center_walkway1_position.z > -5f & center_walkway1_position.z < 5)
+            {
+                //Right Heel Strike
+                if (right_heelstrike_lightup == 1)
+                {
+                    if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                    {
+                        center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                    }
+
+                    if (RHeelPosition_qtm.x < -.18)
+                    {
+                        left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                    }
+                    if (RHeelPosition_qtm.x > .18)
+                    {
+                        right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                    }
+                }
+
+                //Left Heel Strike
+                if (left_heelstrike_lightup == 1)
+                {
+                    if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                    {
+                        center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                    }
+
+                    if (LHeelPosition_qtm.x < -.18)
+                    {
+                        left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                    }
+                    if (LHeelPosition_qtm.x > .18)
+                    {
+                        right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                    }
+                }
+
+                //No  Heel Strike
+                if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                {
+                    center_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                    left_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    right_walkway1.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                }
+            }
+
+            if (center_walkway2_position.z < -25f)
+            {
+                //Right Heel Strike
+                if (right_heelstrike_lightup == 1)
+                {
+                    if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                    {
+                        center_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                    }
+
+                    if (RHeelPosition_qtm.x < -.18)
+                    {
+                        left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                    }
+                    if (RHeelPosition_qtm.x > .18)
+                    {
+                        right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                    }
+                }
+
+                //Left Heel Strike
+                if (left_heelstrike_lightup == 1)
+                {
+                    if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                    {
+                        center_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                    }
+
+                    if (LHeelPosition_qtm.x < -.18)
+                    {
+                        left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                    }
+                    if (LHeelPosition_qtm.x > .18)
+                    {
+                        right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                    }
+                }
+
+                //No  Heel Strike
+                if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                {
+                    center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                    left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                }
+            }
+            if (center_walkway3_position.z > -5f& center_walkway3_position.z < 5)
+            {
+                //Right Heel Strike
+                if (right_heelstrike_lightup == 1)
+                {
+                    if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                    {
+                        center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                    }
+
+                    if (RHeelPosition_qtm.x < -.18)
+                    {
+                        left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                    }
+                    if (RHeelPosition_qtm.x > .18)
+                    {
+                        right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                    }
+                }
+
+                //Left Heel Strike
+                if (left_heelstrike_lightup == 1)
+                {
+                    if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                    {
+                        center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                    }
+
+                    if (LHeelPosition_qtm.x < -.18)
+                    {
+                        left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                    }
+                    if (LHeelPosition_qtm.x > .18)
+                    {
+                        right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                    }
+                }
+
+                //No  Heel Strike
+                if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                {
+                    center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                    left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                }
+            }
+
+
+            if (center_walkway4_position.z < -25f)
+            {
+                if (center_walkway4_position.z > -5f & center_walkway4_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+            if (center_walkway5_position.z < -25f)
+            {
+                if (center_walkway5_position.z > -5f & center_walkway5_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway5.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+            if (center_walkway6_position.z < -25f)
+            {
+                if (center_walkway6_position.z > -5f & center_walkway6_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+            if (center_walkway7_position.z < -25f)
+            {
+                if (center_walkway7_position.z > -5f & center_walkway7_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway7.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+            if (center_walkway8_position.z < -25f)
+            {
+                if (center_walkway8_position.z > -5f & center_walkway8_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+
+            if (center_walkway9_position.z < -25f)
+            {
+                if (center_walkway9_position.z > -5f & center_walkway9_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway9.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+
+            if (center_walkway10_position.z < -25f)
+            {
+                if (center_walkway10_position.z > -5f & center_walkway10_position.z < 5)
+                {
+                    //Right Heel Strike
+                    if (right_heelstrike_lightup == 1)
+                    {
+                        if (RHeelPosition_qtm.x < .18 & RHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (RHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (RHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //Left Heel Strike
+                    if (left_heelstrike_lightup == 1)
+                    {
+                        if (LHeelPosition_qtm.x < .18 & LHeelPosition_qtm.x > -.18)
+                        {
+                            center_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.green * 1.5f);
+                        }
+
+                        if (LHeelPosition_qtm.x < -.18)
+                        {
+                            left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        }
+                        if (LHeelPosition_qtm.x > .18)
+                        {
+                            right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        }
+                    }
+
+                    //No  Heel Strike
+                    if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
+                    {
+                        center_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                        left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                        right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    }
+                }
+            }
+
+           
+
+          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // // // // // // MOVE THE SCENE OBJECTS // // // // // // // //// // // // // // // //// // // // // // // //// // // // // // // //
+            // Moves the original/ parent object, thus moving all children objects in the scene assigned to the parent object
+            OrigCubeObjectPosition[2] =  - (ground_translation_z_unity) - 50f;
 			OrigCubeObject.transform.position = OrigCubeObjectPosition;
             OrigPlaneObject.transform.position = OrigCubeObjectPosition;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -796,6 +1314,7 @@ namespace QualisysRealTime.Unity
 
 			main_floor.material.SetTextureOffset("_MainTex", TextureOffset); // Get rid of New Vector...
 
+            // Global Position (with respect to scene origin)
             left_walkway1_position = left_walkway1.transform.position;
             left_walkway2_position = left_walkway2.transform.position;
             left_walkway3_position = left_walkway3.transform.position;
@@ -829,6 +1348,7 @@ namespace QualisysRealTime.Unity
             center_walkway9_position = center_walkway9.transform.position;
 		    center_walkway10_position = center_walkway10.transform.position;
 
+            // Local Position (with respect to origPlane)
 			left_walkway1_localPosition = left_walkway1.transform.localPosition;
             left_walkway2_localPosition = left_walkway2.transform.localPosition;
             left_walkway3_localPosition = left_walkway3.transform.localPosition;
@@ -1033,6 +1553,7 @@ namespace QualisysRealTime.Unity
 			{
 				PlayerPerspective.transform.position = HeadPosition_qtm;
                 RightHeel.transform.position = RHeelPosition_qtm;
+                LeftHeel.transform.position = LHeelPosition_qtm;
             }
 			if (QTM == false)
 			{
