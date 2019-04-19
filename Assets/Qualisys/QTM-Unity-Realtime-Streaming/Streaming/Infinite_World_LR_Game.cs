@@ -867,11 +867,11 @@ namespace QualisysRealTime.Unity
 
                     if (RHeelPosition_qtm.x < -.18)
                     {
-                        left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                     }
                     if (RHeelPosition_qtm.x > .18)
                     {
-                        right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                     }
                 }
 
@@ -885,11 +885,11 @@ namespace QualisysRealTime.Unity
 
                     if (LHeelPosition_qtm.x < -.18)
                     {
-                        left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                        left_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                     }
                     if (LHeelPosition_qtm.x > .18)
                     {
-                        right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                        right_walkway2.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                     }
                 }
 
@@ -897,8 +897,8 @@ namespace QualisysRealTime.Unity
                 if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
                 {
                     center_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                    left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                    right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    left_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                    right_walkway3.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                 }
             }
             if (center_walkway3_position.z > -5f& center_walkway3_position.z < 5)
@@ -963,11 +963,11 @@ namespace QualisysRealTime.Unity
 
                         if (RHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (RHeelPosition_qtm.x > .18)
                         {
-                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -981,11 +981,11 @@ namespace QualisysRealTime.Unity
 
                         if (LHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (LHeelPosition_qtm.x > .18)
                         {
-                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -993,8 +993,8 @@ namespace QualisysRealTime.Unity
                     if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
                     {
                         center_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                        left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                        right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        left_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        right_walkway4.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                     }
                 }
             }
@@ -1061,11 +1061,11 @@ namespace QualisysRealTime.Unity
 
                         if (RHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (RHeelPosition_qtm.x > .18)
                         {
-                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -1079,11 +1079,11 @@ namespace QualisysRealTime.Unity
 
                         if (LHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (LHeelPosition_qtm.x > .18)
                         {
-                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -1091,8 +1091,8 @@ namespace QualisysRealTime.Unity
                     if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
                     {
                         center_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                        left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                        right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        left_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        right_walkway6.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                     }
                 }
             }
@@ -1159,11 +1159,11 @@ namespace QualisysRealTime.Unity
 
                         if (RHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (RHeelPosition_qtm.x > .18)
                         {
-                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -1177,11 +1177,11 @@ namespace QualisysRealTime.Unity
 
                         if (LHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (LHeelPosition_qtm.x > .18)
                         {
-                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -1189,8 +1189,8 @@ namespace QualisysRealTime.Unity
                     if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
                     {
                         center_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                        left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                        right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        left_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        right_walkway8.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                     }
                 }
             }
@@ -1259,11 +1259,11 @@ namespace QualisysRealTime.Unity
 
                         if (RHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (RHeelPosition_qtm.x > .18)
                         {
-                            right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -1277,11 +1277,11 @@ namespace QualisysRealTime.Unity
 
                         if (LHeelPosition_qtm.x < -.18)
                         {
-                            left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
+                            left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
                         }
                         if (LHeelPosition_qtm.x > .18)
                         {
-                            right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray * 1.5f);
+                            right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red * 1.5f);
                         }
                     }
 
@@ -1289,8 +1289,8 @@ namespace QualisysRealTime.Unity
                     if (right_heelstrike_lightup == 0 & left_heelstrike_lightup == 0)
                     {
                         center_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                        left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                        right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        left_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+                        right_walkway10.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
                     }
                 }
             }
