@@ -103,7 +103,7 @@ namespace QualisysRealTime.Unity
             }
         }
 
-        // called every time a event is broadcasted from QTM server.
+        // called every time an event is broadcasted from QTM server.
         public void Events(RTPacket packet)
         {
             QTMEvent currentEvent = packet.GetEvent();
